@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="#빠른-시작">빠른 시작</a> ·
+  <a href="./docs/github-deployment-and-quickstart.md">배포·코드복사 가이드</a> ·
   <a href="#day-2--지식-자산화와-하네스">Day 2</a> ·
   <a href="#day-3--mcp-연동과-도구-확장">Day 3</a> ·
   <a href="#day-4--멀티-에이전트와-hitl">Day 4</a> ·
@@ -46,6 +47,8 @@ cd 202608_sec_gumi
 ```
 
 > Day 2에는 Python 3, Day 3·4에는 Node.js가 필요합니다. 실제 시스템 연동 없이 모든 기본 실습을 재현할 수 있습니다.
+
+강사 배포, 팀 브랜치 제출, Claude Code(`/skill`)와 Codex(`$skill`)별 완성형 프롬프트는 [GitHub 배포와 Day 2~4 코드복사 실습 가이드](./docs/github-deployment-and-quickstart.md)에 단계별로 정리되어 있습니다.
 
 ## Day 2 · 지식 자산화와 하네스
 
@@ -171,6 +174,7 @@ $request-human-approval로 검증 결과와 남은 불확실성을 포함한 승
 각 실습의 repo skill과 기반 기술(Harness·Loop·Graph Engineering, MCP·A2A, E2E·Orchestration·Eval, HITL·HOTL)을 Claude Code·Codex 공식 문서와 공개 스펙에 맞춰 정리했습니다.
 
 - [참고 자료 목차](./docs/README.md)
+- [GitHub 배포와 Day 2~4 코드복사 실습 가이드](./docs/github-deployment-and-quickstart.md)
 - [공식 URL·한국어 요약 ingest 인덱스(JSONL)](./docs/research-ingest.jsonl)
 - [Day 2 · 지식 자산화와 하네스](./mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md)
 - [Day 3 · MCP 연동과 도구 확장](./mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md)

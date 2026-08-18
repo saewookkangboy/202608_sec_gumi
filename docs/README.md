@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="#문서">문서</a> ·
+  <a href="./github-deployment-and-quickstart.md">배포·코드복사</a> ·
   <a href="#개념-맵">개념 맵</a> ·
   <a href="#claude-code--codex-기준">Claude · Codex</a> ·
   <a href="../mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md">Day 2</a> ·
@@ -19,6 +20,7 @@
 
 | 실습 | skill | 이 페이지가 보여주는 것 |
 |---|---|---|
+| [공통 배포·빠른 시작](./github-deployment-and-quickstart.md) | Claude `/skill` · Codex `$skill` | main 배포, 팀 브랜치 제출, Day 2~4 완성형 프롬프트와 검증 명령 |
 | [Day 2](../mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md) | `$eco-knowledge-builder` · `$repo-harness-auditor` | 원본 잠금, `source_id`, SHA-256, Top-3 검색, Claude/Codex 하네스 |
 | [Day 3](../mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md) | `$mcp-tool-designer` · `$mcp-smoke-test` | MCP stdio, E2E smoke, Claude/Codex MCP 호스트 |
 | [Day 4](../mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md) | `$plan-maintenance-analysis` · `$execute-evidence-plan` · `$verify-maintenance-report` · `$request-human-approval` | 역할 그래프, 복구 루프, HITL/HOTL, A2A |
