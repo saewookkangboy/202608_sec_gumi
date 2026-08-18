@@ -1,0 +1,6 @@
+[
+  {"equipment_id":"PRESS-01","inspected":500,"defects":25,"evidence_id":"QUALITY-001"},
+  {"equipment_id":"PRESS-03","inspected":420,"defects":8,"evidence_id":"QUALITY-002"},
+  {"equipment_id":"MILL-02","inspected":380,"defects":5,"evidence_id":"QUALITY-003"}
+]
+

@@ -1,0 +1,5 @@
+{"question":"P-100 후면 하우징 변경 이력을 찾아줘","expected":["ECO-001","ECO-003"]}
+{"question":"카메라 브래킷 진동 내구와 관련된 변경은?","expected":["ECO-008"]}
+{"question":"PRESS-03 설비와 연결된 ECO는?","expected":["ECO-005","ECO-011"]}
+{"question":"도면 정보가 없는 ECO를 찾아줘","expected":["ECO-007"]}
+

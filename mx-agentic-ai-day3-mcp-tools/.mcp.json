@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "equipment-log": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["src/server.mjs"]
+    }
+  }
+}
+

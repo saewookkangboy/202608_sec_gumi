@@ -1,0 +1,6 @@
+[
+  {"equipment_id":"PRESS-01","error_count":5,"top_error":"ERR-204","evidence_ids":["LOG-002","LOG-004","LOG-008","LOG-012","LOG-015"]},
+  {"equipment_id":"PRESS-03","error_count":3,"top_error":"ERR-501","evidence_ids":["LOG-006","LOG-007","LOG-010"]},
+  {"equipment_id":"MILL-02","error_count":2,"top_error":"ERR-410","evidence_ids":["LOG-011","LOG-013"]}
+]
+

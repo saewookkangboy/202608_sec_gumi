@@ -1,0 +1,12 @@
+{
+  "name": "mx-agentic-ai-day4-multi-agent-hitl",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "demo": "node src/cli.mjs --fault missing-evidence",
+    "demo:approve": "node src/cli.mjs --approve"
+  }
+}
+
