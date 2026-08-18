@@ -18,3 +18,5 @@
 - 자격증명·개인정보를 `events.jsonl`에 기록하지 않는다.
 - 완료 전 `npm test`를 실행한다.
 
+Claude Code는 같은 폴더의 `CLAUDE.md`가 이 파일을 가져온다.
+

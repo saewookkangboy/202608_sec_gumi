@@ -6,7 +6,7 @@
 
 1. 원본을 수정하지 않고 정규화된 지식 파일을 생성한다.
 2. 질문별 관련 문서를 검색하고 근거 문서 ID를 남긴다.
-3. `AGENTS.md`와 repo skill로 반복 작업 규칙을 고정한다.
+3. `AGENTS.md`/`CLAUDE.md`와 repo skill로 반복 작업 규칙을 고정한다.
 4. 상태 파일만으로 중단된 작업을 복구한다.
 
 ## 빠른 시작
@@ -18,7 +18,7 @@ python3 scripts/validate_repo.py
 python3 -m unittest discover -s tests -v
 ```
 
-Codex에서는 다음처럼 repo skill을 호출할 수 있습니다.
+Codex에서는 `$eco-knowledge-builder`, Claude Code에서는 `/eco-knowledge-builder`로 같은 스킬을 호출할 수 있습니다.
 
 ```text
 $eco-knowledge-builder로 data/raw/eco_documents.jsonl을 지식 자산으로 변환해줘.

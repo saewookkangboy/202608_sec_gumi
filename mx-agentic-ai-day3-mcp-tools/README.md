@@ -9,7 +9,7 @@ npm test
 npm run smoke
 ```
 
-Claude Code 프로젝트 MCP로 연결하려면 저장소를 신뢰한 뒤 `.mcp.json`을 확인합니다. 수동 등록 예시는 다음과 같습니다.
+Claude Code 프로젝트 MCP로 연결하려면 저장소를 신뢰한 뒤 `.mcp.json`을 확인합니다. Codex는 [MCP 설정](https://developers.openai.com/codex/mcp)의 `config.toml`에 같은 stdio 명령을 등록합니다. 수동 등록 예시는 다음과 같습니다.
 
 ```bash
 claude mcp add --scope project --transport stdio equipment-log -- node src/server.mjs

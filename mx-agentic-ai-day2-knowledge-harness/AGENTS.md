@@ -17,3 +17,5 @@
 - 계획은 `plan.md`, 진행 상태는 `progress.md`, 선택 근거는 `decisions.md`에 기록한다.
 - 이미 완료된 단계는 재실행하지 말고 다음 미완료 단계부터 이어간다.
 
+Claude Code는 같은 폴더의 `CLAUDE.md`가 이 파일을 가져온다.
+

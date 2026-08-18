@@ -11,7 +11,9 @@
   <a href="../mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md">Day 4</a>
 </p>
 
-실습 README를 대체하지 않습니다. 과제를 시작하기 전, 또는 `$스킬`을 호출한 뒤 계약을 확인할 때 읽습니다.
+실습 README를 대체하지 않습니다. 과제를 시작하기 전, 또는 Claude Code(`/skill`)·Codex(`$skill`)를 호출한 뒤 계약을 확인할 때 읽습니다.
+
+레이아웃은 Codex(`AGENTS.md`, `.agents/skills/`)입니다. 각 일자 `CLAUDE.md`가 같은 지침을 Claude Code에 넘깁니다.
 
 ## 문서
 
@@ -27,7 +29,7 @@
 
 | 개념 | 교육용 정의 | 주 적용일 | 구현 증거 |
 |---|---|---|---|
-| Harness Engineering | 에이전트를 둘러싼 규칙·상태·도구·검증·재개 장치 설계 | Day 2 | `AGENTS.md`, 상태 파일, 원본 해시, 검증 스크립트 |
+| Harness Engineering | 에이전트를 둘러싼 규칙·상태·도구·검증·재개 장치 설계 | Day 2 | `AGENTS.md`, `CLAUDE.md`, 상태 파일, 원본 해시, 검증 스크립트 |
 | Graph Engineering | 엔터티·관계·상태 전이를 그래프로 표현하고 탐색하는 설계 | Day 2 → 4 | Advanced 관계 그래프, Day 4 상태 전이 |
 | Loop Engineering | 실행→관찰→판정→재시도/중단을 명시한 제어 루프 | Day 3 → 4 | MCP smoke loop, 최대 3회 복구 루프 |
 | E2E | 사용자/클라이언트 요청부터 실제 결과와 부작용까지 전체 경로 검증 | Day 3 | `initialize → tools/list → tools/call`, 승인 없는 쓰기 차단 |
@@ -41,11 +43,11 @@
 
 ## Claude Code · Codex 기준
 
-세 실습을 에이전트로 진행할 때의 인터페이스 비교 기준은 Claude Code와 Codex입니다. 실습 코드는 Python·Node.js로 독립 실행되며 OpenAI Agents API·GraphRAG·NIST는 보조 참고입니다.
+세 실습을 에이전트로 진행할 때의 인터페이스 비교 기준은 Claude Code와 Codex입니다. 실습 코드는 Python·Node.js로 독립 실행되며 OpenAI Agents API·GraphRAG·NIST는 보조 참고입니다. 이 저장소는 Codex 레이아웃을 쓰고, 각 일자 `CLAUDE.md`가 `AGENTS.md`를 가져옵니다.
 
 | 층 | Claude Code | Codex | 실습 매핑 |
 |---|---|---|---|
-| Harness | `CLAUDE.md`, `.claude/skills`, hooks | `AGENTS.md`, `.agents/skills`, `config.toml` | Day 2 원본 잠금·상태 파일·검증 |
+| Harness | [`CLAUDE.md`](https://code.claude.com/docs/en/memory), [Skills](https://code.claude.com/docs/en/skills) | [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md), [Skills](https://developers.openai.com/codex/skills) | Day 2 원본 잠금·상태 파일·검증 |
 | Loop | [Agent SDK loop](https://code.claude.com/docs/en/agent-sdk/agent-loop) | [Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/) | Day 3 smoke, Day 4 3회 복구 |
 | Graph | subagent 관계를 명시적 workflow로 구성 | [Subagents](https://developers.openai.com/codex/concepts/subagents) | Day 2 지식 관계, Day 4 역할·상태 전이 |
 | Tools | [MCP](https://code.claude.com/docs/en/mcp) | [MCP](https://developers.openai.com/codex/mcp) | Day 3 로컬 stdio 서버 |
@@ -71,7 +73,7 @@
 1. **원본은 건드리지 않는다.** Day 2 `data/raw/`, Day 3 `data/`, Day 4 `fixtures/`.
 2. **없는 값은 추정하지 않는다.** `UNKNOWN`, 빈 집계, 조인 실패를 모델이 메우지 않는다.
 3. **근거 ID가 없으면 결과가 아니다.** `ECO-*`, `LOG-*`, `QUALITY-*`.
-4. **스킬은 점진적으로 로드된다.** `name`·`description`만 상시 적재되고, 본문은 해당 작업에서만 읽힌다.
+4. **스킬은 점진적으로 로드된다.** `name`·`description`만 상시 적재되고, 본문은 해당 작업에서만 읽힌다. Codex는 `.agents/skills/`, Claude Code는 같은 `SKILL.md`를 `/skill-name`으로 호출한다.
 5. **검증 PASS는 사람 승인이 아니다.** Day 3 dry-run과 Day 4 `AWAITING_APPROVAL`.
 
 ## 공통 외부 자료
@@ -82,9 +84,12 @@ Claude Code · Codex를 먼저 읽고, 필요하면 Agents API와 운영 가이�
 - [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
 - [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
 - [Claude Code · Skills](https://code.claude.com/docs/en/skills)
+- [Claude Code · CLAUDE.md](https://code.claude.com/docs/en/memory)
+- [Claude Code · MCP](https://code.claude.com/docs/en/mcp)
 - [Claude Agent SDK · agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop)
-- [Codex AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
-- [Codex · Build skills](https://developers.openai.com/codex/skills)
+- [Codex · AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
+- [Codex · Skills](https://developers.openai.com/codex/skills)
+- [Codex · MCP](https://developers.openai.com/codex/mcp)
 - [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/)
 - [Unlocking the Codex harness](https://openai.com/index/unlocking-the-codex-harness/)
 - [MCP Specification 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18)

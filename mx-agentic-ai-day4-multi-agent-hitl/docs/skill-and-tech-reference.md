@@ -165,7 +165,6 @@ Day 2 Advanced가 부품→ECO 지식 그래프라면, Day 4는 **역할·상태
 | [Codex approvals](https://developers.openai.com/codex/agent-approvals-security) | sandbox + `approval_policy` + auto-review | `--approve`와 `ESCALATED` |
 | [A2A + MCP](https://a2a-protocol.org/latest/) | MCP=도구, A2A=에이전트 간 | Advanced Agent Card / Task |
 | [a2aproject/A2A](https://github.com/a2aproject/A2A) | 스펙·SDK·샘플 | evidence를 Artifact로 전달 |
-| [hybroai/a2a-adapter](https://github.com/hybroai/a2a-adapter) | Claude Code·Codex CLI를 A2A 서버로 노출 | Advanced 상호운용 참고 |
 
 기계가 읽는 전체 목록은 [research-ingest.jsonl](../../docs/research-ingest.jsonl)입니다.
 

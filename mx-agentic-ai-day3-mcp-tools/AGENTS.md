@@ -12,3 +12,5 @@
 - stdout은 JSON-RPC 프로토콜 전용이다. 로그는 stderr에 기록한다.
 - 완료 전 `npm test`와 `npm run smoke`를 실행한다.
 
+Claude Code는 같은 폴더의 `CLAUDE.md`가 이 파일을 가져온다.
+

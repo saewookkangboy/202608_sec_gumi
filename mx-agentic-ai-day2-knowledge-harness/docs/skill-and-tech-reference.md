@@ -81,7 +81,7 @@ Advanced는 `knowledge/relations.json`으로 부품→ECO→도면 2-hop을 추�
 
 | 층 | Claude Code | Codex | 이 실습 |
 |---|---|---|---|
-| 지속 지침 | [`CLAUDE.md`](https://code.claude.com/docs/en/agent-sdk/claude-code-features) | [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md) | 원본 보호, 출력 경로, 완료 전 검증 |
+| 지속 지침 | [`CLAUDE.md`](https://code.claude.com/docs/en/memory) | [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md) | 원본 보호, 출력 경로, 완료 전 검증 |
 | 스킬 | `.claude/skills/` | `.agents/skills/` | `$eco-knowledge-builder`, `$repo-harness-auditor` |
 | 상태 | 세션 메모리 + 프로젝트 파일 | `plan.md` 등 저장소 산출물 | `plan.md` / `progress.md` / `decisions.md` |
 | 완료 검사 | 테스트·훅 | 테스트·승인 정책 | `validate_repo.py`, Top-3 테스트 |
@@ -145,7 +145,7 @@ Claude Agent SDK와 Codex 하네스는 **루프가 기본**입니다. 그래프�
 | [anthropics/skills](https://github.com/anthropics/skills) | Claude Agent Skills 공식 카탈로그. `SKILL.md` + 선택 스크립트 | repo skill 폴더 구조와 점진적 공개 |
 | [openai/codex](https://github.com/openai/codex) | Codex CLI·하네스 런타임 | `AGENTS.md` 발견, 도구 루프, 승인 |
 | [openai/skills](https://github.com/openai/skills) | Codex 스킬 카탈로그. 배포는 [plugins](https://github.com/openai/plugins)로 이동 | `$skill-installer`, `.agents/skills` |
-| [androidZzT/harness-engineering-practice](https://github.com/androidZzT/harness-engineering-practice) | 커뮤니티 작성 Claude Code vs Codex 하네스 비교 | 참고용으로만 사용하고 규격 판단은 위 공식 문서·repo를 우선 |
+| [Claude Code · CLAUDE.md](https://code.claude.com/docs/en/memory) | 세션 시작 시 읽는 지속 지침 | 각 일자 `CLAUDE.md`가 `AGENTS.md`를 import |
 
 기계가 읽는 전체 목록은 [research-ingest.jsonl](../../docs/research-ingest.jsonl)입니다.
 

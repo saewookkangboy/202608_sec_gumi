@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="202608_sec_gumi — 지식 자산화, MCP 도구 확장, 멀티 에이전트 HITL을 연결한 삼성 MX 구미 에이전틱 AI 실습 저장소">
+  <img src="./assets/readme/hero.svg" width="100%" alt="202608_sec_gumi — Claude Code·Codex 기준으로 지식 자산화, MCP 도구 확장, 멀티 에이전트 HITL을 연결한 삼성 MX 구미 에이전틱 AI 실습 저장소">
 </p>
 
 <p align="center">
@@ -13,11 +13,15 @@
 
 ## 수업에서 바로 실행하는 3일 실습 패키지
 
-이 저장소는 에이전틱 AI의 개념을 설명하는 데서 끝나지 않습니다. 교육생이 저장소를 복제하고, repo skill을 호출하고, 테스트 결과와 근거 파일로 과제 완료를 확인하도록 구성했습니다.
+삼성 MX 구미 에이전틱 AI 실습 모노레포입니다. 개념 설명에서 끝나지 않고, 저장소를 복제한 뒤 Claude Code 또는 Codex에서 repo skill을 호출하고, 테스트와 근거 파일로 완료를 확인합니다.
 
-- **Day 2 · Knowledge** — 합성 ECO 12건을 추적 가능한 지식 자산으로 변환합니다.
-- **Day 3 · Tools** — 외부 계정 없이 로컬 MCP 도구 3개를 연결하고 계약을 검증합니다.
-- **Day 4 · Control** — 계획자·실행자·검증자와 사람 승인 게이트를 상태 머신으로 실행합니다.
+| 실습 | 하는 일 | 이 저장소가 고정하는 개념 |
+|---|---|---|
+| **Day 2 · Knowledge** | 합성 ECO 12건을 추적 가능한 지식 자산으로 변환 | Harness Engineering, Eval Check, Graph(Advanced) |
+| **Day 3 · Tools** | 외부 계정 없이 로컬 MCP 도구 3개를 연결하고 계약 검증 | Loop Engineering, E2E, MCP |
+| **Day 4 · Control** | 계획자·실행자·검증자와 사람 승인 게이트를 상태 머신으로 실행 | Agent Orchestration, HITL / HOTL, A2A(Advanced) |
+
+레이아웃은 Codex 기준입니다. `AGENTS.md`와 `.agents/skills/`가 계약을 들고, 각 일자 폴더의 `CLAUDE.md`가 같은 지침을 Claude Code에 넘깁니다. 스킬 본문은 [Agent Skills](https://agentskills.io/specification) `SKILL.md`입니다.
 
 모든 데이터는 교육용 합성 데이터입니다. 실제 사업장 정보, 개인정보, API 키 또는 자격증명을 포함하지 않습니다.
 
@@ -121,14 +125,18 @@ Repo skills:
 
 ## Repo skill 사용법
 
-각 실습의 스킬은 저장소 안의 `.agents/skills/<skill-name>/SKILL.md`에 있습니다. 팀원이 같은 저장소를 복제하면 동일한 작업 규칙과 완료 기준을 함께 사용할 수 있습니다.
-
-예시:
+각 실습의 스킬은 `.agents/skills/<skill-name>/SKILL.md`에 있습니다. Codex는 `$skill-name`으로, Claude Code는 `/skill-name`으로 같은 파일을 호출합니다. 시작 시에는 `name`·`description`만 읽고, 작업이 맞을 때 본문을 로드합니다.
 
 ```text
+# Codex
 $eco-knowledge-builder로 data/raw/eco_documents.jsonl을 지식 자산으로 변환해줘.
 $mcp-tool-designer로 src/server.mjs의 도구 계약과 권한을 점검해줘.
 $request-human-approval로 검증 결과와 남은 불확실성을 포함한 승인 패킷을 만들어줘.
+
+# Claude Code (같은 계약)
+/eco-knowledge-builder
+/mcp-tool-designer
+/request-human-approval
 ```
 
 ## 검증된 완료 기준
@@ -149,17 +157,18 @@ $request-human-approval로 검증 결과와 남은 불확실성을 포함한 승
 
 ```text
 202608_sec_gumi/
-├── docs/                                      # skill·기술 참고 자료 목차
+├── AGENTS.md / CLAUDE.md                      # 모노레포 안내 (Codex · Claude Code)
+├── docs/                                      # skill·기술 참고 자료 목차와 ingest 인덱스
 ├── mx-agentic-ai-day2-knowledge-harness/      # ECO 지식 자산화·검색·하네스
 ├── mx-agentic-ai-day3-mcp-tools/              # 로컬 MCP 서버·도구 계약
 └── mx-agentic-ai-day4-multi-agent-hitl/       # 역할 분리·검증·HITL 상태 머신
 ```
 
-각 일자 폴더는 독립 실습 저장소로도 사용할 수 있으며, 자체 `README.md`, `AGENTS.md`, 합성 데이터, repo skills와 테스트를 포함합니다.
+각 일자 폴더는 독립 실습 저장소로도 사용할 수 있으며, 자체 `README.md`, `AGENTS.md`, `CLAUDE.md`, 합성 데이터, repo skills와 테스트를 포함합니다.
 
 ## 참고 자료
 
-각 실습의 repo skill과 기반 기술(Harness·Loop·Graph Engineering, MCP·A2A, E2E·Orchestration·Eval, HITL·HOTL)을 공식 문서와 공식 GitHub 저장소에 맞춰 정리했습니다.
+각 실습의 repo skill과 기반 기술(Harness·Loop·Graph Engineering, MCP·A2A, E2E·Orchestration·Eval, HITL·HOTL)을 Claude Code·Codex 공식 문서와 공개 스펙에 맞춰 정리했습니다.
 
 - [참고 자료 목차](./docs/README.md)
 - [공식 URL·한국어 요약 ingest 인덱스(JSONL)](./docs/research-ingest.jsonl)
