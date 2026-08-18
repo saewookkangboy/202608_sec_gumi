@@ -1,6 +1,23 @@
-# GitHub 배포와 Day 2~4 코드복사 실습 가이드
+<p align="center">
+  <img src="../assets/readme/lab-guide.svg" width="100%" alt="GitHub 코드복사 실습 가이드 — 명령 블록을 복사해 Claude Code 또는 Codex skill을 실행하고, 검증 후 team 브랜치에 제출한다">
+</p>
 
-이 문서는 강사가 저장소를 배포하고, 수강생이 Claude Code 또는 Codex에서 일자별 repo skill을 사용해 과제를 수행한 뒤 팀 브랜치에 결과를 제출하는 전체 순서를 설명합니다. 명령 블록은 GitHub 화면에서 **Copy** 버튼으로 그대로 복사할 수 있습니다.
+<p align="center">
+  <a href="./README.md">참고 자료</a> ·
+  <a href="#1-준비-사항">준비</a> ·
+  <a href="#2-github-배포-순서">배포</a> ·
+  <a href="#3-에이전트-실행-공통-패턴">에이전트</a> ·
+  <a href="#4-day-2-빠른-시작--knowledge-harness">Day 2</a> ·
+  <a href="#5-day-3-빠른-시작--mcp-tool-extension">Day 3</a> ·
+  <a href="#6-day-4-빠른-시작--multi-agent-hitl">Day 4</a> ·
+  <a href="#7-최종-완료-체크리스트">체크리스트</a>
+</p>
+
+강사가 `main`을 배포하고, 수강생이 일자별 repo skill로 과제를 수행한 뒤 팀 브랜치에 제출하는 순서입니다. 명령과 완성형 프롬프트는 GitHub **Copy** 버튼으로 그대로 복사합니다.
+
+<p align="center">
+  <img src="../assets/readme/lab-roles.svg" width="100%" alt="강사는 main에서 세 일자 테스트를 통과한 뒤 origin main에 푸시하고, 수강생은 team 브랜치에서 skill을 복사한 뒤 origin HEAD에 푸시한다">
+</p>
 
 ## 1. 준비 사항
 
@@ -113,6 +130,12 @@ git grep -n -E '(API_KEY|SECRET|PASSWORD|TOKEN)=' -- ':!*.md' || true
 
 ## 3. 에이전트 실행 공통 패턴
 
+<p align="center">
+  <img src="../assets/readme/docs-hosts.svg" width="100%" alt="Claude Code는 CLAUDE.md와 /skill, Codex는 AGENTS.md와 $skill을 쓰고, 둘 다 같은 로컬 MCP 서버를 붙인다">
+</p>
+
+실습 코드는 동일합니다. Claude Code와 Codex를 모두 설치할 필요는 없습니다. 일자 폴더에서 에이전트를 연 뒤, 아래 완성형 프롬프트를 붙여넣습니다.
+
 ### Claude Code
 
 실습 일자 폴더에서 Claude Code를 시작합니다.
@@ -132,6 +155,12 @@ codex
 ```
 
 대화창에서 `$skill-name`을 포함한 완성형 프롬프트를 붙여넣습니다. Codex는 현재 폴더의 `AGENTS.md`와 `.agents/skills/`를 기준으로 작업합니다.
+
+<p align="center">
+  <img src="../assets/readme/lab-skills.svg" width="100%" alt="Day 2는 knowledge builder와 harness auditor, Day 3는 MCP designer와 smoke, Day 4는 plan execute verify human 순서로 복사한다">
+</p>
+
+개념 계약은 [Day 2](../mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md) · [Day 3](../mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md) · [Day 4](../mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md) 참고 자료를 봅니다.
 
 ## 4. Day 2 빠른 시작 · Knowledge Harness
 

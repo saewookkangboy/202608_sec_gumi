@@ -1,6 +1,17 @@
-# Day 3 · MCP 연동과 도구 확장
+<p align="center">
+  <img src="../assets/readme/day3-mcp.svg" width="100%" alt="Day 3 루프와 E2E — initialize, tools/list, tools/call 스모크 경로와 읽기 도구, APPROVE_WRITE 쓰기 게이트를 구분한다. MCP는 도구, A2A는 Day 4 에이전트다">
+</p>
 
-외부 계정이나 API 키 없이 실행되는 교육용 로컬 MCP 서버입니다. 합성 설비 로그를 읽고 오류를 집계하며, 승인 토큰이 있을 때만 `outputs/`에 리포트를 씁니다.
+<p align="center">
+  <a href="#빠른-시작">빠른 시작</a> ·
+  <a href="#제공-도구">도구</a> ·
+  <a href="#claude-code로-적용">Claude Code</a> ·
+  <a href="#codex로-적용">Codex</a> ·
+  <a href="#실습-순서">실습 순서</a> ·
+  <a href="#검증과-팀-브랜치-제출">제출</a>
+</p>
+
+외부 계정과 API 키 없이 로컬 MCP 서버를 붙입니다. 합성 설비 로그를 읽고 오류를 집계하며, `APPROVE_WRITE`가 있을 때만 `outputs/`에 씁니다.
 
 ## 빠른 시작
 
@@ -12,7 +23,19 @@ npm run smoke
 
 정상 완료 시 정확히 3개 도구, 오류 집계의 `evidence_id`, 구조화 오류, 승인 없는 dry-run, 원본 CSV 불변을 확인합니다.
 
+## 제공 도구
+
+| 도구 | 하는 일 | 부작용 |
+|---|---|---|
+| `list_equipment_logs` | 날짜 범위의 설비·레코드 수 조회 | 없음 |
+| `get_equipment_errors` | 설비 ID와 날짜 범위별 오류 코드 집계 | 없음. `evidence_id` 반환 |
+| `write_analysis_report` | 승인 토큰이 있을 때만 Markdown 리포트 생성 | `APPROVE_WRITE`일 때만 `outputs/`에 기록 |
+
 ## Claude Code로 적용
+
+<p align="center">
+  <img src="../assets/readme/docs-hosts.svg" width="100%" alt="Claude Code는 CLAUDE.md와 /skill, Codex는 AGENTS.md와 $skill을 쓰고, 둘 다 같은 로컬 MCP 서버를 붙인다">
+</p>
 
 저장소의 `.mcp.json`은 `equipment-log` stdio 서버를 프로젝트 단위로 공유합니다.
 
@@ -70,17 +93,6 @@ $mcp-smoke-test로 initialize, tools/list, 안전한 tools/call, 역전 날짜 �
 확인하고, 실패 method와 교정 조치를 정확히 보고해줘.
 ```
 
-## 제공 도구
-
-- `list_equipment_logs`: 날짜 범위의 설비·레코드 수 조회
-- `get_equipment_errors`: 설비 ID와 날짜 범위별 오류 코드 집계
-- `write_analysis_report`: 승인 토큰이 있을 때만 Markdown 리포트 생성
-
-## 참고 자료
-
-- 전체 배포와 코드복사 절차: [GitHub 배포와 Day 2~4 실습 가이드](../docs/github-deployment-and-quickstart.md)
-- 기술 배경과 공식 URL: [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)
-
 ## 실습 순서
 
 1. `npm test`로 도메인 로직을 검증한다.
@@ -118,3 +130,8 @@ git add src/ scripts/ test/ outputs/ README.md
 git commit -m "feat(day3): complete MCP E2E lab"
 git push -u origin HEAD
 ```
+
+## 참고 자료
+
+- 전체 배포와 코드복사 절차: [GitHub 배포와 Day 2~4 실습 가이드](../docs/github-deployment-and-quickstart.md)
+- 기술 배경과 공식 URL: [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)

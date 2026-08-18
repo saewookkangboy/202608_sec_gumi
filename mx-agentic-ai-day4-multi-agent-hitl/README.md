@@ -1,6 +1,17 @@
-# Day 4 · 멀티 에이전트 협업과 HITL
+<p align="center">
+  <img src="../assets/readme/day4-hitl.svg" width="100%" alt="Day 4 HITL과 HOTL — 검증 PASS 후 AWAITING_APPROVAL에서 멈추고, 같은 결함 3회면 ESCALATED로 이관하며, --approve가 있을 때만 APPROVED가 된다">
+</p>
 
-계획자–실행자–검증자의 역할을 JSON 산출물과 상태 머신으로 구현하고, 검증 통과 후에도 사람 승인 전에는 최종 액션을 멈추는 실습입니다.
+<p align="center">
+  <a href="#빠른-시작">빠른 시작</a> ·
+  <a href="#상태-흐름">상태</a> ·
+  <a href="#claude-code로-적용">Claude Code</a> ·
+  <a href="#codex로-적용">Codex</a> ·
+  <a href="#핵심-실습">핵심 실습</a> ·
+  <a href="#검증과-팀-브랜치-제출">제출</a>
+</p>
+
+계획자·실행자·검증자를 JSON 산출물과 상태 머신으로 나눕니다. HITL은 `--approve` 전에 멈추고, HOTL은 `events.jsonl`을 보다가 같은 결함 3회면 이관합니다.
 
 ## 빠른 시작
 
@@ -17,20 +28,20 @@ node src/cli.mjs --fault missing-evidence --persistent-fault
 
 ## 상태 흐름
 
-```text
-PLANNED → EXECUTED → REJECTED → EXECUTED → VERIFIED
-                                      ↓
-                           AWAITING_APPROVAL → APPROVED
-                                      ↓
-                                  ESCALATED
-```
+| 경로 | 끝나는 상태 |
+|---|---|
+| 결함 없음 | `AWAITING_APPROVAL` |
+| `--approve` | `APPROVED` |
+| `--fault missing-evidence` | 반려 후 복구, 승인 대기 |
+| `--fault missing-evidence --persistent-fault` | 3회 후 `ESCALATED` |
 
-## 참고 자료
-
-- 전체 배포와 코드복사 절차: [GitHub 배포와 Day 2~4 실습 가이드](../docs/github-deployment-and-quickstart.md)
-- 기술 배경과 공식 URL: [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)
+이미지가 없어도 이 순서를 따릅니다: `PLANNED` → `EXECUTED` → `VERIFIED` → `AWAITING_APPROVAL` → `APPROVED`. 반려는 `REJECTED`로 돌아가고, 같은 결함 3회면 `ESCALATED`입니다.
 
 ## Claude Code로 적용
+
+<p align="center">
+  <img src="../assets/readme/docs-hosts.svg" width="100%" alt="Claude Code는 CLAUDE.md와 /skill, Codex는 AGENTS.md와 $skill을 쓰고, 둘 다 같은 로컬 MCP 서버를 붙인다">
+</p>
 
 ```bash
 claude
@@ -124,3 +135,8 @@ git push -u origin HEAD
 ```
 
 `runs/run-*/`는 기본적으로 Git에서 제외됩니다. 대표 실행 증거 제출이 필요하면 실제 업무 데이터나 자격증명이 없는지 확인한 뒤 교육 진행자의 정책에 따라 별도 제출합니다.
+
+## 참고 자료
+
+- 전체 배포와 코드복사 절차: [GitHub 배포와 Day 2~4 실습 가이드](../docs/github-deployment-and-quickstart.md)
+- 기술 배경과 공식 URL: [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)
