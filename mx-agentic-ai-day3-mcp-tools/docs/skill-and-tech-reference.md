@@ -43,12 +43,14 @@ stdout은 JSON-RPC 전용, 진단은 stderr입니다. 자격증명과 실제 업
 4. 날짜 역전은 구조화 오류를 내고 서버가 죽지 않아야 한다.
 5. 토큰이 없으면 dry-run이고 원본 CSV는 그대로다.
 
-수동 연결:
+수동 연결 (Claude Code):
 
 ```bash
 claude mcp add --scope project --transport stdio equipment-log -- node src/server.mjs
 claude mcp list
 ```
+
+Codex는 `.mcp.json` 또는 `config.toml`의 `[mcp_servers.equipment-log]`로 같은 stdio 서버를 붙입니다. 쓰기 도구는 `default_tools_approval_mode = "writes"`처럼 승인 모드를 읽기보다 엄하게 둡니다.
 
 ## 기술 개념
 
@@ -97,7 +99,7 @@ MCP 오류는 두 층입니다.
 
 ### Loop Engineering
 
-[OpenAI의 agent loop 설명](https://developers.openai.com/api/docs/guides/agents/running-agents)은 모델 호출→출력 검사→도구 실행/역할 전환→종료의 반복 구조를 명시합니다. Day 3에서는 이를 MCP 클라이언트 관점의 작은 제어 루프로 바꿉니다.
+Claude와 Codex의 코딩 에이전트는 모두 **도구 루프**입니다. [Claude Agent SDK · agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop.md)는 프롬프트 → 도구 호출 → 결과 반영 → 종료까지를 한 세션의 턴으로 설명합니다. [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/)는 같은 순환을 프롬프트 구성, 캐시, compaction까지 풀어 씁니다. Day 3에서는 이 루프를 MCP 클라이언트 관점의 작은 제어 루프로 바꿉니다.
 
 ```text
 initialize → tools/list → tools/call → validate result
@@ -121,6 +123,22 @@ initialize → tools/list → tools/call → validate result
 | Write path | 승인 없음=dry-run·파일 없음, 승인 있음=허용 경로만 기록 |
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector)는 서버의 연결, 도구 목록, 호출과 오류를 UI/CLI에서 시험하는 공식 도구입니다. 수업 기본형은 빠르고 결정적인 `npm run smoke`, 확장형은 Inspector CLI 재검증으로 구성합니다. UI가 추가되는 후속 과제에는 [Playwright](https://github.com/microsoft/playwright)를 적용할 수 있지만, 현재 stdio 실습의 핵심 E2E는 브라우저가 아니라 프로토콜 전체 경로입니다.
+
+### MCP와 A2A
+
+[A2A](https://a2a-protocol.org/latest/)는 MCP와 경쟁하지 않습니다. MCP는 agent-to-tool(이 실습의 설비 로그 서버), A2A는 agent-to-agent(Day 4 역할 간 위임)입니다. Claude Code와 Codex는 둘 다 MCP 호스트이고, A2A로 감싸면 서로 다른 하네스의 에이전트를 같은 Task/Artifact 계약으로 부를 수 있습니다.
+
+### Claude · Codex 기준 skill·repo
+
+| 출처 | 요약 | 이 실습에 쓰는 점 |
+|---|---|---|
+| [Claude Code · MCP](https://code.claude.com/docs/en/mcp) | `.mcp.json`, `claude mcp add`, 도구 승인 | 프로젝트 stdio 등록 예시 |
+| [Codex · MCP](https://developers.openai.com/codex/mcp) | `config.toml` MCP, `writes`/`approve` 승인 모드 | 쓰기 도구만 승인 |
+| [Claude Agent SDK · agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop.md) | 턴, 도구 결과, max_turns, compaction | smoke의 종료 조건 |
+| [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/) | Codex 하네스의 한 턴과 캐시 | 프로토콜 순서를 깨지 않음 |
+| [MCP 공식 스펙 저장소](https://github.com/modelcontextprotocol/modelcontextprotocol) | JSON-RPC 계약 | `initialize` → `tools/list` → `tools/call` |
+
+기계가 읽는 전체 목록은 [research-ingest.jsonl](../../docs/research-ingest.jsonl)입니다.
 
 ## 코드 대응
 

@@ -2,7 +2,7 @@
   <img src="../../assets/readme/day2-knowledge.svg" width="100%" alt="Day 2 지식 파이프라인 — 원본 ECO JSONL을 잠근 채 Markdown, catalog.json, SHA-256을 만들고 P-100 검색에서 ECO-001과 ECO-003을 Top-3로 반환한다">
 </p>
 
-원본 12건은 `data/raw/eco_documents.jsonl`에 고정합니다. 정규화된 Markdown과 카탈로그만 `knowledge/`에 만듭니다. 구현은 이 저장소 파일을, 개념은 [Agent Skills](https://agentskills.io/specification)와 [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)를 기준으로 합니다.
+원본 12건은 `data/raw/eco_documents.jsonl`에 고정합니다. 정규화된 Markdown과 카탈로그만 `knowledge/`에 만듭니다. 구현은 이 저장소 파일을, 개념은 Claude Code·Codex의 하네스와 [Agent Skills](https://agentskills.io/specification)를 기준으로 합니다.
 
 ## 먼저 확인하는 증거
 
@@ -72,19 +72,32 @@ Advanced는 `knowledge/relations.json`으로 부품→ECO→도면 2-hop을 추�
 
 - [Agent Skills Specification](https://agentskills.io/specification)
 - [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+- [Claude Code · Skills](https://code.claude.com/docs/en/skills)
+- [Codex · Build skills](https://developers.openai.com/codex/skills)
 
-### AGENTS.md 하네스
+### Claude · Codex 하네스
 
-하네스는 모델 바깥에서 행동 범위를 고정합니다. Codex는 세션 시작 시 `AGENTS.md`를 읽고, 가까운 파일이 앞선 지시를 덮습니다. 규칙은 [Codex AGENTS.md 가이드](https://learn.chatgpt.com/docs/agent-configuration/agents-md)에 있습니다.
+하네스는 모델 바깥에서 행동 범위를 고정합니다. Claude Code는 `CLAUDE.md`와 `.claude/`, Codex는 `AGENTS.md`와 `.agents/`를 같은 역할로 씁니다. 이 실습은 Codex 레이아웃(`.agents/skills`, `AGENTS.md`)을 쓰되 Claude에서도 같은 계약을 읽을 수 있게 둡니다.
 
-| 장치 | 역할 |
-|---|---|
-| `AGENTS.md` | 원본 보호, 출력 경로, 완료 전 검증 |
-| 상태 파일 | `plan.md` / `progress.md` / `decisions.md` |
-| `validate_repo.py` | 12건, 추적 필드, 원본 해시 |
-| 단위 테스트 | Top-3 검색, 카탈로그 경로 |
+| 층 | Claude Code | Codex | 이 실습 |
+|---|---|---|---|
+| 지속 지침 | [`CLAUDE.md`](https://code.claude.com/docs/en/agent-sdk/claude-code-features) | [`AGENTS.md`](https://developers.openai.com/codex/guides/agents-md) | 원본 보호, 출력 경로, 완료 전 검증 |
+| 스킬 | `.claude/skills/` | `.agents/skills/` | `$eco-knowledge-builder`, `$repo-harness-auditor` |
+| 상태 | 세션 메모리 + 프로젝트 파일 | `plan.md` 등 저장소 산출물 | `plan.md` / `progress.md` / `decisions.md` |
+| 완료 검사 | 테스트·훅 | 테스트·승인 정책 | `validate_repo.py`, Top-3 테스트 |
 
-[Anthropic의 장기 실행 하네스](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)는 초기화, 점진적 진행, 다음 세션이 읽을 상태 산출물을 핵심으로 제시합니다. 이 저장소에서는 각각 초기 데이터·규칙, 한 단계씩 실행하는 스크립트, `plan.md`·`progress.md`·`decisions.md`로 대응합니다.
+[Anthropic의 장기 실행 하네스](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)는 초기화, 점진적 진행, 다음 세션이 읽을 상태 산출물을 핵심으로 제시합니다. [Unlocking the Codex harness](https://openai.com/index/unlocking-the-codex-harness/)는 같은 루프를 App Server 프로토콜로 노출합니다. 이 저장소에서는 초기 데이터·규칙, 한 단계씩 실행하는 스크립트, 상태 파일 3개로 대응합니다.
+
+### 리서치와 ingest
+
+지식 자산화는 웹 검색 결과를 그대로 붙이는 일이 아닙니다. 원본을 잠근 뒤 파생 레코드로 **ingest**하고, 질문으로 **eval**합니다.
+
+| 단계 | Claude / Codex에서 하는 일 | 이 실습 |
+|---|---|---|
+| Research | 공식 문서·스킬·레포를 읽고 출처를 남긴다 | `docs/research-ingest.jsonl`의 `url` |
+| Ingest | 원본을 정규화하고 ID·경로·해시를 붙인다 | `normalize_docs.py` → `knowledge/` |
+| Retrieve | 스킬·카탈로그에서 근거만 고른다 | `search_knowledge.py` |
+| Eval | 고정 질문의 기대 ID가 Top-k에 있는지 확인한다 | `eval/questions.jsonl` |
 
 ### Graph Engineering
 
@@ -98,11 +111,11 @@ Advanced는 `knowledge/relations.json`으로 부품→ECO→도면 2-hop을 추�
 | Query | `P-100 → ECO → drawing` 2-hop |
 | Eval | 기대 ECO가 결과 안에 있고 원문 경로가 유효함 |
 
-[Microsoft GraphRAG](https://github.com/microsoft/graphrag)는 비정형 텍스트에서 엔터티·관계·주장과 커뮤니티를 추출하고 Local, Global, DRIFT 검색을 제공합니다. 본 실습의 Standard에는 도입하지 않고, 12건의 합성 ECO로 provenance를 보존하는 작은 관계 그래프를 먼저 만드는 Advanced 참고 구현으로 사용합니다.
+Claude Agent SDK와 Codex 하네스는 **루프가 기본**입니다. 그래프는 지식 관계(이 실습 Advanced)나 여러 루프의 역할 전이(Day 4)가 필요할 때 도입합니다. [Microsoft GraphRAG](https://github.com/microsoft/graphrag)는 비정형 텍스트에서 엔터티·관계·커뮤니티를 추출하는 참고 구현이며 Standard에는 넣지 않습니다.
 
 ### Eval Check
 
-평가는 “답이 그럴듯한가”가 아니라 고정 입력과 통과 기준을 반복 실행하는 회귀 검사입니다. [OpenAI Evals 가이드](https://developers.openai.com/api/docs/guides/evals)를 참고해 `eval/questions.jsonl`을 평가 데이터셋으로 취급합니다.
+평가는 “답이 그럴듯한가”가 아니라 고정 입력과 통과 기준을 반복 실행하는 회귀 검사입니다. Claude의 [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)는 측정 없이 복잡도를 올리지 말라고 하고, Codex 루프는 테스트·린트 결과를 다음 턴의 입력으로 씁니다. [OpenAI Evals 가이드](https://developers.openai.com/api/docs/guides/evals)를 참고해 `eval/questions.jsonl`을 평가 데이터셋으로 취급합니다.
 
 - 입력: 질문과 기대 `source_id`
 - 실행: 같은 검색 스크립트와 같은 Top-k
@@ -124,6 +137,17 @@ Advanced는 `knowledge/relations.json`으로 부품→ECO→도면 2-hop을 추�
 ### ECO 관계
 
 [Engineering Change Order](https://en.wikipedia.org/wiki/Engineering_change_order)는 부품·도면·사유·영향을 공식 기록합니다. 합성 데이터는 부품 하나가 여러 ECO와 도면에 연결됩니다. Standard는 문서 검색까지, Advanced는 관계 엣지를 추가합니다.
+
+### Claude · Codex 기준 skill·repo
+
+| 출처 | 요약 | 이 실습에 쓰는 점 |
+|---|---|---|
+| [anthropics/skills](https://github.com/anthropics/skills) | Claude Agent Skills 공식 카탈로그. `SKILL.md` + 선택 스크립트 | repo skill 폴더 구조와 점진적 공개 |
+| [openai/codex](https://github.com/openai/codex) | Codex CLI·하네스 런타임 | `AGENTS.md` 발견, 도구 루프, 승인 |
+| [openai/skills](https://github.com/openai/skills) | Codex 스킬 카탈로그. 배포는 [plugins](https://github.com/openai/plugins)로 이동 | `$skill-installer`, `.agents/skills` |
+| [androidZzT/harness-engineering-practice](https://github.com/androidZzT/harness-engineering-practice) | 커뮤니티 작성 Claude Code vs Codex 하네스 비교 | 참고용으로만 사용하고 규격 판단은 위 공식 문서·repo를 우선 |
+
+기계가 읽는 전체 목록은 [research-ingest.jsonl](../../docs/research-ingest.jsonl)입니다.
 
 ## 코드 대응
 
