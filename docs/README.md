@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../assets/readme/docs-index.svg" width="100%" alt="Skill and Tech 참고 자료 — 8개 repo skill을 Day 2 지식, Day 3 MCP, Day 4 HITL로 나눠 공개 스펙과 대조한다">
+  <img src="../assets/readme/docs-index.svg" width="100%" alt="Skill and Tech 참고 자료 — Claude Code와 Codex가 같은 계약을 읽고, Day 2는 Harness·Eval, Day 3는 Loop·E2E·MCP, Day 4는 HITL·HOTL·A2A로 나눈다">
 </p>
 
 <p align="center">
@@ -41,6 +41,10 @@
 
 > 요청에 적힌 `HILT`는 일반적으로 쓰이는 `HITL`(Human-in-the-Loop)의 오기로 보고 문서 전체에서 `HITL`로 통일했습니다. `HOTL`은 Human-on-the-Loop를 뜻하는 교육용 운영 구분이며, 특정 SDK의 단일 표준 API 이름은 아닙니다.
 
+<p align="center">
+  <img src="../assets/readme/docs-hosts.svg" width="100%" alt="Claude Code는 CLAUDE.md와 /skill, Codex는 AGENTS.md와 $skill을 쓰고, 둘 다 같은 로컬 MCP 서버를 붙인다">
+</p>
+
 ## Claude Code · Codex 기준
 
 세 실습을 에이전트로 진행할 때의 인터페이스 비교 기준은 Claude Code와 Codex입니다. 실습 코드는 Python·Node.js로 독립 실행되며 OpenAI Agents API·GraphRAG·NIST는 보조 참고입니다. 이 저장소는 Codex 레이아웃을 쓰고, 각 일자 `CLAUDE.md`가 `AGENTS.md`를 가져옵니다.
@@ -65,7 +69,7 @@
 - [modelcontextprotocol/modelcontextprotocol](https://github.com/modelcontextprotocol/modelcontextprotocol) — MCP 스펙
 
 <p align="center">
-  <img src="../assets/readme/learning-path.svg" width="100%" alt="Day 2 지식 자산화에서 Day 3 MCP 도구, Day 4 검증과 사람 승인으로 이어지는 학습 경로">
+  <img src="../assets/readme/learning-path.svg" width="100%" alt="Day 2 하네스와 eval, Day 3 MCP 루프와 E2E, Day 4 HITL 정지와 HOTL 이관으로 이어지는 학습 경로">
 </p>
 
 ## 세 실습이 공유하는 계약

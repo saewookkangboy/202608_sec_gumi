@@ -1,64 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
-  <title id="title">Day 2 knowledge pipeline</title>
-  <desc id="desc">Lock the raw ECO JSONL, emit Markdown knowledge plus catalog.json and SHA-256, then return ECO-001 and ECO-003 in Top-3 for a P-100 search.</desc>
-  <rect width="1200" height="400" rx="28" fill="#071018"/>
-  <path d="M0 368H1200" stroke="#223141" stroke-width="1"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Day 2 harness ingest and eval</title>
+  <desc id="desc">Lock raw ECO JSONL, ingest Markdown catalog and SHA-256, then eval Top-3 for P-100 as ECO-001 and ECO-003.</desc>
+  <rect width="1200" height="420" rx="28" fill="#071018"/>
+  <path d="M0 388H1200" stroke="#223141" stroke-width="1"/>
   <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
-    <text x="52" y="52" fill="#43C6FF" font-size="18" font-weight="700" letter-spacing="2.4">DAY 02 · KNOWLEDGE NOTES</text>
-    <text x="52" y="102" fill="#F5F7FA" font-size="40" font-weight="800">원본은 잠그고</text>
-    <text x="52" y="150" fill="#F5F7FA" font-size="40" font-weight="800">지식만 만듭니다.</text>
-    <text x="52" y="196" fill="#C9D4DF" font-size="20">ECO 12건 → source_id → Top-3 검색</text>
-    <g transform="translate(52 228)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
-      <rect width="214" height="40" rx="8" fill="#102338" stroke="#146EF5"/>
-      <text x="16" y="26" fill="#F5F7FA" font-size="18">2 REPO SKILLS</text>
-      <rect x="226" width="132" height="40" rx="8" fill="#102338" stroke="#146EF5"/>
-      <text x="242" y="26" fill="#F5F7FA" font-size="18">3 TESTS</text>
+    <text x="52" y="50" fill="#43C6FF" font-size="18" font-weight="700" letter-spacing="2">DAY 02 · HARNESS NOTES</text>
+    <text x="52" y="98" fill="#F5F7FA" font-size="38" font-weight="800">원본은 잠그고</text>
+    <text x="52" y="144" fill="#F5F7FA" font-size="38" font-weight="800">ingest 후 eval합니다.</text>
+    <text x="52" y="188" fill="#C9D4DF" font-size="20">CLAUDE.md · AGENTS.md · Top-3</text>
+    <g transform="translate(52 218)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+      <rect width="132" height="38" rx="8" fill="#102338" stroke="#146EF5"/>
+      <text x="14" y="25" fill="#F5F7FA" font-size="16">HARNESS</text>
+      <rect x="144" width="100" height="38" rx="8" fill="#102338" stroke="#146EF5"/>
+      <text x="164" y="25" fill="#F5F7FA" font-size="16">EVAL</text>
+      <rect x="256" width="120" height="38" rx="8" fill="#102338" stroke="#146EF5"/>
+      <text x="270" y="25" fill="#F5F7FA" font-size="16">GRAPH*</text>
     </g>
   </g>
-
-  <g transform="translate(520 40)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
-    <rect width="628" height="64" rx="12" fill="#0D1C29" stroke="#596D80"/>
-    <text x="20" y="26" fill="#8293A5" font-size="16">IMMUTABLE RAW</text>
-    <text x="20" y="50" fill="#F5F7FA" font-size="20">data/raw/eco_documents.jsonl</text>
-    <rect x="488" y="16" width="120" height="32" rx="8" fill="#4A3A12" stroke="#F5C542"/>
-    <text x="508" y="38" fill="#F5C542" font-size="16">LOCKED</text>
-
-    <path d="M314 64V88" stroke="#146EF5" stroke-width="3"/>
-    <path d="M306 80L314 90L322 80" fill="none" stroke="#146EF5" stroke-width="3"/>
-
-    <g transform="translate(0 90)">
-      <rect width="200" height="118" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
-      <text x="16" y="32" fill="#43C6FF" font-size="16">KNOWLEDGE</text>
-      <text x="16" y="62" fill="#F5F7FA" font-size="20">ECO-001.md</text>
-      <text x="16" y="90" fill="#9FB0C0" font-size="16">source_id</text>
+  <g transform="translate(520 36)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+    <rect width="628" height="58" rx="12" fill="#0D1C29" stroke="#596D80"/>
+    <text x="18" y="24" fill="#8293A5" font-size="15">RAW LOCKED</text>
+    <text x="18" y="46" fill="#F5F7FA" font-size="18">data/raw/eco_documents.jsonl</text>
+    <path d="M314 58V78" stroke="#146EF5" stroke-width="3"/>
+    <path d="M306 70L314 80L322 70" fill="none" stroke="#146EF5" stroke-width="3"/>
+    <g transform="translate(0 80)">
+      <rect width="200" height="100" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+      <text x="14" y="30" fill="#43C6FF" font-size="15">INGEST</text>
+      <text x="14" y="56" fill="#F5F7FA" font-size="18">ECO-001.md</text>
+      <text x="14" y="80" fill="#9FB0C0" font-size="15">source_id</text>
     </g>
-    <g transform="translate(214 90)">
-      <rect width="200" height="118" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
-      <text x="16" y="32" fill="#43C6FF" font-size="16">CATALOG</text>
-      <text x="16" y="62" fill="#F5F7FA" font-size="20">12 records</text>
-      <text x="16" y="90" fill="#9FB0C0" font-size="16">source_path</text>
+    <g transform="translate(214 80)">
+      <rect width="200" height="100" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+      <text x="14" y="30" fill="#43C6FF" font-size="15">CATALOG</text>
+      <text x="14" y="56" fill="#F5F7FA" font-size="18">12 records</text>
+      <text x="14" y="80" fill="#9FB0C0" font-size="15">source_path</text>
     </g>
-    <g transform="translate(428 90)">
-      <rect width="200" height="118" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
-      <text x="16" y="32" fill="#43C6FF" font-size="16">INTEGRITY</text>
-      <text x="16" y="62" fill="#F5F7FA" font-size="20">raw.sha256</text>
-      <text x="16" y="90" fill="#9FB0C0" font-size="16">SHA-256</text>
+    <g transform="translate(428 80)">
+      <rect width="200" height="100" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+      <text x="14" y="30" fill="#43C6FF" font-size="15">INTEGRITY</text>
+      <text x="14" y="56" fill="#F5F7FA" font-size="18">raw.sha256</text>
+      <text x="14" y="80" fill="#9FB0C0" font-size="15">SHA-256</text>
     </g>
-
-    <path d="M314 208V232" stroke="#43C6FF" stroke-width="3"/>
-    <path d="M306 224L314 234L322 224" fill="none" stroke="#43C6FF" stroke-width="3"/>
-
-    <g transform="translate(0 234)">
-      <rect width="628" height="78" rx="12" fill="#102338" stroke="#43C6FF" stroke-width="2"/>
-      <text x="20" y="32" fill="#8293A5" font-size="16">SEARCH  P-100 housing</text>
-      <text x="20" y="60" fill="#F5F7FA" font-size="20">Top-3  ECO-001 · ECO-003</text>
+    <path d="M314 180V200" stroke="#43C6FF" stroke-width="3"/>
+    <path d="M306 192L314 202L322 192" fill="none" stroke="#43C6FF" stroke-width="3"/>
+    <g transform="translate(0 202)">
+      <rect width="628" height="72" rx="12" fill="#102338" stroke="#43C6FF" stroke-width="2"/>
+      <text x="18" y="30" fill="#8293A5" font-size="15">EVAL  P-100 housing</text>
+      <text x="18" y="56" fill="#F5F7FA" font-size="20">Top-3  ECO-001 · ECO-003</text>
+    </g>
+    <g transform="translate(0 286)">
+      <text x="0" y="20" fill="#8293A5" font-size="15">research-ingest.jsonl  then  retrieve  then  eval</text>
     </g>
   </g>
-
-  <g transform="translate(52 388)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17">
+  <g transform="translate(52 408)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17">
     <circle cx="7" cy="-5" r="6" fill="#46D68C"/>
     <text x="24" y="0" fill="#9FB0C0">UNKNOWN VALUES STAY UNKNOWN</text>
-    <text x="1090" y="0" text-anchor="end" fill="#596D80">NO RAW MUTATION</text>
+    <text x="1096" y="0" text-anchor="end" fill="#596D80">NO RAW MUTATION</text>
   </g>
 </svg>

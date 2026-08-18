@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../assets/readme/day3-mcp.svg" width="100%" alt="Day 3 MCP 계약 — initialize, tools/list, tools/call 순서로 연결하고 읽기 도구 2개와 APPROVE_WRITE가 필요한 쓰기 도구 1개를 제공한다">
+  <img src="../../assets/readme/day3-mcp.svg" width="100%" alt="Day 3 루프와 E2E — initialize, tools/list, tools/call 스모크 경로와 읽기 도구, APPROVE_WRITE 쓰기 게이트를 구분한다. MCP는 도구, A2A는 Day 4 에이전트다">
 </p>
 
-외부 계정과 API 키 없이 로컬 stdio MCP 서버를 붙입니다. 구현은 이 저장소 코드를, 프로토콜은 [MCP Specification 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18)을 기준으로 합니다.
+외부 계정과 API 키 없이 로컬 stdio MCP 서버를 붙입니다. 단위 테스트는 도메인 함수를, E2E 스모크는 프로세스·도구 계약·쓰기 차단까지 확인합니다. 프로토콜은 [MCP Specification 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18)을 기준으로 합니다.
 
 ## 먼저 확인하는 증거
 

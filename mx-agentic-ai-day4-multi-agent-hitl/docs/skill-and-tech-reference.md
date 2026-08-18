@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../../assets/readme/day4-hitl.svg" width="100%" alt="Day 4 상태 머신 — PLANNED에서 EXECUTED, VERIFIED를 거친 뒤 AWAITING_APPROVAL에서 멈추고, 같은 결함 3회면 ESCALATED, --approve가 있을 때만 APPROVED">
+  <img src="../../assets/readme/day4-hitl.svg" width="100%" alt="Day 4 HITL과 HOTL — 검증 PASS 후 AWAITING_APPROVAL에서 멈추고, 같은 결함 3회면 ESCALATED로 이관하며, --approve가 있을 때만 APPROVED가 된다">
 </p>
 
-역할을 프롬프트 페르소나가 아니라 JSON 산출물과 상태 전이로 나눕니다. 검증이 통과해도 `--approve` 전에는 정비 우선순위를 확정하지 않습니다.
+역할을 프롬프트 페르소나가 아니라 JSON 산출물과 상태 전이로 나눕니다. HITL은 `--approve` 전에 멈추고, HOTL은 `events.jsonl`을 보다가 같은 결함 3회면 이관합니다.
 
 ## 먼저 확인하는 증거
 

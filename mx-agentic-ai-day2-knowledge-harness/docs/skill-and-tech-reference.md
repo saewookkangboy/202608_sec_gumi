@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../../assets/readme/day2-knowledge.svg" width="100%" alt="Day 2 지식 파이프라인 — 원본 ECO JSONL을 잠근 채 Markdown, catalog.json, SHA-256을 만들고 P-100 검색에서 ECO-001과 ECO-003을 Top-3로 반환한다">
+  <img src="../../assets/readme/day2-knowledge.svg" width="100%" alt="Day 2 하네스 — 원본 ECO JSONL을 잠그고 Markdown·catalog·SHA-256으로 ingest한 뒤 P-100 검색에서 ECO-001과 ECO-003을 Top-3 eval로 확인한다">
 </p>
 
 원본 12건은 `data/raw/eco_documents.jsonl`에 고정합니다. 정규화된 Markdown과 카탈로그만 `knowledge/`에 만듭니다. 구현은 이 저장소 파일을, 개념은 Claude Code·Codex의 하네스와 [Agent Skills](https://agentskills.io/specification)를 기준으로 합니다.

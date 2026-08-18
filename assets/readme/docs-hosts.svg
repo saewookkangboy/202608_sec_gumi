@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170" role="img" aria-labelledby="title desc">
+  <title id="title">Claude Code and Codex harness mapping</title>
+  <desc id="desc">Claude Code uses CLAUDE.md and /skill. Codex uses AGENTS.md and $skill. Both attach the same local MCP server.</desc>
+  <rect width="1200" height="170" rx="22" fill="#071018"/>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+    <rect x="28" y="28" width="560" height="114" rx="14" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+    <text x="48" y="58" fill="#43C6FF" font-size="16">CLAUDE CODE</text>
+    <text x="48" y="88" fill="#F5F7FA" font-size="20">CLAUDE.md · /skill-name</text>
+    <text x="48" y="116" fill="#9FB0C0" font-size="18">.mcp.json · canUseTool</text>
+    <rect x="612" y="28" width="560" height="114" rx="14" fill="#0D1C29" stroke="#F5C542" stroke-width="2"/>
+    <text x="632" y="58" fill="#F5C542" font-size="16">CODEX</text>
+    <text x="632" y="88" fill="#F5F7FA" font-size="20">AGENTS.md · $skill-name</text>
+    <text x="632" y="116" fill="#9FB0C0" font-size="18">.agents/skills · approval_policy</text>
+  </g>
+</svg>

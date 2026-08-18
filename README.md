@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="202608_sec_gumi — Claude Code·Codex 기준으로 지식 자산화, MCP 도구 확장, 멀티 에이전트 HITL을 연결한 삼성 MX 구미 에이전틱 AI 실습 저장소">
+  <img src="./assets/readme/hero.svg" width="100%" alt="202608_sec_gumi — Claude Code와 Codex로 Day 2 하네스, Day 3 MCP 루프·E2E, Day 4 HITL·HOTL 통제를 연결한 삼성 MX 구미 에이전틱 AI 실습">
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 모든 데이터는 교육용 합성 데이터입니다. 실제 사업장 정보, 개인정보, API 키 또는 자격증명을 포함하지 않습니다.
 
 <p align="center">
-  <img src="./assets/readme/learning-path.svg" width="100%" alt="Day 2 지식 자산화에서 Day 3 MCP 도구, Day 4 검증과 사람 승인으로 이어지는 학습 경로">
+  <img src="./assets/readme/learning-path.svg" width="100%" alt="Day 2 하네스와 eval, Day 3 MCP 루프와 E2E, Day 4 HITL 정지와 HOTL 이관으로 이어지는 학습 경로">
 </p>
 
 ## 빠른 시작
