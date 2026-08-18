@@ -27,7 +27,7 @@ $repo-harness-auditor로 저장소 안전 규칙과 산출물을 점검해줘.
 
 ## 참고 자료
 
-Harness Engineering, Graph Engineering, skill 설계, `AGENTS.md`, 근거 추적, SHA-256과 Eval Check의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
+Harness Engineering, Graph Engineering, Claude/Codex 하네스, 리서치·ingest, Eval Check의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
 
 ## Standard / Advanced
 

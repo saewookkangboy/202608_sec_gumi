@@ -22,7 +22,7 @@ PLANNED → EXECUTED → REJECTED → EXECUTED → VERIFIED
 
 ## 참고 자료
 
-A2A, Agent Orchestration, Loop Engineering, Eval Check, 계획자·실행자·검증자 계약, HITL/HOTL의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
+A2A, Agent Orchestration, Loop/Graph Engineering, Eval Check, Claude/Codex subagents, HITL/HOTL의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
 
 ## 핵심 실습
 

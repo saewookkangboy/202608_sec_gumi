@@ -24,7 +24,7 @@ claude mcp list
 
 ## 참고 자료
 
-MCP, Loop Engineering, E2E Check, JSON-RPC stdio, 도구 계약과 승인 게이트의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
+MCP, Loop Engineering, E2E Check, Claude/Codex MCP 호스트, JSON-RPC stdio, 도구 계약과 승인 게이트의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
 
 ## 실습 순서
 
