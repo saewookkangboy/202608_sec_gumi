@@ -17,3 +17,5 @@ Use this skill before adding or changing a tool in `src/server.mjs`.
 
 Do not add credentials or live business data to this training repository.
 
+기술 배경(MCP 도구 계약, JSON Schema, 읽기/쓰기 분리)은 [skill·기술 참고 자료](../../../docs/skill-and-tech-reference.md)를 참고한다.
+

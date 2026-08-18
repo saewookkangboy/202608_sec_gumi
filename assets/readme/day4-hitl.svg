@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">Day 4 multi-agent HITL state machine</title>
+  <desc id="desc">Happy path stops at AWAITING_APPROVAL until --approve. Persistent faults reject three times then escalate. Verifier PASS is not human approval.</desc>
+  <rect width="1200" height="440" rx="28" fill="#071018"/>
+  <path d="M0 408H1200" stroke="#223141" stroke-width="1"/>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="52" y="52" fill="#F5C542" font-size="18" font-weight="700" letter-spacing="2.4">DAY 04 · CONTROL NOTES</text>
+    <text x="52" y="102" fill="#F5F7FA" font-size="40" font-weight="800">검증 PASS는</text>
+    <text x="52" y="150" fill="#F5F7FA" font-size="40" font-weight="800">사람 승인이 아닙니다.</text>
+    <text x="52" y="196" fill="#C9D4DF" font-size="20">계획자 · 실행자 · 검증자 · HITL</text>
+    <g transform="translate(52 228)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+      <rect width="148" height="40" rx="8" fill="#102338" stroke="#F5C542"/>
+      <text x="16" y="26" fill="#F5F7FA" font-size="18">4 SKILLS</text>
+      <rect x="160" width="132" height="40" rx="8" fill="#102338" stroke="#F5C542"/>
+      <text x="176" y="26" fill="#F5F7FA" font-size="18">5 TESTS</text>
+    </g>
+  </g>
+
+  <g transform="translate(520 36)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+    <text x="0" y="16" fill="#8293A5" font-size="16" letter-spacing="1.5" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">HAPPY PATH</text>
+    <rect y="28" width="150" height="48" rx="10" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+    <text x="16" y="58" fill="#F5F7FA" font-size="16">PLANNED</text>
+    <path d="M150 52H178" stroke="#8293A5" stroke-width="3"/>
+    <path d="M168 44L180 52L168 60" fill="none" stroke="#8293A5" stroke-width="3"/>
+    <rect x="178" y="28" width="156" height="48" rx="10" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
+    <text x="194" y="58" fill="#F5F7FA" font-size="16">EXECUTED</text>
+    <path d="M334 52H362" stroke="#8293A5" stroke-width="3"/>
+    <path d="M352 44L364 52L352 60" fill="none" stroke="#8293A5" stroke-width="3"/>
+    <rect x="362" y="28" width="266" height="48" rx="10" fill="#0D1C29" stroke="#46D68C" stroke-width="2"/>
+    <text x="378" y="58" fill="#F5F7FA" font-size="16">VERIFIED PASS</text>
+
+    <path d="M256 76V108" stroke="#E24B4B" stroke-width="3"/>
+    <path d="M248 100L256 110L264 100" fill="none" stroke="#E24B4B" stroke-width="3"/>
+    <path d="M495 76V200" stroke="#F5C542" stroke-width="3"/>
+    <path d="M487 192L495 202L503 192" fill="none" stroke="#F5C542" stroke-width="3"/>
+
+    <text x="0" y="128" fill="#E24B4B" font-size="15" letter-spacing="1.2" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">FAULT PATH</text>
+    <rect y="140" width="300" height="64" rx="10" fill="#0D1C29" stroke="#E24B4B" stroke-width="2"/>
+    <text x="16" y="166" fill="#E24B4B" font-size="16">REJECTED</text>
+    <text x="16" y="188" fill="#9FB0C0" font-size="15">retry 1-3</text>
+    <path d="M300 172H328" stroke="#E24B4B" stroke-width="3"/>
+    <path d="M318 164L330 172L318 180" fill="none" stroke="#E24B4B" stroke-width="3"/>
+    <rect x="328" y="140" width="140" height="64" rx="10" fill="#2A1414" stroke="#E24B4B" stroke-width="2"/>
+    <text x="344" y="166" fill="#F5F7FA" font-size="16">ESCALATED</text>
+    <text x="344" y="188" fill="#9FB0C0" font-size="15">handoff</text>
+
+    <rect y="212" width="360" height="70" rx="10" fill="#0D1C29" stroke="#F5C542" stroke-width="2"/>
+    <text x="16" y="242" fill="#F5C542" font-size="16">AWAITING_APPROVAL</text>
+    <text x="16" y="266" fill="#9FB0C0" font-size="15">silence / PASS is not approve</text>
+    <path d="M360 247H392" stroke="#F5C542" stroke-width="3"/>
+    <path d="M382 239L394 247L382 255" fill="none" stroke="#F5C542" stroke-width="3"/>
+    <rect x="392" y="212" width="236" height="70" rx="10" fill="#4A3A12" stroke="#F5C542" stroke-width="2"/>
+    <text x="408" y="242" fill="#F5F7FA" font-size="16">APPROVED</text>
+    <text x="408" y="266" fill="#F5C542" font-size="15">--approve only</text>
+
+    <text x="0" y="312" fill="#8293A5" font-size="16" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">faults: missing-evidence · bad-join · bad-rate</text>
+  </g>
+
+  <g transform="translate(52 428)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17">
+    <circle cx="7" cy="-5" r="6" fill="#46D68C"/>
+    <text x="24" y="0" fill="#9FB0C0">VERIFIER NEVER EDITS EVIDENCE</text>
+    <text x="1090" y="0" text-anchor="end" fill="#596D80">RUNS LEAVE EVENTS.JSONL</text>
+  </g>
+</svg>

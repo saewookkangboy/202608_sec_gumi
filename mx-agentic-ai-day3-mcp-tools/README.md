@@ -22,10 +22,13 @@ claude mcp list
 - `get_equipment_errors`: 설비 ID와 날짜 범위별 오류 코드 집계
 - `write_analysis_report`: 승인 토큰이 있을 때만 Markdown 리포트 생성
 
+## 참고 자료
+
+MCP, Loop Engineering, E2E Check, JSON-RPC stdio, 도구 계약과 승인 게이트의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
+
 ## 실습 순서
 
 1. `npm test`로 도메인 로직을 검증한다.
 2. `npm run smoke`로 MCP initialize → tools/list → tools/call을 확인한다.
 3. 존재하지 않는 설비, 역전된 날짜, 승인 없는 쓰기를 테스트한다.
 4. `.agents/skills/`의 스킬을 사용해 도구 계약과 결과를 점검한다.
-

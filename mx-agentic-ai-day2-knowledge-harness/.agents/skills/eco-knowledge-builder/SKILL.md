@@ -17,3 +17,5 @@ Use this skill when the user asks to normalize, index, search, or evaluate the E
 
 For Advanced work, add relation edges without changing the normalized source contract.
 
+기술 배경(Agent Skills, 근거 추적, SHA-256, Top-k 평가)은 [skill·기술 참고 자료](../../../docs/skill-and-tech-reference.md)를 참고한다.
+

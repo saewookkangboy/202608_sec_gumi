@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">Day 3 MCP 도구 계약</title>
+  <desc id="desc">stdio MCP 서버가 initialize, tools/list, tools/call을 처리하고 읽기 도구 2개와 승인 토큰이 필요한 쓰기 도구 1개를 제공한다</desc>
+  <rect width="1200" height="400" rx="28" fill="#071018"/>
+  <path d="M0 368H1200" stroke="#223141" stroke-width="1"/>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="52" y="52" fill="#43C6FF" font-size="18" font-weight="700" letter-spacing="2.4">DAY 03 · TOOL NOTES</text>
+    <text x="52" y="102" fill="#F5F7FA" font-size="40" font-weight="800">stdout는 프로토콜,</text>
+    <text x="52" y="150" fill="#F5F7FA" font-size="40" font-weight="800">쓰기는 승인 뒤에.</text>
+    <text x="52" y="196" fill="#C9D4DF" font-size="20">MCP 2025-06-18 · JSON-RPC stdio</text>
+    <g transform="translate(52 228)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+      <rect width="148" height="40" rx="8" fill="#102338" stroke="#43C6FF"/>
+      <text x="16" y="26" fill="#F5F7FA" font-size="18">3 TOOLS</text>
+      <rect x="160" width="168" height="40" rx="8" fill="#102338" stroke="#43C6FF"/>
+      <text x="176" y="26" fill="#F5F7FA" font-size="18">5 + SMOKE</text>
+    </g>
+  </g>
+
+  <g transform="translate(520 40)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+    <text x="0" y="18" fill="#8293A5" font-size="16" font-weight="700" letter-spacing="2" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">SMOKE PATH</text>
+    <g transform="translate(0 32)">
+      <rect width="196" height="56" rx="12" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
+      <text x="16" y="24" fill="#8293A5" font-size="15">1</text>
+      <text x="16" y="44" fill="#F5F7FA" font-size="18">initialize</text>
+      <path d="M196 28H230" stroke="#43C6FF" stroke-width="3"/>
+      <path d="M220 20L232 28L220 36" fill="none" stroke="#43C6FF" stroke-width="3"/>
+      <rect x="232" width="176" height="56" rx="12" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
+      <text x="248" y="24" fill="#8293A5" font-size="15">2</text>
+      <text x="248" y="44" fill="#F5F7FA" font-size="18">tools/list</text>
+      <path d="M408 28H442" stroke="#43C6FF" stroke-width="3"/>
+      <path d="M432 20L444 28L432 36" fill="none" stroke="#43C6FF" stroke-width="3"/>
+      <rect x="444" width="184" height="56" rx="12" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
+      <text x="460" y="24" fill="#8293A5" font-size="15">3</text>
+      <text x="460" y="44" fill="#F5F7FA" font-size="18">tools/call</text>
+    </g>
+
+    <g transform="translate(0 112)">
+      <rect width="628" height="58" rx="12" fill="#102338" stroke="#223141"/>
+      <text x="20" y="24" fill="#8293A5" font-size="15">stdio</text>
+      <text x="20" y="46" fill="#F5F7FA" font-size="18">stdout = JSON-RPC   stderr = logs</text>
+    </g>
+
+    <g transform="translate(0 186)">
+      <rect width="300" height="86" rx="12" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+      <text x="16" y="28" fill="#43C6FF" font-size="16">READ</text>
+      <text x="16" y="54" fill="#F5F7FA" font-size="18">list_equipment_logs</text>
+      <text x="16" y="74" fill="#9FB0C0" font-size="16">get_equipment_errors</text>
+      <rect x="328" width="300" height="86" rx="12" fill="#0D1C29" stroke="#F5C542" stroke-width="2"/>
+      <text x="344" y="28" fill="#F5C542" font-size="16">WRITE GATE</text>
+      <text x="344" y="54" fill="#F5F7FA" font-size="18">write_analysis_report</text>
+      <text x="344" y="74" fill="#9FB0C0" font-size="16">APPROVE_WRITE or dry-run</text>
+    </g>
+  </g>
+
+  <g transform="translate(52 388)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17">
+    <circle cx="7" cy="-5" r="6" fill="#46D68C"/>
+    <text x="24" y="0" fill="#9FB0C0">EVIDENCE_ID ON EVERY ERROR COUNT</text>
+    <text x="1090" y="0" text-anchor="end" fill="#596D80">NO LIVE CREDENTIALS</text>
+  </g>
+</svg>

@@ -20,6 +20,10 @@ PLANNED → EXECUTED → REJECTED → EXECUTED → VERIFIED
                                   ESCALATED
 ```
 
+## 참고 자료
+
+A2A, Agent Orchestration, Loop Engineering, Eval Check, 계획자·실행자·검증자 계약, HITL/HOTL의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
+
 ## 핵심 실습
 
 1. `.agents/skills/`에서 역할별 입력·출력·금지 행동을 확인한다.
@@ -29,4 +33,3 @@ PLANNED → EXECUTED → REJECTED → EXECUTED → VERIFIED
 5. `--approve`를 명시한 경우에만 `APPROVED`로 끝나는지 확인한다.
 
 모든 실행은 `runs/<run-id>/`에 plan, evidence, verification, approval, events를 남깁니다.
-

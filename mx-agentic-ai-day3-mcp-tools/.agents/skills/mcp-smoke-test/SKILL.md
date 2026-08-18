@@ -17,3 +17,5 @@ Confirm:
 
 Report the failing method and expected corrective action.
 
+기술 배경(initialize → tools/list → tools/call, stdio, 오류 처리)은 [skill·기술 참고 자료](../../../docs/skill-and-tech-reference.md)를 참고한다.
+

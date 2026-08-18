@@ -17,3 +17,5 @@ Use this skill to verify that the repository harness actually constrains work.
 
 Report failures with the exact file and corrective action. Do not silently repair raw data.
 
+기술 배경(`AGENTS.md` 하네스, 원본 경계, 상태 파일)은 [skill·기술 참고 자료](../../../docs/skill-and-tech-reference.md)를 참고한다.
+

@@ -7,7 +7,8 @@
   <a href="#day-2--지식-자산화와-하네스">Day 2</a> ·
   <a href="#day-3--mcp-연동과-도구-확장">Day 3</a> ·
   <a href="#day-4--멀티-에이전트와-hitl">Day 4</a> ·
-  <a href="#검증된-완료-기준">검증 결과</a>
+  <a href="#검증된-완료-기준">검증 결과</a> ·
+  <a href="#참고-자료">참고 자료</a>
 </p>
 
 ## 수업에서 바로 실행하는 3일 실습 패키지
@@ -63,7 +64,7 @@ Repo skills:
 - `$eco-knowledge-builder` — 합성 ECO를 추적 가능한 지식 자산으로 변환
 - `$repo-harness-auditor` — 원본 보호, 상태 파일, 완료 검증 규칙 점검
 
-[Day 2 상세 가이드 →](./mx-agentic-ai-day2-knowledge-harness/README.md)
+[Day 2 상세 가이드 →](./mx-agentic-ai-day2-knowledge-harness/README.md) · [skill·기술 참고 자료 →](./mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md)
 
 ## Day 3 · MCP 연동과 도구 확장
 
@@ -88,7 +89,7 @@ Repo skills:
 - `$mcp-tool-designer` — 입력·출력·오류·권한 계약 점검
 - `$mcp-smoke-test` — initialize → tools/list → tools/call 연결 검증
 
-[Day 3 상세 가이드 →](./mx-agentic-ai-day3-mcp-tools/README.md)
+[Day 3 상세 가이드 →](./mx-agentic-ai-day3-mcp-tools/README.md) · [skill·기술 참고 자료 →](./mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md)
 
 ## Day 4 · 멀티 에이전트와 HITL
 
@@ -116,7 +117,7 @@ Repo skills:
 - `$verify-maintenance-report` — 누락·조인·계산 오류 독립 검증
 - `$request-human-approval` — 승인 패킷 구성과 최종 결정 차단
 
-[Day 4 상세 가이드 →](./mx-agentic-ai-day4-multi-agent-hitl/README.md)
+[Day 4 상세 가이드 →](./mx-agentic-ai-day4-multi-agent-hitl/README.md) · [skill·기술 참고 자료 →](./mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md)
 
 ## Repo skill 사용법
 
@@ -148,12 +149,23 @@ $request-human-approval로 검증 결과와 남은 불확실성을 포함한 승
 
 ```text
 202608_sec_gumi/
-├── mx-agentic-ai-day2-knowledge-harness/  # ECO 지식 자산화·검색·하네스
-├── mx-agentic-ai-day3-mcp-tools/          # 로컬 MCP 서버·도구 계약
-└── mx-agentic-ai-day4-multi-agent-hitl/   # 역할 분리·검증·HITL 상태 머신
+├── docs/                                      # skill·기술 참고 자료 목차
+├── mx-agentic-ai-day2-knowledge-harness/      # ECO 지식 자산화·검색·하네스
+├── mx-agentic-ai-day3-mcp-tools/              # 로컬 MCP 서버·도구 계약
+└── mx-agentic-ai-day4-multi-agent-hitl/       # 역할 분리·검증·HITL 상태 머신
 ```
 
 각 일자 폴더는 독립 실습 저장소로도 사용할 수 있으며, 자체 `README.md`, `AGENTS.md`, 합성 데이터, repo skills와 테스트를 포함합니다.
+
+## 참고 자료
+
+각 실습의 repo skill과 기반 기술(Harness·Loop·Graph Engineering, MCP·A2A, E2E·Orchestration·Eval, HITL·HOTL)을 공식 문서와 공식 GitHub 저장소에 맞춰 정리했습니다.
+
+- [참고 자료 목차](./docs/README.md)
+- [공식 URL·한국어 요약 ingest 인덱스(JSONL)](./docs/research-ingest.jsonl)
+- [Day 2 · 지식 자산화와 하네스](./mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md)
+- [Day 3 · MCP 연동과 도구 확장](./mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md)
+- [Day 4 · 멀티 에이전트와 HITL](./mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md)
 
 ## 안전 원칙
 

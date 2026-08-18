@@ -25,6 +25,10 @@ $eco-knowledge-builder로 data/raw/eco_documents.jsonl을 지식 자산으로 �
 $repo-harness-auditor로 저장소 안전 규칙과 산출물을 점검해줘.
 ```
 
+## 참고 자료
+
+Harness Engineering, Graph Engineering, skill 설계, `AGENTS.md`, 근거 추적, SHA-256과 Eval Check의 기술 배경 및 공식 URL은 [skill·기술 참고 자료](./docs/skill-and-tech-reference.md)를 참고합니다.
+
 ## Standard / Advanced
 
 - Standard: 정규화, 키워드 검색, Top-3 평가, 하네스 검증
@@ -37,4 +41,3 @@ $repo-harness-auditor로 저장소 안전 규칙과 산출물을 점검해줘.
 - 원본 SHA-256이 작업 전후 동일함
 - 평가 질문의 정답 문서가 Top-3에 포함됨
 - `plan.md`, `progress.md`, `decisions.md`가 비어 있지 않음
-
