@@ -30,10 +30,11 @@
 1. curriculum-5day.md     — 5일 흐름·일차별 목표·강사 타임라인
 2. tech-pillars.md        — 4대 기술 기둥 × Day 매핑
 3. reference-prd.md       — Day 2~4 공통 시나리오 (ECO·설비·품질)
-4. github-deployment-and-quickstart.md — 환경·배포·복사용 프롬프트
-5. handoffs/README.md     — 일차 간 사람 승인 게이트
-6. 일차별 README.md       — 비개발자용 실습 가이드 (이론·구조도·실행·문제해결)
-7. 일차별 skill-and-tech-reference.md — 해당 Day 실습 계약
+4. dummy-data.md          — Day 2~4 합성 데이터 경로·사용법 (clone 후 확인)
+5. github-deployment-and-quickstart.md — 환경·배포·복사용 프롬프트
+6. handoffs/README.md     — 일차 간 사람 승인 게이트
+7. 일차별 README.md       — 비개발자용 실습 가이드 (이론·구조도·실행·문제해결)
+8. 일차별 skill-and-tech-reference.md — 해당 Day 실습 계약
 ```
 
 ### 일차별 실습 가이드 (비개발자용)
@@ -66,6 +67,7 @@
 | [**5일 커리큘럼**](./curriculum-5day.md) | — | Day 1~5 + 4대 기술 기둥, 강사 8시간 타임라인 |
 | [**기술 기둥**](./tech-pillars.md) | — | Harness · LLMWiki/GraphRAG · MCP · HITL/Multi, Standard vs Advanced |
 | [**참조 PRD**](./reference-prd.md) | — | Day 2~4 공통 시나리오: ECO·설비 로그·품질 연계 분석 에이전트 |
+| [**Dummy Data 가이드**](./dummy-data.md) | — | Day 2~4 합성 데이터 필요 판단·경로·스키마·clone 확인 |
 | [4일 커리큘럼 (이전)](./curriculum-4day.md) | — | Day 5 미포함 버전 (레거시) |
 
 ### 운영·배포

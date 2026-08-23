@@ -111,12 +111,32 @@ cd mx-agentic-ai-day2-knowledge-harness
 
 ```bash
 cd 202608_sec_gumi/mx-agentic-ai-day2-knowledge-harness
+# Dummy Data 확인 (최초 1회면 충분)
+python3 ../scripts/verify_dummy_data.py
 claude
 ```
 
 ---
 
 ## 실습 예제 안내
+
+### Dummy Data (GitHub clone 포함)
+
+| 항목 | 경로 (이 폴더 기준) | 비고 |
+|---|---|---|
+| ECO 원본 | `data/raw/eco_documents.jsonl` | **읽기 전용**, 12건 합성 |
+| 평가 질문 | `eval/questions.jsonl` | Top-3 정답 포함 |
+| 무결성 잠금 | `knowledge/raw.sha256` | normalize 후 생성·검증 |
+
+저장소 루트에서 존재 확인:
+
+```bash
+python3 ../scripts/verify_dummy_data.py
+# 또는
+head -n 1 data/raw/eco_documents.jsonl
+```
+
+원본을 임의로 다시 만들지 마세요. SHA-256·테스트가 깨집니다. 전체 카탈로그: [`docs/dummy-data.md`](../docs/dummy-data.md)
 
 ### 참조 시나리오: ECO 12건
 
@@ -256,6 +276,7 @@ cd ../mx-agentic-ai-day3-mcp-tools
 
 ## 참고 자료
 
+- [Dummy Data 가이드](../docs/dummy-data.md)
 - [GitHub 배포 가이드](../docs/github-deployment-and-quickstart.md)
 - [skill·기술 참고](./docs/skill-and-tech-reference.md)
 - [5일 커리큘럼](../docs/curriculum-5day.md)

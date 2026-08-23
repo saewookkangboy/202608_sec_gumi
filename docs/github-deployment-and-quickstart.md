@@ -131,6 +131,7 @@ git grep -n -E '(API_KEY|SECRET|PASSWORD|TOKEN)=' -- ':!*.md' || true
 
 - 실제 설비 데이터·개인정보·자격증명을 커밋하지 않습니다.
 - Day 2 `data/raw/`, Day 3 `data/`, Day 4 `fixtures/`는 수정하지 않습니다.
+- clone 직후 Dummy Data 존재 확인: `python3 scripts/verify_dummy_data.py` — 경로·스키마는 [`dummy-data.md`](./dummy-data.md).
 - `git add .` 대신 제출할 파일을 명시합니다.
 - 테스트 PASS와 사람의 최종 승인은 서로 다른 단계입니다.
 

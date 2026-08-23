@@ -106,6 +106,7 @@ cd mx-agentic-ai-day4-multi-agent-hitl
 
 ```bash
 cd 202608_sec_gumi/mx-agentic-ai-day4-multi-agent-hitl
+python3 ../scripts/verify_dummy_data.py   # fixtures/ 포함 확인
 npm test
 claude
 ```
@@ -114,11 +115,28 @@ claude
 
 ## 실습 예제 안내
 
+### Dummy Data (GitHub clone 포함)
+
+| 항목 | 경로 (이 폴더 기준) | 비고 |
+|---|---|---|
+| 품질 요약 | `fixtures/quality_summary.json` | `QUALITY-*` evidence |
+| 오류 집계 | `fixtures/equipment_errors.json` | Day 3 `LOG-*`와 정렬된 fixture |
+
+Day 3 CSV를 다시 읽지 않고 fixture로 고정합니다. Claude 실습은 `fixtures/` 또는 승인된 MCP만 사용합니다.
+
+```bash
+python3 ../scripts/verify_dummy_data.py
+cat fixtures/quality_summary.json
+```
+
+조인 키: `PRESS-01`, `PRESS-03`, `MILL-02` (Day 2 equipment · Day 3 equipment_id와 동일).  
+가이드: [`docs/dummy-data.md`](../docs/dummy-data.md)
+
 ### 시나리오: 설비·품질 연관 분석 + 승인 게이트
 
 | 항목 | 내용 |
 |---|---|
-| 입력 | Day 3 설비 로그 + `fixtures/quality_summary.json` |
+| 입력 | `fixtures/equipment_errors.json` + `fixtures/quality_summary.json` (필요 시 Day 3 MCP) |
 | 목표 | 연관 분석 초안 → 검증 → **사람 승인 대기** |
 | 금지 | Verifier가 결과를 직접 수정, 승인 없이 최종 확정 |
 
@@ -126,7 +144,9 @@ claude
 
 ```text
 mx-agentic-ai-day4-multi-agent-hitl/
-├── fixtures/quality_summary.json  ← 품질 데이터 (읽기 전용)
+├── fixtures/
+│   ├── quality_summary.json       ← 품질 (읽기 전용)
+│   └── equipment_errors.json      ← 오류 집계 fixture (읽기 전용)
 ├── src/cli.mjs                    ← 데모·결함 주입 CLI
 ├── runs/<run-id>/                 ← 실행 증거 (자동 생성)
 │   ├── plan.json
@@ -267,6 +287,7 @@ python3 scripts/assemble_project.py
 
 ## 참고 자료
 
+- [Dummy Data 가이드](../docs/dummy-data.md)
 - [GitHub 배포 가이드](../docs/github-deployment-and-quickstart.md)
 - [skill·기술 참고](./docs/skill-and-tech-reference.md)
 - [Day 5 agents](../mx-agentic-ai-day5-final-project/project/agents/)

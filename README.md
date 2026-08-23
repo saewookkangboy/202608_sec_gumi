@@ -24,7 +24,7 @@
 | **형식** | 1일 8시간 × 5일, 강사 진행 + 팀 실습 |
 | **실행 환경** | Claude Code (일자 폴더 `CLAUDE.md` + `/skill-name`) |
 | **방법** | AI PRD Canvas 10칸 → 4대 기술 기둥 → `project/` 통합 |
-| **데이터** | 합성 데이터만. 실제 사업장·개인정보·API 키 금지 |
+| **데이터** | Day 2~4 Dummy Data는 repo에 포함. [가이드](./docs/dummy-data.md). 실제 사업장·개인정보·API 키 금지 |
 
 ### 교육 목표
 
@@ -111,6 +111,7 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 ```bash
 git clone https://github.com/saewookkangboy/202608_sec_gumi.git
 cd 202608_sec_gumi
+python3 scripts/verify_dummy_data.py   # Day 2~4 합성 데이터 존재 확인
 ```
 
 일자별 첫 검증:
@@ -124,6 +125,8 @@ python3 scripts/check_day_gate.py --status
 (cd mx-agentic-ai-day4-multi-agent-hitl && npm test && npm run demo)
 (cd mx-agentic-ai-day5-final-project && python3 scripts/assemble_project.py && python3 scripts/validate_day5.py)
 ```
+
+Day 2~4 데이터 경로·스키마·조인 키: [`docs/dummy-data.md`](./docs/dummy-data.md)
 
 ### 교육생 본인 PRD 여정 (일차 간 사람 승인 필수)
 

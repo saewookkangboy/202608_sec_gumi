@@ -118,6 +118,7 @@ npm --version
 
 ```bash
 cd 202608_sec_gumi/mx-agentic-ai-day3-mcp-tools
+python3 ../scripts/verify_dummy_data.py   # data/equipment_logs.csv 포함 확인
 claude mcp list    # equipment-log 연결 확인
 claude
 ```
@@ -132,6 +133,22 @@ claude mcp get equipment-log
 ---
 
 ## 실습 예제 안내
+
+### Dummy Data (GitHub clone 포함)
+
+| 항목 | 경로 (이 폴더 기준) | 비고 |
+|---|---|---|
+| 설비 로그 | `data/equipment_logs.csv` | **읽기 전용**, MCP `DATA` 경로 |
+
+컬럼: `timestamp`, `equipment_id`, `level`, `error_code`, `message`  
+권장 조회 기간: `2026-08-11` ~ `2026-08-15`
+
+```bash
+python3 ../scripts/verify_dummy_data.py
+head -n 3 data/equipment_logs.csv
+```
+
+서버 코드는 `src/domain.mjs`의 `data/equipment_logs.csv`만 읽습니다. CSV를 수정하지 마세요. 가이드: [`docs/dummy-data.md`](../docs/dummy-data.md)
 
 ### 시나리오: 설비 로그 분석
 
@@ -264,6 +281,7 @@ cd ../mx-agentic-ai-day4-multi-agent-hitl
 
 ## 참고 자료
 
+- [Dummy Data 가이드](../docs/dummy-data.md)
 - [외부 MCP 연동](./docs/external-mcp-integration.md)
 - [GitHub 배포 가이드](../docs/github-deployment-and-quickstart.md)
 - [skill·기술 참고](./docs/skill-and-tech-reference.md)

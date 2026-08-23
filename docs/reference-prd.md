@@ -65,8 +65,9 @@ To-Be:  [ECO + 로그 + 품질 입력]
 | ECO 지식 | `day2/knowledge/eco/*.md` | 정규화 + `source_id` | 생성만 (`knowledge/`) |
 | 설비 로그 | `day3/data/equipment_logs.csv` | equipment_id, error_code, timestamp | 읽기 전용 |
 | 품질 요약 | `day4/fixtures/quality_summary.json` | defect_rate, equipment_id | 읽기 전용 |
+| 오류 fixture | `day4/fixtures/equipment_errors.json` | error_count, LOG-* | 읽기 전용 |
 
-**민감도:** 실제 사업장·개인정보 없음. 교육용 합성 데이터만 사용.
+**민감도:** 실제 사업장·개인정보 없음. 교육용 합성 데이터만 사용. 경로·clone 확인: [`dummy-data.md`](./dummy-data.md)
 
 **누락 시 규칙:**
 - 필드 없음 → `UNKNOWN` (채우지 않음)
