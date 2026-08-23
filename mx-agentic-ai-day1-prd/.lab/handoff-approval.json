@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "day": 1,
+  "status": "APPROVED",
+  "project_title": "견적요청 초안봇",
+  "project_profile": ".lab/project-profile.json",
+  "requested_at": "2026-08-23T00:11:49.794512+00:00",
+  "requested_by": "trainee",
+  "validate": {
+    "commands": [
+      "python3 scripts/validate_day1.py"
+    ],
+    "exit_codes": [
+      0
+    ],
+    "passed": true,
+    "log_tail": "$ python3 scripts/validate_day1.py\nexit=0\nPASS · 기획서\nPASS · PRD 본문\nPASS · 샘플 파일\nPASS · PRD PDF"
+  },
+  "approval": {
+    "status": "APPROVED",
+    "reviewer": "모의강사",
+    "reviewer_role": "instructor",
+    "approved_at": "2026-08-23T00:11:50.835268+00:00",
+    "notes": "",
+    "checklist": {}
+  },
+  "next_day": 2,
+  "checklist_template": "docs/handoffs/templates/day1-handoff-checklist.md"
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">Day 1 AI PRD Canvas</title>
+  <desc id="desc">Proposal to PRD Canvas sections 1-7, reserve 8-10 for Day 2 and Day 4, sample-data and expected-output.</desc>
+  <rect width="1200" height="470" rx="24" fill="#F4F7FA"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="56" y="62" fill="#071018" font-size="36" font-weight="800">Day 1 · AI PRD Canvas</text>
+    <text x="56" y="96" fill="#526476" font-size="20">1~7번 완성 · 8~10번 예약 · sample-data · expected-output · prd.pdf</text>
+    <g transform="translate(56 132)">
+      <rect width="520" height="274" rx="18" fill="#FFFFFF" stroke="#CCD7E2" stroke-width="2"/>
+      <rect width="520" height="12" rx="6" fill="#1428A0"/>
+      <text x="24" y="55" fill="#1428A0" font-size="18" font-weight="800" letter-spacing="1.5">DAY 01 · PRD</text>
+      <text x="24" y="94" fill="#071018" font-size="26" font-weight="800">AI가 무엇을 할까?</text>
+      <text x="24" y="132" fill="#526476" font-size="19">5 역할 · 6 데이터 · 7 출력</text>
+      <text x="24" y="160" fill="#526476" font-size="19">합성 데이터 · fallback 규칙</text>
+      <path d="M24 184H496" stroke="#E0E7EE"/>
+      <text x="24" y="219" fill="#071018" font-size="19" font-weight="700">RESERVED</text>
+      <text x="24" y="249" fill="#526476" font-size="17">8 eval → Day 2 · 9·10 → Day 4</text>
+    </g>
+    <g transform="translate(600 132)">
+      <rect width="544" height="274" rx="18" fill="#E8ECFA" stroke="#1428A0" stroke-width="2"/>
+      <text x="24" y="55" fill="#1428A0" font-size="18" font-weight="800">CANVAS 10칸</text>
+      <text x="24" y="92" fill="#071018" font-size="20" font-weight="700">1 목표 · 2 범위 · 3 사용자 · 4 제약</text>
+      <text x="24" y="124" fill="#B42318" font-size="20" font-weight="700">5 AI역할 ← 핵심</text>
+      <text x="24" y="156" fill="#071018" font-size="20" font-weight="700">6 데이터 · 7 출력형식</text>
+      <text x="24" y="196" fill="#526476" font-size="18">8 평가 → · 9 승인 → · 10 지표 →</text>
+      <rect x="24" y="218" width="496" height="40" rx="8" fill="#FFFFFF" stroke="#CCD7E2"/>
+      <text x="40" y="244" fill="#526476" font-size="16" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">sample-data/ · expected-output/ · docs/prd.pdf</text>
+    </g>
+  </g>
+</svg>

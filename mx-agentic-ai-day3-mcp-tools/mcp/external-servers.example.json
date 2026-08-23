@@ -1,0 +1,19 @@
+{
+  "_comment": "외부 MCP 서버 등록 예시. 실제 URL·토큰은 커밋하지 마세요.",
+  "mcpServers": {
+    "equipment-log": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["src/server.mjs"],
+      "comment": "Day 3 로컬 (Standard)"
+    },
+    "external-ticket-system": {
+      "type": "sse",
+      "url": "https://example.internal/mcp/sse",
+      "headers": {
+        "Authorization": "Bearer ${TICKET_MCP_TOKEN}"
+      },
+      "comment": "Advanced/Day5 — 가상 예시. 실제 값 사용 금지."
+    }
+  }
+}

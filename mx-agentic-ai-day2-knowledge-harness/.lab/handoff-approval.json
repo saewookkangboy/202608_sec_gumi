@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "day": 2,
+  "status": "APPROVED",
+  "project_title": "견적요청 초안봇",
+  "project_profile": "mx-agentic-ai-day1-prd/.lab/project-profile.json",
+  "requested_at": "2026-08-23T00:12:16.781370+00:00",
+  "requested_by": "trainee",
+  "validate": {
+    "commands": [
+      "python3 scripts/validate_repo.py",
+      "python3 -m unittest discover -s tests -v"
+    ],
+    "exit_codes": [
+      0,
+      0
+    ],
+    "passed": true,
+    "log_tail": "$ python3 scripts/validate_repo.py\nexit=0\nPASS: 12 records, traceable sources, immutable raw data, state files ready\n\n$ python3 -m unittest discover -s tests -v\nexit=0\ncreated=12 catalog=knowledge/catalog.json\ntest_catalog_is_traceable (test_day2.Day2LabTest.test_catalog_is_traceable) ... ok\ntest_search_returns_expected_document (test_day2.Day2LabTest.test_search_returns_expected_document) ... ok\ntest_twelve_documents_are_created (test_day2.Day2LabTest.test_twelve_documents_are_created) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.645s\n\nOK"
+  },
+  "approval": {
+    "status": "APPROVED",
+    "reviewer": "모의강사",
+    "reviewer_role": "instructor",
+    "approved_at": "2026-08-23T00:12:18.956747+00:00",
+    "notes": "",
+    "checklist": {}
+  },
+  "next_day": 3,
+  "checklist_template": "docs/handoffs/templates/day2-handoff-checklist.md"
+}

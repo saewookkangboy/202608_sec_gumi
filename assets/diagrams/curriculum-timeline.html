@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5일 커리큘럼 · Timeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #F4F7FA;
+      --color-ink:     #071018;
+      --color-muted:   #526476;
+      --color-soft:    #8293A5;
+      --color-accent:  #146EF5;
+      --font-sans:     'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Timeline · MX Gumi Agentic AI</p>
+    <h1>5일 일정</h1>
+
+    <svg viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="curriculum-timeline-title curriculum-timeline-desc">
+      <title id="curriculum-timeline-title">5일 커리큘럼</title>
+      <desc id="curriculum-timeline-desc">Day 1~5 일차별 제목과 검증 산출물.</desc>
+
+      <rect width="100%" height="100%" fill="#F4F7FA"/>
+
+      <line x1="80" y1="240" x2="920" y2="240" stroke="rgba(82,100,118,0.45)" stroke-width="1"/>
+      <line x1="80" y1="232" x2="80" y2="248" stroke="rgba(7,16,24,0.20)" stroke-width="1"/>
+      <line x1="920" y1="232" x2="920" y2="248" stroke="rgba(7,16,24,0.20)" stroke-width="1"/>
+
+      <!-- Day 1 -->
+      <line x1="120" y1="184" x2="120" y2="240" stroke="rgba(7,16,24,0.30)" stroke-width="1"/>
+      <circle cx="120" cy="240" r="4" fill="#1428A0"/>
+      <text x="120" y="156" fill="#1428A0" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">DAY 1</text>
+      <text x="120" y="172" fill="#071018" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">AI PRD 정의</text>
+      <text x="120" y="268" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">prd.md · Canvas 1~7</text>
+
+      <!-- Day 2 -->
+      <line x1="320" y1="240" x2="320" y2="296" stroke="#146EF5" stroke-width="1"/>
+      <circle cx="320" cy="240" r="6" fill="#146EF5"/>
+      <text x="320" y="312" fill="#146EF5" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">DAY 2</text>
+      <text x="320" y="328" fill="#071018" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Harness + Wiki</text>
+      <text x="320" y="344" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">12건 · Top-3 eval</text>
+
+      <!-- Day 3 -->
+      <line x1="520" y1="184" x2="520" y2="240" stroke="rgba(7,16,24,0.30)" stroke-width="1"/>
+      <circle cx="520" cy="240" r="4" fill="#071018"/>
+      <text x="520" y="156" fill="#526476" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">DAY 3</text>
+      <text x="520" y="172" fill="#071018" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">MCP 연동</text>
+      <text x="520" y="268" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">3 tools · smoke E2E</text>
+
+      <!-- Day 4 -->
+      <line x1="720" y1="240" x2="720" y2="296" stroke="rgba(7,16,24,0.30)" stroke-width="1"/>
+      <circle cx="720" cy="240" r="4" fill="#071018"/>
+      <text x="720" y="312" fill="#526476" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">DAY 4</text>
+      <text x="720" y="328" fill="#071018" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">HITL · Multi-agent</text>
+      <text x="720" y="344" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">승인 게이트 · 상태 머신</text>
+
+      <!-- Day 5 -->
+      <line x1="900" y1="160" x2="900" y2="240" stroke="#146EF5" stroke-width="1"/>
+      <circle cx="900" cy="240" r="6" fill="#146EF5"/>
+      <text x="900" y="128" fill="#146EF5" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">DAY 5</text>
+      <text x="900" y="148" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">project/ 발표</text>
+      <text x="900" y="164" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">project/ · 발표</text>
+
+      <line x1="40" y1="396" x2="960" y2="396" stroke="rgba(7,16,24,0.10)" stroke-width="0.8"/>
+      <text x="40" y="412" fill="#526476" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+      <circle cx="52" cy="428" r="4" fill="#071018"/>
+      <text x="68" y="432" fill="#526476" font-size="8.5" font-family="'Geist', sans-serif">실습 일자</text>
+      <circle cx="168" cy="428" r="6" fill="#146EF5"/>
+      <text x="184" y="432" fill="#526476" font-size="8.5" font-family="'Geist', sans-serif">강조 일차 (Day 2, Day 5)</text>
+    </svg>
+  </div>
+</body>
+</html>

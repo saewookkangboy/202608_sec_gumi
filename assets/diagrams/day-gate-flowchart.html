@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>일차 간 승인 게이트</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #F4F7FA;
+      --color-ink:     #071018;
+      --color-muted:   #526476;
+      --color-soft:    #8293A5;
+      --color-accent:  #146EF5;
+      --font-sans:     'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Flowchart · MX Gumi Agentic AI</p>
+    <h1>Day N → Day N+1 승인 게이트</h1>
+
+    <svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="day-gate-title day-gate-desc">
+      <title id="day-gate-title">일차 간 승인 게이트</title>
+      <desc id="day-gate-desc">validate 후 request_handoff, approve_handoff, check_day_gate --enter-day로 다음 일차에 들어가는 순서.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#526476"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#146EF5"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#F4F7FA"/>
+
+      <path d="M 500 88 V 112" fill="none" stroke="#526476" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <path d="M 500 176 V 200" fill="none" stroke="#526476" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <path d="M 500 264 V 288" fill="none" stroke="#146EF5" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+      <path d="M 500 352 V 376" fill="none" stroke="#526476" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <rect x="340" y="48" width="320" height="64" rx="6" fill="#FFFFFF" stroke="#071018" stroke-width="1"/>
+      <text x="500" y="76" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Day N 실습 종료</text>
+      <text x="500" y="96" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">일자 폴더 산출물</text>
+
+      <rect x="300" y="112" width="400" height="64" rx="6" fill="#FFFFFF" stroke="#1428A0" stroke-width="1"/>
+      <text x="500" y="140" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">validate_dayN.py</text>
+      <text x="500" y="160" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">자동 검증 PASS</text>
+
+      <rect x="280" y="200" width="440" height="64" rx="6" fill="#FFFFFF" stroke="#071018" stroke-width="1"/>
+      <text x="500" y="228" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">request_handoff.py --day N</text>
+      <text x="500" y="248" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">.lab/handoff-approval.json 생성</text>
+
+      <rect x="260" y="288" width="480" height="64" rx="6" fill="rgba(20,110,245,0.08)" stroke="#146EF5" stroke-width="1.2"/>
+      <text x="500" y="316" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">approve_handoff.py</text>
+      <text x="500" y="336" fill="#146EF5" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">강사·멘토 · role instructor|mentor</text>
+
+      <rect x="240" y="376" width="520" height="64" rx="6" fill="#FFFFFF" stroke="#071018" stroke-width="1"/>
+      <text x="500" y="404" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">check_day_gate.py --enter-day N+1</text>
+      <text x="500" y="424" fill="#526476" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">다음 일차 폴더 진입</text>
+
+      <line x1="40" y1="468" x2="960" y2="468" stroke="rgba(7,16,24,0.10)" stroke-width="0.8"/>
+      <text x="40" y="484" fill="#526476" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">NOTE</text>
+      <text x="120" y="484" fill="#526476" font-size="8.5" font-family="'Geist', sans-serif">자동 검증 PASS ≠ 승인. Day 5는 Day 4 승인 후 assemble · validate_day5.</text>
+    </svg>
+  </div>
+</body>
+</html>

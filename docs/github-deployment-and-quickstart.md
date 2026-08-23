@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../assets/readme/lab-guide.svg" width="100%" alt="GitHub 코드복사 실습 가이드 — 명령 블록을 복사해 Claude Code 또는 Codex skill을 실행하고, 검증 후 team 브랜치에 제출한다">
+  <img src="../assets/readme/lab-guide.svg" width="100%" alt="GitHub 코드복사 실습 가이드 — 명령 블록을 복사해 Claude Code skill을 실행하고, 검증 후 team 브랜치에 제출한다">
 </p>
 
 <p align="center">
@@ -7,10 +7,12 @@
   <a href="#1-준비-사항">준비</a> ·
   <a href="#2-github-배포-순서">배포</a> ·
   <a href="#3-에이전트-실행-공통-패턴">에이전트</a> ·
-  <a href="#4-day-2-빠른-시작--knowledge-harness">Day 2</a> ·
-  <a href="#5-day-3-빠른-시작--mcp-tool-extension">Day 3</a> ·
-  <a href="#6-day-4-빠른-시작--multi-agent-hitl">Day 4</a> ·
-  <a href="#7-최종-완료-체크리스트">체크리스트</a>
+  <a href="#4-day-1-빠른-시작--ai-prd">Day 1</a> ·
+  <a href="#5-day-2-빠른-시작--knowledge-harness">Day 2</a> ·
+  <a href="#6-day-3-빠른-시작--mcp-tool-extension">Day 3</a> ·
+  <a href="#7-day-4-빠른-시작--multi-agent-hitl">Day 4</a> ·
+  <a href="#day-5-빠른-시작--final-project">Day 5</a> ·
+  <a href="#9-최종-완료-체크리스트">체크리스트</a>
 </p>
 
 강사가 `main`을 배포하고, 수강생이 일자별 repo skill로 과제를 수행한 뒤 팀 브랜치에 제출하는 순서입니다. 명령과 완성형 프롬프트는 GitHub **Copy** 버튼으로 그대로 복사합니다.
@@ -24,7 +26,7 @@
 - Git 2.x
 - Python 3.x: Day 2
 - Node.js 20 이상: Day 3~4
-- Claude Code 또는 Codex CLI 중 하나
+- Claude Code CLI
 - `saewookkangboy/202608_sec_gumi` 저장소 읽기 권한
 - 팀 결과를 push하려면 저장소 쓰기 권한 또는 개인 fork
 
@@ -35,10 +37,9 @@ git --version
 python3 --version
 node --version
 claude --version
-codex --version
 ```
 
-> Claude Code와 Codex를 모두 설치할 필요는 없습니다. 실습 코드는 동일하고, Claude Code는 `CLAUDE.md`와 `/skill-name`, Codex는 `AGENTS.md`와 `$skill-name`을 사용합니다.
+> 실습은 **Claude Code**에서 진행합니다. 일자 폴더의 `CLAUDE.md`와 `/skill-name`을 사용합니다.
 
 ## 2. GitHub 배포 순서
 
@@ -57,6 +58,11 @@ git status -sb
 세 일자의 회귀 테스트를 실행합니다.
 
 ```bash
+# Day 1 — 예제 검증 (수강생 산출물은 validate_day1.py, 예제 체험은 --example)
+python3 mx-agentic-ai-day1-prd/scripts/validate_day1.py --example quotation-bot
+# Day 1 — 예제를 내 산출물로 복사 후 검증
+python3 mx-agentic-ai-day1-prd/scripts/bootstrap_example.py quotation-bot
+python3 mx-agentic-ai-day1-prd/scripts/validate_day1.py
 (cd mx-agentic-ai-day2-knowledge-harness && python3 scripts/validate_repo.py && python3 -m unittest discover -s tests -v)
 (cd mx-agentic-ai-day3-mcp-tools && npm test && npm run smoke)
 (cd mx-agentic-ai-day4-multi-agent-hitl && npm test)
@@ -69,7 +75,7 @@ git status -sb
 git diff --check
 git add README.md docs/ mx-agentic-ai-day2-knowledge-harness/README.md mx-agentic-ai-day3-mcp-tools/README.md mx-agentic-ai-day4-multi-agent-hitl/README.md
 git diff --cached --stat
-git commit -m "docs: add Claude Code and Codex lab quickstarts"
+git commit -m "docs: add Claude Code lab quickstarts"
 git push origin main
 ```
 
@@ -128,43 +134,48 @@ git grep -n -E '(API_KEY|SECRET|PASSWORD|TOKEN)=' -- ':!*.md' || true
 - `git add .` 대신 제출할 파일을 명시합니다.
 - 테스트 PASS와 사람의 최종 승인은 서로 다른 단계입니다.
 
-## 3. 에이전트 실행 공통 패턴
+## 3. Claude Code 실행 패턴
 
 <p align="center">
-  <img src="../assets/readme/docs-hosts.svg" width="100%" alt="Claude Code는 CLAUDE.md와 /skill, Codex는 AGENTS.md와 $skill을 쓰고, 둘 다 같은 로컬 MCP 서버를 붙인다">
+  <img src="../assets/readme/docs-hosts.svg" width="100%" alt="Claude Code는 CLAUDE.md와 /skill을 쓰고, Day 3는 프로젝트 .mcp.json으로 로컬 MCP 서버를 붙인다">
 </p>
 
-실습 코드는 동일합니다. Claude Code와 Codex를 모두 설치할 필요는 없습니다. 일자 폴더에서 에이전트를 연 뒤, 아래 완성형 프롬프트를 붙여넣습니다.
-
-### Claude Code
-
-실습 일자 폴더에서 Claude Code를 시작합니다.
+일자 폴더에서 Claude Code를 연 뒤, `/skill-name`을 입력하거나 아래 완성형 프롬프트를 붙여넣습니다.
 
 ```bash
+cd mx-agentic-ai-dayN-...
 claude
 ```
 
-대화창에서 `/skill-name`을 입력하거나 아래의 완성형 프롬프트를 붙여넣습니다. 처음 열 때 프로젝트 MCP 또는 파일 접근 승인 화면이 나오면 저장소 경로와 명령을 확인한 뒤 승인합니다.
-
-### Codex
-
-같은 일자 폴더에서 Codex를 시작합니다.
-
-```bash
-codex
-```
-
-대화창에서 `$skill-name`을 포함한 완성형 프롬프트를 붙여넣습니다. Codex는 현재 폴더의 `AGENTS.md`와 `.agents/skills/`를 기준으로 작업합니다.
+처음 열 때 프로젝트 MCP 또는 파일 접근 승인 화면이 나오면 저장소 경로와 명령을 확인한 뒤 승인합니다.
 
 <p align="center">
   <img src="../assets/readme/lab-skills.svg" width="100%" alt="Day 2는 knowledge builder와 harness auditor, Day 3는 MCP designer와 smoke, Day 4는 plan execute verify human 순서로 복사한다">
 </p>
 
-개념 계약은 [Day 2](../mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md) · [Day 3](../mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md) · [Day 4](../mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md) 참고 자료를 봅니다.
+개념 계약은 [5일 커리큘럼](./curriculum-5day.md) · [기술 기둥](./tech-pillars.md) · [Day 2](../mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md) · [Day 3](../mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md) · [Day 4](../mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md) · [Day 5](../mx-agentic-ai-day5-final-project/docs/skill-and-tech-reference.md) 참고 자료를 봅니다.
 
-## 4. Day 2 빠른 시작 · Knowledge Harness
+## 4. Day 1 빠른 시작 · AI PRD
 
-### 4-1. 기준 상태 확인
+### 4-1. 폴더 준비
+
+```bash
+cd mx-agentic-ai-day1-prd
+# docs/proposal.pdf 에 오전 기획서를 복사
+ls docs/ sample-data/ expected-output/
+```
+
+### 4-2. Claude Code
+
+[Notion 3_AI PRD 가이드](https://adorable-hail-415.notion.site/3_AI-PRD-3c4137efedf680f7a491f3bd50c832c9) 하단 **복사용 프롬프트**를 통째로 붙여넣습니다. 자가 점검 8항목 통과 후 `docs/prd.pdf`를 패들렛에 제출합니다.
+
+### 4-3. Day 2 연결
+
+Day 1의 `sample-data/`·`expected-output/` 개념이 Day 2 eval·Day 3 MCP·Day 4 HITL의 **PASS 기준 설계**와 1:1 대응합니다. 참조 구현은 [`reference-prd.md`](./reference-prd.md)를 봅니다.
+
+## 5. Day 2 빠른 시작 · Knowledge Harness
+
+### 5-1. 기준 상태 확인
 
 ```bash
 cd mx-agentic-ai-day2-knowledge-harness
@@ -174,7 +185,7 @@ python3 scripts/validate_repo.py
 python3 -m unittest discover -s tests -v
 ```
 
-### 4-2. Claude Code 적용
+### 5-2. Claude Code 프롬프트
 
 ```bash
 claude
@@ -204,29 +215,7 @@ progress.md, decisions.md, source_id/source_path, raw.sha256와 완료 검증을
 실패가 있으면 파일명과 수정 방법을 정확히 알려주고 raw 데이터는 고치지 마.
 ```
 
-### 4-3. Codex 적용
-
-```bash
-codex
-```
-
-다음 내용을 Codex에 복사합니다.
-
-```text
-$eco-knowledge-builder를 사용해 data/raw/eco_documents.jsonl을 추적 가능한
-지식 자산으로 변환해줘. raw 입력은 수정하지 말고, 각 산출물에 source_id와
-source_path를 유지해. 검색 질문 "P-100 하우징 변경과 관련된 ECO는?"의
-Top-3와 근거 ID를 확인하고, validate_repo.py와 전체 unittest를 실행해.
-완료 후 변경 파일, 검증 결과, 남은 위험만 요약해줘.
-```
-
-```text
-$repo-harness-auditor로 저장소 하네스를 감사해줘. AGENTS.md의 출력 경계,
-상태 파일 3종, catalog의 근거 필드, 원본 SHA-256, 전체 테스트를 확인해.
-검증 실패를 임의로 숨기거나 raw 파일을 수정하지 마.
-```
-
-### 4-4. 핵심 팀 과제
+### 5-3. 팀 과제
 
 Advanced 과제는 기존 정규화 계약을 유지하면서 `knowledge/relations.json`에 부품→ECO→도면 관계를 추가하고 2-hop 질의를 검증하는 것입니다.
 
@@ -238,7 +227,7 @@ knowledge/relations.json에 part_id -> eco_id -> drawing_id 관계를 추가해�
 완료 전 repo harness 감사와 전체 회귀 테스트를 실행해.
 ```
 
-### 4-5. 결과 확인과 제출
+### 5-4. 결과 확인과 제출
 
 ```bash
 python3 scripts/validate_repo.py
@@ -250,9 +239,9 @@ git commit -m "feat(day2): complete knowledge harness lab"
 git push -u origin HEAD
 ```
 
-## 5. Day 3 빠른 시작 · MCP Tool Extension
+## 6. Day 3 빠른 시작 · MCP Tool Extension
 
-### 5-1. 기준 상태 확인
+### 6-1. 기준 상태 확인
 
 ```bash
 cd mx-agentic-ai-day3-mcp-tools
@@ -260,7 +249,7 @@ npm test
 npm run smoke
 ```
 
-### 5-2. Claude Code에 로컬 MCP 연결
+### 6-2. 로컬 MCP 연결 (Claude Code)
 
 저장소에는 프로젝트 공유 설정인 `.mcp.json`이 포함되어 있습니다. 연결 상태를 확인합니다.
 
@@ -292,35 +281,7 @@ stdout은 JSON-RPC 전용이고 진단은 stderr로 보내는지도 확인해.
 승인 없는 write의 dry-run과 원본 CSV 불변성을 확인하고 결과를 보고해줘.
 ```
 
-### 5-3. Codex에 로컬 MCP 연결
-
-Codex CLI는 로컬 stdio 서버를 사용자 설정에 등록합니다. Day 3 폴더의 절대 경로를 사용하면 다른 폴더에서 Codex를 열어도 서버 파일을 찾을 수 있습니다.
-
-```bash
-DAY3_DIR="$(pwd)"
-codex mcp add equipment-log -- node "$DAY3_DIR/src/server.mjs"
-codex mcp get equipment-log
-codex
-```
-
-이미 같은 이름이 등록되어 있으면 `codex mcp get equipment-log`로 명령을 먼저 확인하고, 이 교육 저장소와 다른 경우에만 기존 항목을 제거한 뒤 다시 등록합니다.
-
-Codex에 다음 내용을 복사합니다.
-
-```text
-$mcp-tool-designer로 equipment-log MCP의 세 도구 계약을 점검해줘.
-읽기와 쓰기를 분리하고, write_analysis_report는 APPROVE_WRITE 없이는
-파일을 만들지 않는 dry-run이어야 해. 입력·출력·실패 사례와 필요한 테스트를
-먼저 명시한 뒤, 승인된 범위만 수정하고 npm test와 npm run smoke를 실행해.
-```
-
-```text
-$mcp-smoke-test로 initialize, tools/list, 안전한 tools/call, 역전 날짜 오류,
-승인 없는 쓰기를 E2E 검증해줘. stdout JSON-RPC 오염과 data/equipment_logs.csv
-변경 여부도 확인하고, 실패 method와 교정 조치를 정확히 보고해줘.
-```
-
-### 5-4. 핵심 실습: 조회 → 오류 → 쓰기 승인
+### 6-3. 실습: 조회 → 오류 → 쓰기 승인
 
 에이전트에 다음 시나리오를 순서대로 요청합니다.
 
@@ -331,7 +292,7 @@ equipment-log MCP를 사용해 다음을 순서대로 수행해줘.
 3. 시작일이 종료일보다 늦은 요청을 보내 구조화 오류를 확인한다.
 4. write_analysis_report를 승인 토큰 없이 호출해 dry-run과 파일 미생성을 확인한다.
 5. 사람의 명시적 승인을 받기 전에는 실제 쓰기를 수행하지 않는다.
-각 단계의 도구명, 입력, 핵심 출력, 검증 결과를 표로 정리해줘.
+각 단계의 도구명, 입력, 출력, 검증 결과를 표로 정리해줘.
 ```
 
 실제 쓰기 단계는 교육 진행자가 승인한 경우에만 사용합니다.
@@ -341,7 +302,7 @@ APPROVE_WRITE를 승인 토큰으로 사용해 앞서 검증한 분석만 output
 저장 경로, 포함된 evidence_id, 원본 CSV 해시 불변 여부를 확인해줘.
 ```
 
-### 5-5. 결과 확인과 제출
+### 6-4. 결과 확인과 제출
 
 ```bash
 npm test
@@ -361,9 +322,9 @@ git add -f outputs/analysis-report.md
 
 원본 로그는 추가하지 않습니다.
 
-## 6. Day 4 빠른 시작 · Multi-Agent HITL
+## 7. Day 4 빠른 시작 · Multi-Agent HITL
 
-### 6-1. 기준 상태와 네 가지 종료 경로 확인
+### 7-1. 기준 상태와 네 가지 종료 경로 확인
 
 ```bash
 cd mx-agentic-ai-day4-multi-agent-hitl
@@ -376,7 +337,7 @@ node src/cli.mjs --fault missing-evidence --persistent-fault
 
 기본 실행은 `AWAITING_APPROVAL`, `--approve` 실행만 `APPROVED`, 지속 결함은 재시도 한도 후 `ESCALATED`인지 확인합니다.
 
-### 6-2. Claude Code 적용
+### 7-2. Claude Code 프롬프트
 
 ```bash
 claude
@@ -408,27 +369,7 @@ ESCALATE 중 하나만 구체적 사유와 함께 반환해. 실행자 결과를
 approve/reject/revise 입력 전에는 AWAITING_APPROVAL에서 멈춰.
 ```
 
-### 6-3. Codex 적용
-
-```bash
-codex
-```
-
-다음 통합 프롬프트를 복사합니다.
-
-```text
-Day 4 역할 계약을 순서대로 실행해줘.
-1. $plan-maintenance-analysis: 실행 없이 계획과 PASS 기준만 작성
-2. $execute-evidence-plan: 승인된 계획을 근거 ID와 함께 실행
-3. $verify-maintenance-report: 결과를 수정하지 않고 독립 검증
-4. $request-human-approval: PASS 후 승인 패킷을 만들고 사람 입력까지 정지
-
-역할별 입력·출력 파일을 섞지 말고, 동일 결함이 반복되면 최대 3회까지만
-복구한 뒤 ESCALATED로 전환해. verifier PASS를 사람 승인으로 간주하지 말고,
-마지막에 npm test와 생성된 runs/<run-id>/ 이벤트 순서를 검증해줘.
-```
-
-### 6-4. 핵심 실습: 정상·반려·이관·승인
+### 7-3. 실습: 정상·반려·이관·승인
 
 ```text
 Day 4 팀 과제를 네 시나리오로 수행해줘.
@@ -450,7 +391,7 @@ printf '%s\n' "$LATEST_RUN"
 sed -n '1,200p' "$LATEST_RUN/events.jsonl"
 ```
 
-### 6-5. 결과 확인과 제출
+### 7-4. 결과 확인과 제출
 
 ```bash
 npm test
@@ -463,22 +404,56 @@ git push -u origin HEAD
 
 > `runs/`는 실행 증거입니다. 팀 제출 정책에 따라 대표 run만 선별하고, 자격증명이나 실제 업무 데이터가 없는지 확인한 후 추가합니다.
 
-## 7. 최종 완료 체크리스트
+## 8. Day 5 빠른 시작 · Final Project
 
-| 확인 항목 | Day 2 | Day 3 | Day 4 |
-|---|---|---|---|
-| 원본 입력 불변 | `data/raw/` | `data/` | `fixtures/` |
-| 에이전트 계약 | Harness · Knowledge skill | Tool contract · Smoke skill | Planner · Executor · Verifier · Human |
-| 자동 검증 | validate + unittest | unit + MCP smoke | state-machine tests |
-| 핵심 증거 | `source_id`, `source_path`, SHA-256 | `evidence_id`, JSON-RPC, dry-run | run JSON, `events.jsonl` |
-| 사람 통제 | 완료 기준 확인 | 쓰기 토큰 | `AWAITING_APPROVAL` |
-| 제출 | 팀 브랜치 push | 팀 브랜치 push | 팀 브랜치 push |
-
-전체 테스트와 Git 상태를 마지막으로 확인합니다.
+### 8-1. Day 1~4 완료 후 조립
 
 ```bash
+cd mx-agentic-ai-day5-final-project
+python3 scripts/assemble_project.py
+```
+
+`project/manifest.json`과 `project/evidence/` 3종이 생성됩니다. `tech_pillars` 4개가 PASS인지 확인하세요.
+
+### 8-2. 최종 산출물 작성
+
+`project/docs/` · `project/harness/` · `project/knowledge/` · `project/mcp/` · `project/agents/` 템플릿을 팀 PRD에 맞게 채웁니다.
+
+```text
+/final-project-assembler로 Day 5 최종 프로젝트를 완성해줘.
+1. assemble_project.py 실행 후 manifest 확인
+2. final-prd.md Canvas 1~10 완성 (Day 1 prd + Day 2~4 회고 반영)
+3. architecture.md 4층 스택 작성
+4. integration-map.md PASS 표시
+5. demo-script.md 5~7분 발표 스크립트
+6. validate_day5.py 통과까지 반복
+```
+
+### 8-3. 발표 전 검증
+
+```bash
+python3 scripts/validate_day5.py
+```
+
+## 9. 최종 완료 체크리스트
+
+| 확인 항목 | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 |
+|---|---|---|---|---|---|
+| 산출물 | `prd.md` · `prd.pdf` · 샘플 | `knowledge/` | MCP 서버 | 파이프라인 |
+| 에이전트 계약 | PRD Canvas · `/prd-canvas-builder` | Harness · Knowledge skill | Tool contract · Smoke | Planner · Executor · Verifier · Human |
+| 자동 검증 | `validate_day1.py` | validate + unittest | unit + MCP smoke | state-machine tests |
+| 증거 | sample-data · expected-output | `source_id` · SHA-256 | `evidence_id` · dry-run | `events.jsonl` |
+| 사람 통제 | 하지 않는 일 명시 | 완료 기준 확인 | 쓰기 토큰 | `AWAITING_APPROVAL` |
+| 제출 | 패들렛 `prd.pdf` | 팀 브랜치 | 팀 브랜치 | 팀 브랜치 | **발표** + `project/` |
+
+전체 테스트와 Git 상태를 확인합니다.
+
+```bash
+# Day 1은 docs/prd.md 작성 후
+(cd mx-agentic-ai-day1-prd && python3 scripts/validate_day1.py)
 (cd mx-agentic-ai-day2-knowledge-harness && python3 scripts/validate_repo.py && python3 -m unittest discover -s tests -v)
 (cd mx-agentic-ai-day3-mcp-tools && npm test && npm run smoke)
 (cd mx-agentic-ai-day4-multi-agent-hitl && npm test)
+(cd mx-agentic-ai-day5-final-project && python3 scripts/assemble_project.py && python3 scripts/validate_day5.py)
 git status -sb
 ```

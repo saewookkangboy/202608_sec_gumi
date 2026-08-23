@@ -2,7 +2,9 @@
   <img src="../../assets/readme/day3-mcp.svg" width="100%" alt="Day 3 루프와 E2E — initialize, tools/list, tools/call 스모크 경로와 읽기 도구, APPROVE_WRITE 쓰기 게이트를 구분한다. MCP는 도구, A2A는 Day 4 에이전트다">
 </p>
 
-외부 계정과 API 키 없이 로컬 stdio MCP 서버를 붙입니다. 단위 테스트는 도메인 함수를, E2E 스모크는 프로세스·도구 계약·쓰기 차단까지 확인합니다. 프로토콜은 [MCP Specification 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18)을 기준으로 합니다.
+외부 계정과 API 키 없이 로컬 stdio MCP 서버를 붙입니다. **PRD Canvas 5·6**(AI 역할·데이터)을 도구 계약으로 구현합니다. Day 2 ECO의 `equipment` 필드가 설비 ID와 조인됩니다.
+
+→ [4일 커리큘럼](../../docs/curriculum-4day.md) · [참조 PRD](../../docs/reference-prd.md)
 
 ## 먼저 확인하는 증거
 
@@ -21,7 +23,7 @@ npm run smoke
 
 ## Repo skill
 
-### `$mcp-tool-designer`
+### `/mcp-tool-designer`
 
 `src/server.mjs`를 바꾸기 **전에** 계약을 적습니다.
 
@@ -35,7 +37,7 @@ npm run smoke
 
 stdout은 JSON-RPC 전용, 진단은 stderr입니다. 자격증명과 실제 업무 데이터를 넣지 않습니다.
 
-### `$mcp-smoke-test`
+### `/mcp-smoke-test`
 
 1. `npm test`로 도메인 로직을 검증한다.
 2. `npm run smoke`로 프로토콜 순서를 확인한다.
@@ -50,7 +52,7 @@ claude mcp add --scope project --transport stdio equipment-log -- node src/serve
 claude mcp list
 ```
 
-Codex는 `.mcp.json` 또는 `config.toml`의 `[mcp_servers.equipment-log]`로 같은 stdio 서버를 붙입니다. 쓰기 도구는 `default_tools_approval_mode = "writes"`처럼 승인 모드를 읽기보다 엄하게 둡니다.
+프로젝트 `.mcp.json`이 기본입니다. 연결이 없을 때만 `claude mcp add --scope project --transport stdio equipment-log -- node src/server.mjs`로 등록합니다. 쓰기 도구는 Claude Code 도구 승인 설정으로 읽기보다 엄하게 둡니다.
 
 ## 기술 개념
 
@@ -99,7 +101,7 @@ MCP 오류는 두 층입니다.
 
 ### Loop Engineering
 
-Claude와 Codex의 코딩 에이전트는 모두 **도구 루프**입니다. [Claude Agent SDK · agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop.md)는 프롬프트 → 도구 호출 → 결과 반영 → 종료까지를 한 세션의 턴으로 설명합니다. [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/)는 같은 순환을 프롬프트 구성, 캐시, compaction까지 풀어 씁니다. Day 3에서는 이 루프를 MCP 클라이언트 관점의 작은 제어 루프로 바꿉니다.
+Claude Code 에이전트는 **도구 루프**입니다. [Claude Agent SDK · agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop.md)는 프롬프트 → 도구 호출 → 결과 반영 → 종료까지를 한 세션의 턴으로 설명합니다. Day 3에서는 이 루프를 MCP 클라이언트 관점의 작은 제어 루프로 바꿉니다.
 
 ```text
 initialize → tools/list → tools/call → validate result
@@ -122,20 +124,18 @@ initialize → tools/list → tools/call → validate result
 | Error path | 잘못된 날짜가 구조화 오류이며 서버는 생존 |
 | Write path | 승인 없음=dry-run·파일 없음, 승인 있음=허용 경로만 기록 |
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector)는 서버의 연결, 도구 목록, 호출과 오류를 UI/CLI에서 시험하는 공식 도구입니다. 수업 기본형은 빠르고 결정적인 `npm run smoke`, 확장형은 Inspector CLI 재검증으로 구성합니다. UI가 추가되는 후속 과제에는 [Playwright](https://github.com/microsoft/playwright)를 적용할 수 있지만, 현재 stdio 실습의 핵심 E2E는 브라우저가 아니라 프로토콜 전체 경로입니다.
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector)는 서버의 연결, 도구 목록, 호출과 오류를 UI/CLI에서 시험하는 공식 도구입니다. 수업 기본형은 빠르고 결정적인 `npm run smoke`, 확장형은 Inspector CLI 재검증으로 구성합니다. UI가 추가되는 후속 과제에는 [Playwright](https://github.com/microsoft/playwright)를 적용할 수 있지만, 현재 stdio 실습의 E2E는 브라우저가 아니라 프로토콜 전체 경로입니다.
 
 ### MCP와 A2A
 
-[A2A](https://a2a-protocol.org/latest/)는 MCP와 경쟁하지 않습니다. MCP는 agent-to-tool(이 실습의 설비 로그 서버), A2A는 agent-to-agent(Day 4 역할 간 위임)입니다. Claude Code와 Codex는 둘 다 MCP 호스트이고, A2A로 감싸면 서로 다른 하네스의 에이전트를 같은 Task/Artifact 계약으로 부를 수 있습니다.
+[A2A](https://a2a-protocol.org/latest/)는 MCP와 경쟁하지 않습니다. MCP는 agent-to-tool(이 실습의 설비 로그 서버), A2A는 agent-to-agent(Day 4 역할 간 위임)입니다. Claude Code는 MCP 호스트이고, A2A로 감싸면 서로 다른 하네스의 에이전트를 같은 Task/Artifact 계약으로 부를 수 있습니다.
 
-### Claude · Codex 기준 skill·repo
+### Claude Code 기준 skill·repo
 
 | 출처 | 요약 | 이 실습에 쓰는 점 |
 |---|---|---|
 | [Claude Code · MCP](https://code.claude.com/docs/en/mcp) | `.mcp.json`, `claude mcp add`, 도구 승인 | 프로젝트 stdio 등록 예시 |
-| [Codex · MCP](https://developers.openai.com/codex/mcp) | `config.toml` MCP, `writes`/`approve` 승인 모드 | 쓰기 도구만 승인 |
 | [Claude Agent SDK · agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop.md) | 턴, 도구 결과, max_turns, compaction | smoke의 종료 조건 |
-| [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/) | Codex 하네스의 한 턴과 캐시 | 프로토콜 순서를 깨지 않음 |
 | [MCP 공식 스펙 저장소](https://github.com/modelcontextprotocol/modelcontextprotocol) | JSON-RPC 계약 | `initialize` → `tools/list` → `tools/call` |
 
 기계가 읽는 전체 목록은 [research-ingest.jsonl](../../docs/research-ingest.jsonl)입니다.

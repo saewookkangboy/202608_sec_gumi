@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 1~4 → project/ 핸드오프</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #F4F7FA;
+      --color-ink:     #071018;
+      --color-muted:   #526476;
+      --color-soft:    #8293A5;
+      --color-accent:  #146EF5;
+      --color-accent-tint: rgba(20,110,245,0.08);
+      --color-rule:    rgba(7,16,24,0.12);
+      --font-sans:     'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Process · MX Gumi Agentic AI</p>
+    <h1>Day 1~4 → project/ 조립</h1>
+    <svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="handoff-title handoff-desc">
+      <title id="handoff-title">Day 1~4 → project/ 핸드오프</title>
+      <desc id="handoff-desc">assemble_project.py가 Day 1~4 산출물을 project/에 넣는 경로.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#526476"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#146EF5"/></marker>
+      </defs>
+      <rect width="1000" height="560" fill="#F4F7FA"/>
+
+      <text x="40" y="48" fill="#8293A5" font-family="'Geist Mono', monospace" font-size="9" font-weight="500" letter-spacing="2">DAY OUTPUTS</text>
+
+      <!-- Day boxes -->
+      <rect x="40" y="64" width="200" height="72" rx="6" fill="#FFFFFF" stroke="#1428A0" stroke-width="1"/>
+      <text x="56" y="92" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif">Day 1 · prd.md</text>
+      <text x="56" y="112" fill="#526476" font-size="10" font-family="'Geist Mono', monospace">sample-data · expected-output</text>
+
+      <rect x="40" y="152" width="200" height="72" rx="6" fill="rgba(20,110,245,0.08)" stroke="#146EF5" stroke-width="1.2"/>
+      <text x="56" y="180" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif">Day 2 · knowledge/</text>
+      <text x="56" y="200" fill="#146EF5" font-size="10" font-family="'Geist Mono', monospace">12 ECO · Top-3 eval</text>
+
+      <rect x="40" y="240" width="200" height="72" rx="6" fill="#FFFFFF" stroke="#071018" stroke-width="1"/>
+      <text x="56" y="268" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif">Day 3 · MCP smoke</text>
+      <text x="56" y="288" fill="#526476" font-size="10" font-family="'Geist Mono', monospace">3 tools · integration-plan</text>
+
+      <rect x="40" y="328" width="200" height="72" rx="6" fill="#FFFFFF" stroke="#071018" stroke-width="1"/>
+      <text x="56" y="356" fill="#071018" font-size="14" font-weight="600" font-family="'Geist', sans-serif">Day 4 · agents/</text>
+      <text x="56" y="376" fill="#526476" font-size="10" font-family="'Geist Mono', monospace">HITL · role contracts</text>
+
+      <!-- Orthogonal connectors -->
+      <path d="M 240 100 H 320 V 420 H 480" fill="none" stroke="#526476" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <path d="M 240 188 H 300 V 420 H 480" fill="none" stroke="#146EF5" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+      <path d="M 240 276 H 280 V 420 H 480" fill="none" stroke="#526476" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <path d="M 240 364 H 260 V 420 H 480" fill="none" stroke="#526476" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+      <!-- Day 5 project -->
+      <rect x="480" y="160" width="480" height="200" rx="8" fill="#FFFFFF" stroke="#1428A0" stroke-width="1.2"/>
+      <rect x="492" y="164" width="120" height="16" rx="2" fill="#F4F7FA"/>
+      <text x="552" y="175" text-anchor="middle" fill="#8293A5" font-family="'Geist Mono', monospace" font-size="8" letter-spacing="1.5">DAY 5 · PROJECT</text>
+      <text x="504" y="212" fill="#071018" font-size="18" font-weight="600" font-family="'Geist', sans-serif">project/</text>
+      <text x="504" y="240" fill="#526476" font-size="12" font-family="'Geist', sans-serif">final-prd.md · architecture.md · integration-map.md</text>
+      <text x="504" y="268" fill="#526476" font-size="11" font-family="'Geist Mono', monospace">harness/ · knowledge/ · mcp/ · agents/ · evidence/</text>
+      <rect x="504" y="288" width="200" height="48" rx="6" fill="rgba(20,110,245,0.08)" stroke="#146EF5" stroke-width="1.2"/>
+      <text x="520" y="318" fill="#146EF5" font-size="12" font-weight="600" font-family="'Geist Mono', monospace">validate_day5.py PASS</text>
+
+      <text x="40" y="460" fill="#8293A5" font-family="'Geist Mono', monospace" font-size="9">assemble_project.py · Day 2~4 evidence → project/</text>
+      <text x="40" y="480" fill="#526476" font-family="'Geist', sans-serif" font-size="11">검증 PASS ≠ 사람 승인 · 합성 데이터만 사용</text>
+
+      <line x1="40" y1="508" x2="960" y2="508" stroke="rgba(7,16,24,0.10)" stroke-width="0.8"/>
+      <text x="40" y="524" fill="#526476" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+      <line x1="120" y1="520" x2="148" y2="520" stroke="#146EF5" stroke-width="1.2"/>
+      <text x="156" y="524" fill="#526476" font-size="8.5" font-family="'Geist', sans-serif">주 경로: knowledge</text>
+      <line x1="300" y1="520" x2="328" y2="520" stroke="#526476" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="336" y="524" fill="#526476" font-size="8.5" font-family="'Geist', sans-serif">부 경로</text>
+    </svg>
+  </div>
+</body>
+</html>

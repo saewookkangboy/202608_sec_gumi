@@ -1,31 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="250" viewBox="0 0 1200 250" role="img" aria-labelledby="title desc">
-  <title id="title">Day 2 to Day 4 skills to paste</title>
-  <desc id="desc">Day 2 harness skills, Day 3 MCP skills, Day 4 four roles in order. Claude uses slash names, Codex uses dollar names.</desc>
-  <rect width="1200" height="250" rx="22" fill="#071018"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 280" role="img" aria-labelledby="title desc">
+  <title id="title">Day 1 to Day 5 skills to paste</title>
+  <desc id="desc">Day 1 PRD, Day 2 harness, Day 3 MCP, Day 4 four roles, Day 5 final project assembler.</desc>
+  <rect width="1200" height="280" rx="22" fill="#071018"/>
   <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
-    <g transform="translate(28 28)">
-      <rect width="364" height="194" rx="16" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
-      <rect width="364" height="12" rx="6" fill="#146EF5"/>
-      <text x="22" y="52" fill="#43C6FF" font-size="18" font-weight="700" letter-spacing="1.4">DAY 02 · HARNESS</text>
-      <text x="22" y="92" fill="#F5F7FA" font-size="20" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/eco-knowledge-builder</text>
-      <text x="22" y="122" fill="#F5F7FA" font-size="20" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/repo-harness-auditor</text>
-      <text x="22" y="164" fill="#9FB0C0" font-size="18">Codex는 $skill-name</text>
+    <g transform="translate(12 24)">
+      <rect width="228" height="232" rx="14" fill="#0D1C29" stroke="#1428A0" stroke-width="2"/>
+      <rect width="228" height="10" rx="5" fill="#1428A0"/>
+      <text x="16" y="48" fill="#1428A0" font-size="15" font-weight="700" letter-spacing="1">DAY 01 · PRD</text>
+      <text x="16" y="84" fill="#F5F7FA" font-size="16" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/prd-canvas-builder</text>
+      <text x="16" y="112" fill="#9FB0C0" font-size="15">Canvas 1~7 + 예약</text>
     </g>
-    <g transform="translate(418 28)">
-      <rect width="364" height="194" rx="16" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
-      <rect width="364" height="12" rx="6" fill="#43C6FF"/>
-      <text x="22" y="52" fill="#43C6FF" font-size="18" font-weight="700" letter-spacing="1.4">DAY 03 · LOOP</text>
-      <text x="22" y="92" fill="#F5F7FA" font-size="20" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/mcp-tool-designer</text>
-      <text x="22" y="122" fill="#F5F7FA" font-size="20" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/mcp-smoke-test</text>
-      <text x="22" y="164" fill="#9FB0C0" font-size="18">MCP 연결 후 복사</text>
+    <g transform="translate(252 24)">
+      <rect width="228" height="232" rx="14" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
+      <rect width="228" height="10" rx="5" fill="#146EF5"/>
+      <text x="16" y="48" fill="#43C6FF" font-size="15" font-weight="700" letter-spacing="1">DAY 02 · HARNESS</text>
+      <text x="16" y="80" fill="#F5F7FA" font-size="15" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/eco-knowledge-builder</text>
+      <text x="16" y="106" fill="#F5F7FA" font-size="15" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/repo-harness-auditor</text>
     </g>
-    <g transform="translate(808 28)">
-      <rect width="364" height="194" rx="16" fill="#0D1C29" stroke="#F5C542" stroke-width="2"/>
-      <rect width="364" height="12" rx="6" fill="#F5C542"/>
-      <text x="22" y="52" fill="#F5C542" font-size="18" font-weight="700" letter-spacing="1.4">DAY 04 · CONTROL</text>
-      <text x="22" y="92" fill="#F5F7FA" font-size="20">plan → execute</text>
-      <text x="22" y="122" fill="#F5F7FA" font-size="20">verify → human</text>
-      <text x="22" y="164" fill="#9FB0C0" font-size="18">역할은 섞지 않음</text>
+    <g transform="translate(492 24)">
+      <rect width="228" height="232" rx="14" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
+      <rect width="228" height="10" rx="5" fill="#43C6FF"/>
+      <text x="16" y="48" fill="#43C6FF" font-size="15" font-weight="700" letter-spacing="1">DAY 03 · MCP</text>
+      <text x="16" y="80" fill="#F5F7FA" font-size="15" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/mcp-tool-designer</text>
+      <text x="16" y="106" fill="#F5F7FA" font-size="15" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/mcp-smoke-test</text>
+    </g>
+    <g transform="translate(732 24)">
+      <rect width="228" height="232" rx="14" fill="#0D1C29" stroke="#F5C542" stroke-width="2"/>
+      <rect width="228" height="10" rx="5" fill="#F5C542"/>
+      <text x="16" y="48" fill="#F5C542" font-size="15" font-weight="700" letter-spacing="1">DAY 04 · CONTROL</text>
+      <text x="16" y="80" fill="#F5F7FA" font-size="16">plan → execute</text>
+      <text x="16" y="106" fill="#F5F7FA" font-size="16">verify → human</text>
+    </g>
+    <g transform="translate(972 24)">
+      <rect width="216" height="232" rx="14" fill="#102338" stroke="#46D68C" stroke-width="2"/>
+      <rect width="216" height="10" rx="5" fill="#46D68C"/>
+      <text x="16" y="48" fill="#46D68C" font-size="15" font-weight="700" letter-spacing="1">DAY 05 · PROJECT</text>
+      <text x="16" y="84" fill="#F5F7FA" font-size="15" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">/final-project-assembler</text>
+      <text x="16" y="112" fill="#9FB0C0" font-size="15">project/ 통합</text>
     </g>
   </g>
 </svg>

@@ -1,0 +1,40 @@
+test=True
+
+> mx-agentic-ai-day4-multi-agent-hitl@1.0.0 test
+> node --test
+
+TAP version 13
+# Subtest: clean run waits for approval
+ok 1 - clean run waits for approval
+  ---
+  duration_ms: 2.7795
+  ...
+# Subtest: explicit approval completes the run
+ok 2 - explicit approval completes the run
+  ---
+  duration_ms: 0.476334
+  ...
+# Subtest: one injected defect is rejected then repaired
+ok 3 - one injected defect is rejected then repaired
+  ---
+  duration_ms: 0.613916
+  ...
+# Subtest: persistent defect escalates after three attempts
+ok 4 - persistent defect escalates after three attempts
+  ---
+  duration_ms: 10.389709
+  ...
+# Subtest: bad rate is detected
+ok 5 - bad rate is detected
+  ---
+  duration_ms: 1.34825
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 329.682709

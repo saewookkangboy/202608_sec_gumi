@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 72" role="img" aria-labelledby="section-diagrams-title section-diagrams-desc">
+  <title id="section-diagrams-title">다이어그램</title>
+  <desc id="section-diagrams-desc">assets/diagrams/ HTML 다이어그램 섹션 헤더.</desc>
+  <rect width="1200" height="72" rx="12" fill="#F4F7FA"/>
+  <line x1="56" y1="36" x2="88" y2="36" stroke="#146EF5" stroke-width="3" stroke-linecap="round"/>
+  <text x="104" y="44" fill="#071018" font-size="24" font-weight="700" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">다이어그램</text>
+  <text x="1044" y="44" text-anchor="end" fill="#8293A5" font-size="13" font-weight="600" letter-spacing="2" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">ASSETS/DIAGRAMS</text>
+</svg>

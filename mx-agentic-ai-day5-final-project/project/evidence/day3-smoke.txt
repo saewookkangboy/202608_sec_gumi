@@ -1,0 +1,6 @@
+test=True smoke=True
+
+> mx-agentic-ai-day3-mcp-tools@1.0.0 smoke
+> node scripts/smoke-test.mjs
+
+PASS: initialize, tools/list, tools/call

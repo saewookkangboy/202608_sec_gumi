@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "day": 3,
+  "status": "APPROVED",
+  "project_title": "견적요청 초안봇",
+  "project_profile": "mx-agentic-ai-day1-prd/.lab/project-profile.json",
+  "requested_at": "2026-08-23T00:12:25.960895+00:00",
+  "requested_by": "trainee",
+  "validate": {
+    "commands": [
+      "npm test",
+      "npm run smoke"
+    ],
+    "exit_codes": [
+      0,
+      0
+    ],
+    "passed": true,
+    "log_tail": "$ npm test\nexit=0\n> mx-agentic-ai-day3-mcp-tools@1.0.0 test\n> node --test\n\nTAP version 13\n# PASS: initialize, tools/list, tools/call\n# Subtest: /Users/chunghyo/202608_sec_gumi/mx-agentic-ai-day3-mcp-tools/scripts/smoke-test.mjs\nok 1 - /Users/chunghyo/202608_sec_gumi/mx-agentic-ai-day3-mcp-tools/scripts/smoke-test.mjs\n  ---\n  duration_ms: 478.092625\n  ...\n# Subtest: lists records by equipment\nok 2 - lists records by equipment\n  ---\n  duration_ms: 19.42125\n  ...\n# Subtest: returns counts and evidence\nok 3 - returns counts and evidence\n  ---\n  duration_ms: 2.5175\n  ...\n# Subtest: rejects reversed dates\nok 4 - rejects reversed dates\n  ---\n  duration_ms: 4.925125\n  ...\n# Subtest: write requires approval token\nok 5 - write requires approval token\n  ---\n  duration_ms: 0.492584\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 601.258458\n\n$ npm run smoke\nexit=0\n> mx-agentic-ai-day3-mcp-tools@1.0.0 smoke\n> node scripts/smoke-test.mjs\n\nPASS: initialize, tools/list, tools/call"
+  },
+  "approval": {
+    "status": "APPROVED",
+    "reviewer": "모의강사",
+    "reviewer_role": "instructor",
+    "approved_at": "2026-08-23T00:12:28.153405+00:00",
+    "notes": "",
+    "checklist": {}
+  },
+  "next_day": 4,
+  "checklist_template": "docs/handoffs/templates/day3-handoff-checklist.md"
+}

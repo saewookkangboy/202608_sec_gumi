@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "project_title": "견적요청 초안봇",
+  "agent_name": "견적요청 초안봇",
+  "prd_path": "docs/prd.md",
+  "mvp_sentence": "품목 Excel을 넣으면 견적 요청 메일 초안이 나오는 봇",
+  "reference_prd_path": "../../docs/reference-prd.md",
+  "canvas_focus": {
+    "day2": "section_8_eval_harness",
+    "day3": "sections_5_6_mcp_tools",
+    "day4": "sections_9_10_hitl_governance",
+    "day5": "sections_8_9_10_complete"
+  },
+  "mapping_notes": "Day 2~4 참조 실습은 docs/reference-prd.md 의 ECO·설비·품질 시나리오로 4대 기술 기둥을 익힙니다. 본 프로필의 PRD는 Day 5 final-prd.md 에 통합합니다.",
+  "initialized_at": "2026-08-23T00:11:26.852384+00:00",
+  "updated_at": "2026-08-23T00:11:26.852384+00:00"
+}

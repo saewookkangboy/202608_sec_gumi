@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "day": 0,
+  "status": "PENDING",
+  "project_title": "UNKNOWN",
+  "project_profile": ".lab/project-profile.json",
+  "requested_at": null,
+  "requested_by": "trainee",
+  "validate": {
+    "commands": [],
+    "exit_codes": [],
+    "passed": false,
+    "log_tail": ""
+  },
+  "approval": null,
+  "next_day": null,
+  "checklist_template": "docs/handoffs/templates/day0-handoff-checklist.md"
+}

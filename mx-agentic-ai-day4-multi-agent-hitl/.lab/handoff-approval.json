@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "day": 4,
+  "status": "APPROVED",
+  "project_title": "견적요청 초안봇",
+  "project_profile": "mx-agentic-ai-day1-prd/.lab/project-profile.json",
+  "requested_at": "2026-08-23T00:12:31.704644+00:00",
+  "requested_by": "trainee",
+  "validate": {
+    "commands": [
+      "npm test"
+    ],
+    "exit_codes": [
+      0
+    ],
+    "passed": true,
+    "log_tail": "$ npm test\nexit=0\n> mx-agentic-ai-day4-multi-agent-hitl@1.0.0 test\n> node --test\n\nTAP version 13\n# Subtest: clean run waits for approval\nok 1 - clean run waits for approval\n  ---\n  duration_ms: 2.449916\n  ...\n# Subtest: explicit approval completes the run\nok 2 - explicit approval completes the run\n  ---\n  duration_ms: 0.4405\n  ...\n# Subtest: one injected defect is rejected then repaired\nok 3 - one injected defect is rejected then repaired\n  ---\n  duration_ms: 0.530291\n  ...\n# Subtest: persistent defect escalates after three attempts\nok 4 - persistent defect escalates after three attempts\n  ---\n  duration_ms: 5.283792\n  ...\n# Subtest: bad rate is detected\nok 5 - bad rate is detected\n  ---\n  duration_ms: 0.803792\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 264.256542"
+  },
+  "approval": {
+    "status": "APPROVED",
+    "reviewer": "모의강사",
+    "reviewer_role": "instructor",
+    "approved_at": "2026-08-23T00:12:35.497775+00:00",
+    "notes": "",
+    "checklist": {}
+  },
+  "next_day": 5,
+  "checklist_template": "docs/handoffs/templates/day4-handoff-checklist.md"
+}

@@ -1,62 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="title desc">
-  <title id="title">202608_sec_gumi agentic AI labs</title>
-  <desc id="desc">Samsung MX Gumi labs for Claude Code and Codex: Day 2 harness knowledge, Day 3 MCP loop and E2E, Day 4 HITL HOTL control.</desc>
-  <rect width="1200" height="390" rx="28" fill="#071018"/>
-  <path d="M0 360H1200" stroke="#223141" stroke-width="1"/>
-  <path d="M730 0V390" stroke="#223141" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 440" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">삼성 MX 구미 에이전틱 AI 5일 실습</title>
+  <desc id="hero-desc">AI PRD Canvas에서 Harness, LLMWiki, MCP, HITL Multi-agent까지 연결하는 5일 실습 모노레포.</desc>
+  <rect width="1200" height="440" rx="28" fill="#071018"/>
+  <path d="M0 404H1200" stroke="#223141" stroke-width="1"/>
+  <path d="M688 0V404" stroke="#223141" stroke-width="1"/>
 
-  <g transform="translate(58 52)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
-    <text x="0" y="0" fill="#43C6FF" font-size="18" font-weight="700" letter-spacing="3">SAMSUNG MX GUMI · AGENTIC AI LABS</text>
-    <text x="0" y="78" fill="#F5F7FA" font-size="58" font-weight="800">202608_sec_gumi</text>
-    <text x="0" y="132" fill="#C9D4DF" font-size="24" font-weight="500">Claude Code와 Codex로</text>
-    <text x="0" y="166" fill="#C9D4DF" font-size="24" font-weight="500">지식·도구·승인을 직접 구현합니다.</text>
-    <g transform="translate(0 214)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
-      <rect width="126" height="42" rx="8" fill="#102338" stroke="#146EF5"/>
-      <text x="16" y="27" fill="#F5F7FA" font-size="17">3 REPOS</text>
-      <rect x="138" width="136" height="42" rx="8" fill="#102338" stroke="#146EF5"/>
-      <text x="154" y="27" fill="#F5F7FA" font-size="17">8 SKILLS</text>
-      <rect x="286" width="136" height="42" rx="8" fill="#102338" stroke="#146EF5"/>
-      <text x="302" y="27" fill="#F5F7FA" font-size="17">13 TESTS</text>
-      <rect x="434" width="176" height="42" rx="8" fill="#102338" stroke="#146EF5"/>
-      <text x="448" y="27" fill="#F5F7FA" font-size="17">CLAUDE·CODEX</text>
+  <g transform="translate(56 48)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="0" y="0" fill="#43C6FF" font-size="17" font-weight="700" letter-spacing="3">SAMSUNG MX GUMI · AGENTIC AI LABS</text>
+    <text x="0" y="72" fill="#F5F7FA" font-size="52" font-weight="800">202608_sec_gumi</text>
+    <text x="0" y="120" fill="#C9D4DF" font-size="22" font-weight="500">AI PRD Canvas → 지식 → 도구 → 승인 → 발표</text>
+    <text x="0" y="152" fill="#C9D4DF" font-size="22" font-weight="500">Claude Code로 5일 연결 실습</text>
+    <g transform="translate(0 188)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+      <rect width="108" height="40" rx="8" fill="#102338" stroke="#1428A0"/>
+      <text x="14" y="26" fill="#F5F7FA" font-size="16">5 REPOS</text>
+      <rect x="120" width="108" height="40" rx="8" fill="#102338" stroke="#1428A0"/>
+      <text x="134" y="26" fill="#F5F7FA" font-size="16">10 SKILLS</text>
+      <rect x="240" width="120" height="40" rx="8" fill="#102338" stroke="#146EF5"/>
+      <text x="254" y="26" fill="#F5F7FA" font-size="16">13 TESTS</text>
+      <rect x="372" width="176" height="40" rx="8" fill="#102338" stroke="#146EF5"/>
+      <text x="386" y="26" fill="#F5F7FA" font-size="16">CLAUDE CODE</text>
     </g>
   </g>
 
-  <g transform="translate(772 42)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
-    <text x="0" y="0" fill="#8293A5" font-size="18" font-weight="700" letter-spacing="2">EVIDENCE PIPELINE</text>
-    <g transform="translate(0 30)">
-      <rect width="362" height="74" rx="14" fill="#0D1C29" stroke="#146EF5" stroke-width="2"/>
-      <rect width="72" height="74" rx="14" fill="#146EF5"/>
-      <text x="20" y="31" fill="#FFFFFF" font-size="17" font-weight="800">DAY</text>
-      <text x="26" y="56" fill="#FFFFFF" font-size="25" font-weight="800">02</text>
-      <text x="94" y="31" fill="#F5F7FA" font-size="22" font-weight="750">HARNESS</text>
-      <text x="94" y="56" fill="#9FB0C0" font-size="18">Eval · source ID</text>
+  <g transform="translate(724 28)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="0" y="0" fill="#8293A5" font-size="16" font-weight="700" letter-spacing="2">5-DAY PIPELINE</text>
+    <g transform="translate(0 20)">
+      <rect width="420" height="52" rx="10" fill="#0D1C29" stroke="#1428A0" stroke-width="1.5"/>
+      <rect width="52" height="52" rx="10" fill="#1428A0"/>
+      <text x="16" y="32" fill="#FFFFFF" font-size="18" font-weight="800">01</text>
+      <text x="68" y="22" fill="#F5F7FA" font-size="17" font-weight="700">PRD</text>
+      <text x="68" y="40" fill="#9FB0C0" font-size="14">Canvas 1~7</text>
     </g>
-    <path d="M181 106V128" stroke="#43C6FF" stroke-width="3"/>
-    <path d="M173 121L181 130L189 121" fill="none" stroke="#43C6FF" stroke-width="3"/>
-    <g transform="translate(0 132)">
-      <rect width="362" height="74" rx="14" fill="#0D1C29" stroke="#43C6FF" stroke-width="2"/>
-      <rect width="72" height="74" rx="14" fill="#123B50"/>
-      <text x="20" y="31" fill="#FFFFFF" font-size="17" font-weight="800">DAY</text>
-      <text x="26" y="56" fill="#FFFFFF" font-size="25" font-weight="800">03</text>
-      <text x="94" y="31" fill="#F5F7FA" font-size="22" font-weight="750">LOOP</text>
-      <text x="94" y="56" fill="#9FB0C0" font-size="18">MCP · E2E smoke</text>
+    <path d="M210 72V80" stroke="#146EF5" stroke-width="2"/>
+    <g transform="translate(0 84)">
+      <rect width="420" height="52" rx="10" fill="#0D1C29" stroke="#146EF5" stroke-width="1.5"/>
+      <rect width="52" height="52" rx="10" fill="#146EF5"/>
+      <text x="16" y="32" fill="#FFFFFF" font-size="18" font-weight="800">02</text>
+      <text x="68" y="22" fill="#F5F7FA" font-size="17" font-weight="700">HARNESS</text>
+      <text x="68" y="40" fill="#9FB0C0" font-size="14">LLMWiki · GraphRAG*</text>
     </g>
-    <path d="M181 208V230" stroke="#F5C542" stroke-width="3"/>
-    <path d="M173 223L181 232L189 223" fill="none" stroke="#F5C542" stroke-width="3"/>
-    <g transform="translate(0 234)">
-      <rect width="362" height="74" rx="14" fill="#0D1C29" stroke="#F5C542" stroke-width="2"/>
-      <rect width="72" height="74" rx="14" fill="#4A3A12"/>
-      <text x="20" y="31" fill="#FFFFFF" font-size="17" font-weight="800">DAY</text>
-      <text x="26" y="56" fill="#FFFFFF" font-size="25" font-weight="800">04</text>
-      <text x="94" y="31" fill="#F5F7FA" font-size="22" font-weight="750">CONTROL</text>
-      <text x="94" y="56" fill="#9FB0C0" font-size="18">HITL · HOTL · A2A</text>
+    <path d="M210 136V144" stroke="#43C6FF" stroke-width="2"/>
+    <g transform="translate(0 148)">
+      <rect width="420" height="52" rx="10" fill="#0D1C29" stroke="#43C6FF" stroke-width="1.5"/>
+      <rect width="52" height="52" rx="10" fill="#123B50"/>
+      <text x="16" y="32" fill="#FFFFFF" font-size="18" font-weight="800">03</text>
+      <text x="68" y="22" fill="#F5F7FA" font-size="17" font-weight="700">MCP</text>
+      <text x="68" y="40" fill="#9FB0C0" font-size="14">smoke E2E · 외부*</text>
+    </g>
+    <path d="M210 200V208" stroke="#F5C542" stroke-width="2"/>
+    <g transform="translate(0 212)">
+      <rect width="420" height="52" rx="10" fill="#0D1C29" stroke="#F5C542" stroke-width="1.5"/>
+      <rect width="52" height="52" rx="10" fill="#4A3A12"/>
+      <text x="16" y="32" fill="#FFFFFF" font-size="18" font-weight="800">04</text>
+      <text x="68" y="22" fill="#F5F7FA" font-size="17" font-weight="700">CONTROL</text>
+      <text x="68" y="40" fill="#9FB0C0" font-size="14">HITL · HOTL · A2A*</text>
+    </g>
+    <path d="M210 264V272" stroke="#46D68C" stroke-width="2"/>
+    <g transform="translate(0 276)">
+      <rect width="420" height="52" rx="10" fill="#102338" stroke="#46D68C" stroke-width="2"/>
+      <rect width="52" height="52" rx="10" fill="#1A4D32"/>
+      <text x="16" y="32" fill="#FFFFFF" font-size="18" font-weight="800">05</text>
+      <text x="68" y="22" fill="#F5F7FA" font-size="17" font-weight="700">PROJECT</text>
+      <text x="68" y="40" fill="#9FB0C0" font-size="14">project/ · 발표</text>
     </g>
   </g>
 
-  <g transform="translate(58 381)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17">
+  <g transform="translate(56 424)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16">
     <circle cx="7" cy="-5" r="6" fill="#46D68C"/>
-    <text x="24" y="0" fill="#9FB0C0">CLONE → SKILL → TEST → EVIDENCE</text>
+    <text x="24" y="0" fill="#9FB0C0">PRD → SKILL → TEST → EVIDENCE → DEMO</text>
     <text x="1060" y="0" text-anchor="end" fill="#596D80">TRAINING DATA ONLY</text>
   </g>
 </svg>

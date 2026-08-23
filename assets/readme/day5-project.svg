@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Day 5 final project</title>
+  <desc id="desc">Integrate Harness, LLMWiki GraphRAG, MCP, HITL Multi-agent into project deliverable.</desc>
+  <rect width="1200" height="300" rx="24" fill="#F4F7FA"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="56" y="58" fill="#071018" font-size="34" font-weight="800">Day 5 · 최종 프로젝트 발표</text>
+    <text x="56" y="92" fill="#526476" font-size="19">Day 1~4를 project/에 통합 · evidence · demo-script</text>
+    <g transform="translate(56 118)">
+      <rect width="250" height="120" rx="14" fill="#FFFFFF" stroke="#146EF5" stroke-width="2"/>
+      <text x="18" y="36" fill="#146EF5" font-size="15" font-weight="800">HARNESS</text>
+      <text x="18" y="62" fill="#526476" font-size="15">Day 2 · validate</text>
+      <rect x="268" width="250" height="120" rx="14" fill="#FFFFFF" stroke="#146EF5" stroke-width="2"/>
+      <text x="286" y="36" fill="#146EF5" font-size="15" font-weight="800">LLMWiki · GraphRAG</text>
+      <text x="286" y="62" fill="#526476" font-size="15">Day 2 · WIKI.md</text>
+      <rect x="536" width="250" height="120" rx="14" fill="#FFFFFF" stroke="#43C6FF" stroke-width="2"/>
+      <text x="554" y="36" fill="#147D9E" font-size="15" font-weight="800">MCP</text>
+      <text x="554" y="62" fill="#526476" font-size="15">Day 3 · smoke</text>
+      <rect x="804" width="250" height="120" rx="14" fill="#FFFFFF" stroke="#F5C542" stroke-width="2"/>
+      <text x="822" y="36" fill="#876900" font-size="15" font-weight="800">HITL · Multi</text>
+      <text x="822" y="62" fill="#526476" font-size="15">Day 4 · approve</text>
+    </g>
+    <path d="M456 258H744" stroke="#1428A0" stroke-width="3"/>
+    <text x="600" y="288" text-anchor="middle" fill="#1428A0" font-size="17" font-weight="700">project/docs/final-prd.md · demo-script.md</text>
+  </g>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 520" role="img" aria-labelledby="pillars-title pillars-desc">
+  <title id="pillars-title">4대 기술 기둥 레이어 스택</title>
+  <desc id="pillars-desc">Harness, LLMWiki GraphRAG, MCP, HITL Multi-agent가 Day 2~4 실습과 Day 5 project/로 이어지는 구조.</desc>
+  <rect width="1200" height="520" rx="24" fill="#F4F7FA"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif">
+    <text x="56" y="52" fill="#071018" font-size="32" font-weight="800">4대 기술 기둥 × Day 5 통합</text>
+    <text x="56" y="84" fill="#526476" font-size="17">각 기둥은 일자 실습에서 검증되고 project/에 증거로 남습니다.</text>
+    <text x="56" y="140" fill="#8293A5" font-size="12" font-weight="600" letter-spacing="2" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">ABSTRACTION ↑</text>
+    <g transform="translate(88 156)">
+      <rect width="1024" height="64" rx="8" fill="#FFFFFF" stroke="rgba(7,16,24,0.12)" stroke-width="1"/>
+      <text x="20" y="28" fill="#8293A5" font-size="11" font-weight="600" letter-spacing="1.5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">L4</text>
+      <text x="56" y="38" fill="#071018" font-size="18" font-weight="700">HITL + Multi-agent</text>
+      <text x="880" y="38" text-anchor="end" fill="#526476" font-size="14" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">Day 4 · Canvas 9·10</text>
+    </g>
+    <g transform="translate(88 228)">
+      <rect width="1024" height="64" rx="8" fill="#FFFFFF" stroke="rgba(7,16,24,0.12)" stroke-width="1"/>
+      <text x="20" y="28" fill="#8293A5" font-size="11" font-weight="600" letter-spacing="1.5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">L3</text>
+      <text x="56" y="38" fill="#071018" font-size="18" font-weight="700">MCP 제작·외부 연동</text>
+      <text x="880" y="38" text-anchor="end" fill="#526476" font-size="14" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">Day 3 · Canvas 5·6</text>
+    </g>
+    <g transform="translate(88 300)">
+      <rect width="1024" height="64" rx="8" fill="rgba(20,110,245,0.08)" stroke="#146EF5" stroke-width="1.5"/>
+      <text x="20" y="28" fill="#146EF5" font-size="11" font-weight="600" letter-spacing="1.5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">L2</text>
+      <text x="56" y="38" fill="#071018" font-size="18" font-weight="700">Harness + LLMWiki / GraphRAG</text>
+      <text x="880" y="38" text-anchor="end" fill="#146EF5" font-size="14" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">Day 2 · Canvas 8 · focal</text>
+    </g>
+    <g transform="translate(88 372)">
+      <rect width="1024" height="64" rx="8" fill="#E8ECFA" stroke="#1428A0" stroke-width="1"/>
+      <text x="20" y="28" fill="#1428A0" font-size="11" font-weight="600" letter-spacing="1.5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">L1</text>
+      <text x="56" y="38" fill="#071018" font-size="18" font-weight="700">Harness Engineering · 규칙·상태·검증</text>
+      <text x="880" y="38" text-anchor="end" fill="#526476" font-size="14" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">AGENTS.md · validate</text>
+    </g>
+    <text x="56" y="468" fill="#8293A5" font-size="12" font-weight="600" letter-spacing="2" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">EVIDENCE ↓</text>
+    <rect x="56" y="480" width="1088" height="1" fill="rgba(7,16,24,0.12)"/>
+    <text x="72" y="504" fill="#526476" font-size="14">Day 5 project/ — harness/ · knowledge/ · mcp/ · agents/ · evidence/</text>
+  </g>
+</svg>
