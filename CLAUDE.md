@@ -1,6 +1,7 @@
 # 202608_sec_gumi
 
-삼성 MX 구미 에이전틱 AI 5일 실습 모노레포입니다. **모든 실습은 Claude Code**에서 진행합니다.
+삼성 MX 구미 **에이전틱 AI 5일** 실습 모노레포입니다 (Day 1 PRD → Day 2~4 기둥 → Day 5 `project/` 발표).  
+**모든 실습은 Claude Code**에서 진행합니다. 저장소 소개는 루트 `README.md`를 보세요.
 
 ## 실행 방법
 

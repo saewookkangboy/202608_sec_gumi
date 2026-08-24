@@ -14,15 +14,16 @@
 
 ## 개요
 
-**삼성 MX 구미 에이전틱 AI 5일 실습**의 기술·개념 참고 인덱스입니다. 일자별 실습 README를 대신하지는 않습니다.
+**삼성 MX 구미 에이전틱 AI 5일 실습**의 기술·개념·운영 문서 인덱스입니다.  
+저장소 한줄 소개(GitHub About)와 첫 화면 안내는 루트 [README](../README.md)에 있고, 이 폴더는 **커리큘럼·기둥·데이터·배포·핸드오프**로 깊이 들어갈 때 씁니다. 일자별 실습 순서는 각 Day `README.md`를 따릅니다.
 
-| 역할 | 이 문서에서 찾는 것 |
+| 역할 | 여기서 찾는 것 |
 |---|---|
-| **교육생** | 개념 정의, Claude Code 스킬 호출 방법, 일차별 스킬 참고 링크 |
-| **강사** | 커리큘럼, 기술 기둥, 배포 가이드, 핸드오프 체크리스트로 가는 입구 |
-| **에이전트** | Harness·Eval·MCP·HITL 계약, 공통 규칙, 외부 스펙 링크 |
+| **교육생** | 개념 정의, Claude Code `/skill` 호출, 일차별 skill 참고 링크 |
+| **강사** | 5일 커리큘럼, 기술 기둥, 배포 가이드, 핸드오프 체크리스트 입구 |
+| **에이전트** | Harness·Eval·MCP·HITL 계약, 공통 규칙, 외부 링크 |
 
-루트 [README](../README.md)에는 저장소 전체 소개와 빠른 시작, 일차별 요약이 있습니다. **5일 커리큘럼**과 4대 기술 기둥은 [`curriculum-5day.md`](./curriculum-5day.md)와 [`tech-pillars.md`](./tech-pillars.md)를 먼저 읽어 보세요.
+**권장 입구:** 루트 README → [`curriculum-5day.md`](./curriculum-5day.md) → [`tech-pillars.md`](./tech-pillars.md) → 해당 Day README.
 
 ## 권장 읽기 순서
 
