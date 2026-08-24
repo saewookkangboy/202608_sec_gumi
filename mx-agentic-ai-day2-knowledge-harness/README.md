@@ -1,282 +1,142 @@
-<p align="center">
-  <img src="../assets/readme/day2-knowledge.svg" width="100%" alt="Day 2 하네스 — 원본 ECO JSONL을 잠그고 Markdown·catalog·SHA-256으로 ingest한 뒤 P-100 검색에서 ECO-001과 ECO-003을 Top-3 eval로 확인한다">
-</p>
+# Day 2 — Harness Engineering + 지식그래프(RAG·GraphRAG) + Memory
 
-<p align="center">
-  <a href="#이론">이론</a> ·
-  <a href="#사용법">사용법</a> ·
-  <a href="#저장소-받기-및-실행">저장소</a> ·
-  <a href="#실습-예제-안내">예제</a> ·
-  <a href="#실습-예제-실행-방법">실행</a> ·
-  <a href="#어려움이-생기면">문제 해결</a> ·
-  <a href="#완료-기준">완료</a> ·
-  <a href="#day-3-연결">Day 3</a>
-</p>
+> 레포 경로: `mx-agentic-ai-day2-knowledge-harness/README.md`
 
-합성 ECO 12건을 **근거 추적 가능한 지식 자산**으로 바꿉니다. **기술 기둥: Harness Engineering + LLMWiki (+ GraphRAG\*)**
+**교육 질문**: 내 PRD Canvas 5(AI 역할)를 수행하려면 AI가 알아야 하는데, 지금은 근거 없이 아는 척하는 부분이 뭘까요?
 
 ---
 
 ## 이론
 
-### Day 2가 하는 일
+**Harness란**
+반복 가능한 작업을 파일과 규칙으로 고정해, 매번 같은 품질로 재현되게 만드는 것을 말해요. 세 가지로 구성돼요.
+- `CLAUDE.md`(레포 루트, 공통) — 매 세션 다시 설명하지 않아도 되는 규칙
+- 상태 파일 — 지금까지 뭘 했고 뭐가 남았는지 기록
+- 검증 규칙 — 근거 없는 값은 절대 만들지 않는다는 원칙(`UNKNOWN` 유지)
 
-Day 2는 **"AI가 믿을 수 있는 지식"**을 만듭니다. 원본 문서는 **절대 수정하지 않고**, 정규화된 Markdown + `source_id`로 **어디서 왔는지 추적**할 수 있게 합니다. Harness는 에이전트가 지켜야 할 **규칙·상태·검증** 장치입니다.
+**RAG vs GraphRAG**
+- RAG: 질문과 가장 비슷한 문서 조각을 찾아 답해요.
+- GraphRAG: 문서들 사이의 *관계*를 따라가며 답해요. "이 부품 변경의 원인이 된 것은?" 같은 질문은 단순 검색이 아니라 관계 탐색(2-hop)이 필요해요.
 
-### 지식 파이프라인
+**Memory란**
+지식그래프(`knowledge/*`)가 "AI가 찾아야 하는 사실"이라면, Memory(레포 루트 `CLAUDE.md`)는 "AI가 매번 다시 안 물어봐도 되는 규칙"이에요. 지식은 늘어나지만 규칙은 압축된다는 게 둘의 차이예요.
 
-```mermaid
-flowchart TB
-  subgraph 원본["원본 (읽기 전용)"]
-    RAW[data/raw/eco_documents.jsonl]
-    HASH[raw.sha256 해시 잠금]
-  end
-
-  subgraph 변환["정규화 (생성만)"]
-    NORM[normalize_docs.py]
-    MD[knowledge/eco/*.md]
-    CAT[knowledge/catalog.json]
-    WIKI[knowledge/WIKI.md]
-  end
-
-  subgraph 검색["검색·평가"]
-    SEARCH[search_knowledge.py]
-    EVAL[eval/questions.jsonl<br/>Top-3 PASS]
-  end
-
-  subgraph 하네스["Harness"]
-    AG[AGENTS.md / CLAUDE.md]
-    STATE[plan.md · progress.md · decisions.md]
-    VAL[validate_repo.py]
-  end
-
-  RAW --> HASH
-  RAW --> NORM
-  NORM --> MD
-  NORM --> CAT
-  MD --> WIKI
-  MD --> SEARCH
-  SEARCH --> EVAL
-  AG --> VAL
-  STATE --> VAL
-```
-
-### PRD · 기술 기둥 연결
-
-| 기둥 | Standard | Advanced |
-|---|---|---|
-| Harness Engineering | `AGENTS.md`, 상태 파일, `validate_repo.py` | `/repo-harness-auditor` |
-| LLMWiki | `knowledge/WIKI.md` + `eco/*.md` | 팀 위키 구조 |
-| GraphRAG | Top-3 eval | `relations.json` 2-hop |
-
-| Day 1 PRD | Day 2 실습 |
-|---|---|
-| 6 데이터·누락 규칙 | `source_id`, `UNKNOWN` |
-| 8 "아직 모르는 것" | eval + harness |
-
-→ [LLMWiki + GraphRAG](./docs/llmwiki-graphrag-bridge.md) · [참조 PRD](../docs/reference-prd.md)
+**안전 원칙**
+- 근거 문서·출처를 댈 수 없으면 `UNKNOWN`으로 남겨요. 추측해서 채우지 않아요.
+- 모든 지식 항목에는 근거 ID(source_id)가 있어야 해요.
 
 ---
 
 ## 사용법
 
-| 순서 | 할 일 | 팁 |
-|:---:|---|---|
-| 1 | **Day 1 승인** 후 진입 | `check_day_gate.py --enter-day 2` |
-| 2 | **원본을 건드리지 않기** | `data/raw/`는 읽기만 |
-| 3 | **정규화 → 검색 → 검증** 순서 | 스크립트가 대부분 자동 처리 |
-| 4 | **Claude Code skill** | `/eco-knowledge-builder` |
-| 5 | **상태 파일** 기록 | `plan.md`, `progress.md`, `decisions.md` |
-| 6 | **Top-3 eval** 확인 | 정답 문서가 검색 상위 3개 안에 들어가야 PASS |
-
-**비개발자 안내**
-
-- Python 스크립트는 **검증 도구**입니다. 결과가 `PASS`/`FAIL`로 나옵니다.
-- `source_id`는 **근거 번호**입니다. Day 3~4에서도 같은 개념을 씁니다.
-- 팀 PRD(견적봇 등)와 데이터가 달라도 됩니다. **Canvas 8번 구조**만 같으면 됩니다.
+1. 레포 루트에서 `cd mx-agentic-ai-day2-knowledge-harness` 후 Claude Code를 열어요.
+2. Day1 산출물인 `../mx-agentic-ai-day1-prd/docs/prd.md`를 그대로 참조해요 — 이 파일은 읽기만 하고 직접 수정하지 않아요.
+3. 아래 [예제] 프롬프트를 순서대로, 하나씩 붙여넣어요. 대괄호 `[ ]` 안만 자기 상황으로 바꿔요.
+4. 단계를 건너뛰거나 몰아서 시키지 않아요 — 뒤 단계는 앞 단계의 결과를 참조해요.
 
 ---
 
-## 저장소 받기 및 실행
+## 저장소 구조
 
-### Day 2 진입 전 (Day 1 완료·승인 필수)
-
-```bash
-cd 202608_sec_gumi
-python3 scripts/check_day_gate.py --enter-day 2
-cd mx-agentic-ai-day2-knowledge-harness
 ```
-
-### 매 실습 시작할 때
-
-```bash
-cd 202608_sec_gumi/mx-agentic-ai-day2-knowledge-harness
-# Dummy Data 확인 (최초 1회면 충분)
-python3 ../scripts/verify_dummy_data.py
-claude
+202608_sec_gumi/
+├── CLAUDE.md                                   # 레포 공통 하네스 (오늘 갱신)
+├── mx-agentic-ai-day1-prd/
+│   └── docs/prd.md                             # Day1 산출물 (읽기 전용 참조)
+└── mx-agentic-ai-day2-knowledge-harness/
+    ├── README.md                               # 이 문서
+    ├── knowledge/
+    │   ├── eco/ECO-*.md                        # 참조 시나리오 지식 (이미 포함, 원본 잠금)
+    │   ├── WIKI.md · catalog.json              # 인덱스
+    │   └── 001-[제목].md …                     # (선택) 팀 PRD용 추가 지식
+    ├── relations.json                          # GraphRAG 관계 (2-hop, 오늘 작성)
+    ├── eval-top3.md                            # Top-3 검색 평가 (오늘 작성)
+    ├── eval/                                   # 참조 평가 세트
+    ├── data/raw/                               # 원본 입력 (수정 금지)
+    ├── _sandbox/                               # 가상 테스트 전용
+    └── scripts/ · tests/                       # 정규화·검색·검증 ([선택] 참조 트랙)
 ```
 
 ---
 
-## 실습 예제 안내
+## 예제 (오늘 쓸 프롬프트 — 순서대로)
 
-### Dummy Data (GitHub clone 포함)
-
-| 항목 | 경로 (이 폴더 기준) | 비고 |
-|---|---|---|
-| ECO 원본 | `data/raw/eco_documents.jsonl` | **읽기 전용**, 12건 합성 |
-| 평가 질문 | `eval/questions.jsonl` | Top-3 정답 포함 |
-| 무결성 잠금 | `knowledge/raw.sha256` | normalize 후 생성·검증 |
-
-저장소 루트에서 존재 확인:
-
-```bash
-python3 ../scripts/verify_dummy_data.py
-# 또는
-head -n 1 data/raw/eco_documents.jsonl
+**1) 확산 — 모르는데 아는 척하는 지점 찾기**
+```
+../mx-agentic-ai-day1-prd/docs/prd.md를 읽고, AI 역할을 수행하는 데
+필요한데 지금은 근거 문서 없이 아는 것처럼 다룬 지식이 뭔지
+나한테 하나씩 물어봐 주세요. 한 번에 하나씩만 물어봐 주세요.
 ```
 
-원본을 임의로 다시 만들지 마세요. SHA-256·테스트가 깨집니다. 전체 카탈로그: [`docs/dummy-data.md`](../docs/dummy-data.md)
+**2) 수렴 — 지식화**
+```
+방금 답한 것 중, 출처(문서명/버전/날짜)를 댈 수 있는 것만
+knowledge/[번호]-[제목].md 형식으로 만들어 주세요.
+근거를 못 대면 UNKNOWN으로 표시하고, 왜 근거가 없는지
+나한테 되물어서 같이 기록해 주세요.
+```
 
-### 참조 시나리오: ECO 12건
+**3) 확장 — GraphRAG**
+```
+지금 만든 지식 항목들 사이에 관계가 있나요?
+"A 때문에 B가 바뀐다", "C가 D를 대체한다" 같은 관계를
+나한테 하나씩 확인해서 relations.json으로 정리해 주세요.
+2단계(2-hop)를 넘는 관계는 이번엔 만들지 말아 주세요.
+```
 
-| 항목 | 내용 |
+**4) Memory**
+```
+이 프로젝트에서 내가 매번 다시 설명하지 않아도 될
+규칙, 용어, 예외사항이 뭔가요? 레포 공통 하네스인
+../CLAUDE.md에 넣을 항목을 나한테 물어보고, 3줄 이상
+추가해 주세요.
+```
+
+**5) 메타 — Eval**
+```
+지식 항목이 10건을 넘었으면, 실제로 나올 법한 대표 질문
+3개를 뽑아서 검색했을 때 Top-3 안에 정답 근거가
+들어오는지 나한테 직접 확인시켜 주세요. 결과를
+eval-top3.md에 질문-순위-근거ID로 기록해 주세요.
+```
+
+---
+
+## 실행
+
+1. `../mx-agentic-ai-day1-prd/docs/prd.md`가 열리는지 확인해요
+2. 확산 프롬프트를 실행해요 → 지식 후보 5개 이상을 확보해요
+3. 수렴 프롬프트를 실행해요 → `knowledge/*.md` 10건을 생성하고, 근거 ID 100%를 확인해요
+4. GraphRAG 프롬프트를 실행해요 → `relations.json`을 생성해요
+5. Memory 프롬프트를 실행해요 → `../CLAUDE.md`에 3줄 이상 추가해요
+6. Eval 프롬프트를 실행해요 → `eval-top3.md`를 확인하고, 3문항 모두 PASS가 아니면 knowledge를 보강한 뒤 재실행해요
+7. 모든 산출물이 준비되면, 임시 환경(`mx-agentic-ai-day2-knowledge-harness/_sandbox/`)에서 가상 테스트를 진행해도 되는지 나한테 먼저 물어봐 주세요. 승인을 받으면 아래 [테스트 조건]에 따라 진행해요
+8. 가상 테스트 결과가 안정적이면 강사·멘토에게 최종 승인을 요청해요 (레포의 `approve_handoff.py --day 2`로 기록해요)
+
+**Day2 승인 조건**: 지식 항목 100% 근거 ID 보유 / `UNKNOWN` 규칙 준수 / Top-3 eval PASS
+
+---
+
+## 테스트 조건 (가상 테스트 — 임시 환경)
+
+가상 테스트는 반드시 아래 조건 안에서만 진행해요.
+
+| 조건 | 내용 |
 |---|---|
-| 배경 | 금형 설계변경(ECO) 문서가 흩어져 있어 연관 분석이 어려움 |
-| 원본 | `data/raw/eco_documents.jsonl` (12건, 합성 데이터) |
-| 질문 예시 | "P-100 하우징 변경과 관련된 ECO는?" |
-| 기대 결과 | `ECO-001`, `ECO-003` 등이 Top-3에 포함, 각각 `source_id` 부여 |
-
-```mermaid
-flowchart LR
-  Q[질문: P-100 관련 ECO?] --> S[search_knowledge.py]
-  S --> T1[ECO-001 Top-1]
-  S --> T2[ECO-003 Top-2]
-  S --> T3[... Top-3]
-  T1 --> E[source_id + source_path]
-```
-
-### 폴더 구조
-
-```text
-mx-agentic-ai-day2-knowledge-harness/
-├── data/raw/              ← 원본 (절대 수정 금지)
-├── knowledge/
-│   ├── eco/*.md           ← 정규화된 지식 (생성)
-│   ├── catalog.json       ← 인덱스
-│   └── WIKI.md            ← 위키 목차
-├── eval/                  ← 평가 질문·정답
-├── plan.md progress.md decisions.md  ← Harness 상태
-└── scripts/               ← 정규화·검색·검증
-```
+| 실행 위치 | `mx-agentic-ai-day2-knowledge-harness/_sandbox/`에서만 진행해요. `knowledge/`, `../CLAUDE.md` 원본은 건드리지 않아요 |
+| 데이터 | 합성 데이터만 사용해요. 실제 사업장 정보·개인정보는 절대 넣지 않아요 |
+| 테스트 범위 | 오늘 실습에서 다루지 않은 새 질문 1~2개를 추가로 던져서, 검색이 여전히 잘 되는지만 확인해요 |
+| 되돌리기 | 문제가 생기면 `_sandbox/` 폴더만 삭제하면 원상 복구돼요 |
+| 시간 | 10분 안에 끝내요. 길어지면 범위를 좁혀요 |
+| 결과 반영 | 가상 테스트에서 새로 찾은 지식은, 승인 후에만 정식 `knowledge/`에 옮겨요 |
 
 ---
 
-## 실습 예제 실행 방법
+## 문제 해결
 
-### 1단계 — 자동 정규화·검색 (터미널)
-
-```bash
-cd mx-agentic-ai-day2-knowledge-harness
-python3 scripts/normalize_docs.py
-python3 scripts/search_knowledge.py "P-100 하우징 변경과 관련된 ECO는?"
-python3 scripts/validate_repo.py
-python3 -m unittest discover -s tests -v
-```
-
-모두 **PASS**이면 기본 실습 완료입니다.
-
-### 2단계 — Claude Code로 심화 (선택)
-
-```bash
-claude
-```
-
-```text
-/eco-knowledge-builder를 사용해 Day 2 실습을 수행해줘.
-data/raw/eco_documents.jsonl은 절대 수정하지 말고, 합성 ECO 12건을
-knowledge/eco/*.md와 knowledge/catalog.json으로 정규화해.
-각 결과에 source_id, source_path, 원본 SHA-256 근거를 유지하고,
-"P-100 하우징 변경과 관련된 ECO는?" 질문의 Top-3와 근거 ID를 확인해.
-문서에 없는 값은 UNKNOWN으로 남겨. 완료 전 validate_repo.py와 전체
-unittest를 실행하고 변경 파일, 테스트 결과, 남은 위험을 요약해줘.
-```
-
-```text
-/repo-harness-auditor로 AGENTS.md의 원본·출력 경계, plan.md, progress.md,
-decisions.md, catalog 근거 필드, raw.sha256와 전체 테스트를 감사해줘.
-```
-
-### 3단계 — Advanced (팀 과제, 선택)
-
-```text
-기존 knowledge/catalog.json 계약과 raw 입력을 변경하지 않고,
-knowledge/relations.json에 part_id -> eco_id -> drawing_id 관계를 추가해줘.
-"P-100과 연결된 ECO 및 도면은?"에 관계 경로와 source_id를 반환하고,
-정상 경로·관계 없음·잘못된 ID 테스트를 추가해. 완료 전 하네스 감사와
-전체 회귀 테스트를 실행해줘.
-```
-
-### 4단계 — 제출 (팀 브랜치)
-
-```bash
-python3 scripts/validate_repo.py
-python3 -m unittest discover -s tests -v
-git add knowledge/ plan.md progress.md decisions.md tests/
-git commit -m "feat(day2): complete knowledge harness lab"
-git push -u origin HEAD
-```
-
-### 5단계 — Day 3 진입
-
-```bash
-python3 ../scripts/request_handoff.py --day 2
-python3 ../scripts/approve_handoff.py --day 2 --reviewer "이름" --role instructor
-python3 ../scripts/check_day_gate.py --enter-day 3
-```
-
----
-
-## 어려움이 생기면
-
-| 즹상 | 원인 | 해결 |
-|---|---|---|
-| `check_day_gate` 거부 | Day 1 미승인 | Day 1 `approve_handoff` 먼저 |
-| `normalize_docs.py` 오류 | Python·경로 문제 | `cd mx-agentic-ai-day2-knowledge-harness` 확인 |
-| ECO 12건 미만 | 정규화 미완료 | `normalize_docs.py` 재실행, `knowledge/eco/` 파일 수 확인 |
-| `source_id` 없음 | Markdown 헤더 누락 | skill로 재생성 또는 템플릿 대조 |
-| SHA-256 불일치 | `data/raw/` 수정됨 | **원본 복구** (수정 금지 규칙) |
-| Top-3 eval FAIL | 검색 품질 부족 | 키워드·인덱스·catalog 확인, 강사에게 질문 |
-| `unittest` FAIL | 테스트 기대값 불일치 | 오류 메시지의 파일명·줄 번호 확인 |
-| `plan.md` 비어 있음 | Harness 상태 미기록 | 오늘 한 일·다음 단계·판단 근거 작성 |
-
-**추가 도움:** `validate_repo.py` + `unittest` 전체 출력을 강사에게 전달하세요.
-
----
-
-## 완료 기준
-
-- [ ] 12개 ECO 레코드가 `knowledge/eco/`에 생성됨
-- [ ] 모든 문서에 `source_id`와 `source_path` 존재
-- [ ] 원본 SHA-256이 작업 전후 동일
-- [ ] 평가 질문의 정답 문서가 Top-3에 포함
-- [ ] `plan.md`, `progress.md`, `decisions.md`가 비어 있지 않음
-- [ ] `validate_repo.py` + `unittest` **PASS**
-- [ ] 강사 **사람 승인** (`approve_handoff --day 2`)
-
----
-
-## Day 3 연결
-
-[`docs/handoffs/day2-to-day3.md`](../docs/handoffs/day2-to-day3.md) — Day 2 `equipment` 필드가 Day 3 설비 ID(`PRESS-01` 등)와 조인 키입니다.
-
-```bash
-cd ../mx-agentic-ai-day3-mcp-tools
-```
-
-## 참고 자료
-
-- [Dummy Data 가이드](../docs/dummy-data.md)
-- [GitHub 배포 가이드](../docs/github-deployment-and-quickstart.md)
-- [skill·기술 참고](./docs/skill-and-tech-reference.md)
-- [5일 커리큘럼](../docs/curriculum-5day.md)
+| 상황 | 대응 |
+|---|---|
+| 근거를 못 찾는 지식이 계속 나옴 | 억지로 채우지 말고 `UNKNOWN`을 유지해요. 몇 건인지 세어서 발표 때 "한계"로 제시해요 |
+| Top-3 eval이 계속 실패 | 지식 항목 제목·키워드가 질문과 겹치는지 확인하고, 동의어를 추가해요 |
+| `relations.json`이 계속 커짐 | 2-hop까지만 유지해요. 그 이상의 확장은 Day4에서 다뤄요 |
+| 지식 항목이 10건이 안 됨 | `../mx-agentic-ai-day1-prd/docs/prd.md`의 "AI 역할" 섹션을 다시 읽고, 그 역할이 실패하는 구체적 상황을 물어보게 하면 후보가 늘어나요 |

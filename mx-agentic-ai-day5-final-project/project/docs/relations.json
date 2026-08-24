@@ -1,0 +1,4 @@
+{
+  "edges": [],
+  "_comment": "Day2 실습: A 때문에 B가 바뀐다 / C가 D를 대체한다 관계를 2-hop까지만 추가하세요. 각 엣지에 source_id 필수. 근거 없으면 UNKNOWN."
+}

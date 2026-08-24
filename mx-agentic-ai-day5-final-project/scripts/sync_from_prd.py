@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Seed Day 5 final-prd.md header from Day 1 trainee PRD and project profile."""
+"""[선택] Day 1 PRD 제목을 final-prd 헤더에 반영.
+
+교육생 기본 경로는 Day 5 README 예제 7) final-prd 프롬프트입니다.
+"""
 
 from __future__ import annotations
 

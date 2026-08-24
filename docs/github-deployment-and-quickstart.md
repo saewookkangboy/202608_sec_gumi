@@ -407,34 +407,32 @@ git push -u origin HEAD
 
 ## 8. Day 5 빠른 시작 · Final Project
 
-### 8-1. Day 1~4 완료 후 조립
+### 8-1. Day 1~4 완료 후 조립 (자연어)
 
 ```bash
 cd mx-agentic-ai-day5-final-project
-python3 scripts/assemble_project.py
+claude
 ```
 
-`project/manifest.json`과 `project/evidence/` 3종이 생성됩니다. `tech_pillars` 4개가 PASS인지 확인하세요.
+Day 5 README **예제 1) project/ 조립** 프롬프트를 붙여넣습니다.  
+`project/manifest.json`의 `overall_status`가 `READY`인지 확인하세요. NOT_READY면 부족한 Day를 보강한 뒤 같은 프롬프트를 다시 실행합니다.
 
 ### 8-2. 최종 산출물 작성
 
-`project/docs/` · `project/harness/` · `project/knowledge/` · `project/mcp/` · `project/agents/` 템플릿을 팀 PRD에 맞게 채웁니다.
-
 ```text
 /final-project-assembler로 Day 5 최종 프로젝트를 완성해줘.
-1. assemble_project.py 실행 후 manifest 확인
-2. final-prd.md Canvas 1~10 완성 (Day 1 prd + Day 2~4 회고 반영)
-3. architecture.md 4층 스택 작성
-4. integration-map.md PASS 표시
-5. demo-script.md 5~7분 발표 스크립트
-6. validate_day5.py 통과까지 반복
+README 예제 1)~9) 순서를 따르고, 파이썬 스크립트는 쓰지 마.
+1. project/ 조립 + manifest READY
+2. 자가 점검 (day5-self-check.md)
+3. demo-data → E2E → HITL
+4. architecture · final-prd · demo-script
+5. 발표 직전 최종 점검 (day5-final-check.md)
 ```
 
 ### 8-3. 발표 전 검증
 
-```bash
-python3 scripts/validate_day5.py
-```
+README **예제 9) 최종 점검** 프롬프트를 실행합니다.  
+(선택·강사용) `python3 scripts/validate_day5.py` 는 보조 도구입니다.
 
 ## 9. 최종 완료 체크리스트
 
@@ -455,6 +453,6 @@ python3 scripts/validate_day5.py
 (cd mx-agentic-ai-day2-knowledge-harness && python3 scripts/validate_repo.py && python3 -m unittest discover -s tests -v)
 (cd mx-agentic-ai-day3-mcp-tools && npm test && npm run smoke)
 (cd mx-agentic-ai-day4-multi-agent-hitl && npm test)
-(cd mx-agentic-ai-day5-final-project && python3 scripts/assemble_project.py && python3 scripts/validate_day5.py)
+# Day 5는 claude + README 예제 1)~9) (선택: scripts/*.py)
 git status -sb
 ```

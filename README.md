@@ -56,10 +56,10 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 | 실습 | 기술 기둥 | Canvas | 질문 | 산출물 |
 |---|---|---|---|---|
 | **Day 1** | (정의) | 1~7 (+ 8·9·10 예약) | 무엇을 만들고 AI에게 무엇을 맡길까? | `prd.md`, `sample-data/` |
-| **Day 2** | Harness + LLMWiki/GraphRAG | **8** | 지식을 어떻게 믿을 수 있게 만들까? | 지식 12건, Top-3 eval |
-| **Day 3** | MCP 제작·외부 연동 | **5·6** | AI 역할을 어떤 도구로 실행할까? | 3도구, smoke E2E |
-| **Day 4** | HITL + Multi-agent | **9·10** | 언제 멈추고 누가 승인할까? | 역할 계약, 승인 게이트 |
-| **Day 5** | 통합 | 8·9·10 완성 | 4기둥을 내 업무 에이전트로 어떻게 묶을까? | `project/`, 발표 |
+| **Day 2** | Harness + LLMWiki/GraphRAG | **8** | 근거 없이 아는 척하는 지식은? | `knowledge/`, `relations.json`, `eval-top3.md` |
+| **Day 3** | MCP 제작·외부 연동 | **5·6** | AI 역할을 어떤 도구 계약으로? | `mcp/*/contract.json`, mock, 승인 규칙 |
+| **Day 4** | HITL + Multi-agent | **9·10** | 언제 멈추고 누가 승인할까? | `agents/`, `gate-log.md` |
+| **Day 5** | 통합 | 8·9·10 완성 | 4기둥을 내 업무 에이전트로? | `project/`, 발표 |
 
 ### AI PRD Canvas 10칸 (5일 흐름)
 
@@ -86,7 +86,7 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 | [5일 일정](./assets/diagrams/curriculum-timeline.html) | Timeline | Day 1~5 제목·산출물 |
 | [4대 기술 기둥](./assets/diagrams/four-pillars-layers.html) | Layer stack | Harness · Wiki · MCP · HITL · project/ |
 | [Day 5 project/](./assets/diagrams/architecture-day5.html) | Architecture | final-prd · knowledge · mcp · agents |
-| [Day 1~4 → project/](./assets/diagrams/curriculum-handoff.html) | Process | assemble_project.py 조립 경로 |
+| [Day 1~4 → project/](./assets/diagrams/curriculum-handoff.html) | Process | Day5 조립 프롬프트로 project/ 통합 |
 | [승인 게이트](./assets/diagrams/day-gate-flowchart.html) | Flowchart | validate → request → approve → enter-day |
 
 <p align="center">
@@ -123,7 +123,7 @@ python3 scripts/check_day_gate.py --status
 (cd mx-agentic-ai-day2-knowledge-harness && python3 -m unittest discover -s tests -v)
 (cd mx-agentic-ai-day3-mcp-tools && npm test && npm run smoke)
 (cd mx-agentic-ai-day4-multi-agent-hitl && npm test && npm run demo)
-(cd mx-agentic-ai-day5-final-project && python3 scripts/assemble_project.py && python3 scripts/validate_day5.py)
+# Day 5: cd mx-agentic-ai-day5-final-project && claude  → README 예제 1)~9)
 ```
 
 Day 2~4 데이터 경로·스키마·조인 키: [`docs/dummy-data.md`](./docs/dummy-data.md)
@@ -171,15 +171,17 @@ python3 ../scripts/check_day_gate.py --enter-day 2
   <img src="./assets/readme/section-day-guides.svg" width="100%" alt="일차별 가이드">
 </p>
 
-각 Day README는 같은 섹션 구조입니다: **이론 → 사용법 → 저장소 → 예제 → 실행 → 문제 해결**.
+각 Day README는 같은 섹션 구조입니다:
 
-| Day | 가이드 | 구조도 |
+**이론 → 사용법 → 저장소 구조 → 예제 → 실행 → 테스트 조건 → 문제 해결**
+
+| Day | 가이드 | 핵심 산출 |
 |:---:|---|---|
-| 1 | [Day 1 README](./mx-agentic-ai-day1-prd/README.md) | Canvas 10칸 · 견적봇 예제 |
-| 2 | [Day 2 README](./mx-agentic-ai-day2-knowledge-harness/README.md) | 지식 파이프라인 · ECO 12건 |
-| 3 | [Day 3 README](./mx-agentic-ai-day3-mcp-tools/README.md) | MCP E2E · 3도구·승인 게이트 |
-| 4 | [Day 4 README](./mx-agentic-ai-day4-multi-agent-hitl/README.md) | 4역할 · 상태 머신 · HITL |
-| 5 | [Day 5 README](./mx-agentic-ai-day5-final-project/README.md) | 4층 통합 · project/ · 발표 |
+| 1 | [Day 1 README](./mx-agentic-ai-day1-prd/README.md) | `prd.md` · sample-data · 견적봇 예제 |
+| 2 | [Day 2 README](./mx-agentic-ai-day2-knowledge-harness/README.md) | `knowledge/` · `relations.json` · `eval-top3.md` |
+| 3 | [Day 3 README](./mx-agentic-ai-day3-mcp-tools/README.md) | `mcp/*/contract.json` · mock · 승인 규칙 |
+| 4 | [Day 4 README](./mx-agentic-ai-day4-multi-agent-hitl/README.md) | `agents/` · `gate-log.md` · HITL/HOTL |
+| 5 | [Day 5 README](./mx-agentic-ai-day5-final-project/README.md) | `project/` 통합 · 데모 · 발표 |
 
 ```mermaid
 flowchart LR
@@ -225,7 +227,7 @@ Repo skill: `/prd-canvas-builder`
 **기둥:** Harness Engineering + LLMWiki (+ GraphRAG* Advanced)  
 **Canvas 8:** Day 1 PRD 8번 "아직 모르는 것"을 eval·하네스로 채웁니다.
 
-**교육 질문:** "지식을 에이전트가 믿을 수 있는 자산으로 만들고, 관계 질의까지 확장하려면?"
+**교육 질문:** "내 PRD Canvas 5를 수행하려면 AI가 알아야 하는데, 지금은 근거 없이 아는 척하는 부분이 뭘까요?"
 
 <p align="center">
   <img src="./assets/readme/day2-knowledge.svg" width="100%" alt="Day 2 Harness — 원본 잠금, ingest, Top-3 eval">
@@ -233,18 +235,17 @@ Repo skill: `/prd-canvas-builder`
 
 ```bash
 cd mx-agentic-ai-day2-knowledge-harness
-python3 scripts/normalize_docs.py
-python3 scripts/search_knowledge.py "P-100 하우징 변경과 관련된 ECO는?"
-python3 -m unittest discover -s tests -v
+claude   # README 예제 프롬프트를 순서대로 (확산→수렴→GraphRAG→Memory→Eval)
+# [선택] 참조 시나리오 자동 검증:
+python3 scripts/validate_repo.py && python3 -m unittest discover -s tests -v
 ```
 
-| 개념 | Standard | Advanced |
-|---|---|---|
-| Harness | `AGENTS.md`, 상태 파일, `validate_repo.py` | `/repo-harness-auditor` 확장 |
-| LLMWiki | `knowledge/eco/*.md` + `WIKI.md` | 팀 도메인 위키 구조 |
-| GraphRAG | Top-3 키워드 검색 + `source_id` | `relations.json` 2-hop |
+| 트랙 | 산출 |
+|---|---|
+| **PRD 연속형** | `knowledge/` 근거 ID · `relations.json` · `eval-top3.md` · `CLAUDE.md` Memory |
+| **참조(선택)** | `knowledge/eco/*.md` · `normalize_docs.py` · Top-3 검색 스크립트 |
 
-**규칙:** `data/raw/` 원본 SHA-256 잠금 · 근거 없는 값은 `UNKNOWN` · Top-3 eval PASS
+**규칙:** 근거 없으면 `UNKNOWN` · `_sandbox/`에서만 가상 테스트 · Top-3 eval PASS
 
 Repo skills: `/eco-knowledge-builder` · `/repo-harness-auditor`
 
@@ -255,7 +256,7 @@ Repo skills: `/eco-knowledge-builder` · `/repo-harness-auditor`
 **기둥:** MCP 제작·외부 연동  
 **Canvas 5·6:** AI 역할·데이터를 도구 계약으로 구현합니다.
 
-**교육 질문:** "PRD의 AI 역할을 도구로 쪼개고, 외부 시스템까지 어떻게 연결할까?"
+**교육 질문:** "PRD Canvas 5의 AI 역할을 도구로 쪼갠다면, 계약은 어떤 모양이어야 할까요?"
 
 <p align="center">
   <img src="./assets/readme/day3-mcp.svg" width="100%" alt="Day 3 MCP — initialize, tools/list, tools/call smoke E2E">
@@ -263,16 +264,17 @@ Repo skills: `/eco-knowledge-builder` · `/repo-harness-auditor`
 
 ```bash
 cd mx-agentic-ai-day3-mcp-tools
+claude   # 계약 설계 → mock → approval-rule.md
+# [선택] 기존 Node 서버:
 npm test && npm run smoke
 ```
 
-| 도구 | 역할 | 쓰기 |
-|---|---|---|
-| `list_equipment_logs` | 기간별 설비 로그 | 없음 |
-| `get_equipment_errors` | 오류 집계 + `evidence_id` | 없음 |
-| `write_analysis_report` | 보고서 미리보기/저장 | 승인 토큰 필요 |
+| 트랙 | 산출 |
+|---|---|
+| **PRD 연속형** | `mcp/*/contract.json` · `mock-response.json` · `approval-rule.md` |
+| **참조(포함)** | `list_equipment_logs` · `get_equipment_errors` · `write_analysis_report` |
 
-**E2E 경로:** `initialize → tools/list → tools/call` · 승인 없는 쓰기 차단 · `.mcp.json` stdio 서버
+**규칙:** 쓰기 도구는 승인 토큰 · `_sandbox/`에서만 가상 호출 · 근거 ID 필수
 
 Repo skills: `/mcp-tool-designer` · `/mcp-smoke-test`
 
@@ -283,7 +285,7 @@ Repo skills: `/mcp-tool-designer` · `/mcp-smoke-test`
 **기둥:** HITL + Multi-agent  
 **Canvas 9·10:** 승인 게이트·운영 지표를 상태 머신으로 채웁니다.
 
-**교육 질문:** "검증 통과 후에도 왜 멈추고, 역할을 왜 코드로 나누나?"
+**교육 질문:** "역할을 나누고, A2A로 되물을 곳은 어디이며, 사람은 언제 멈춰야 할까요?"
 
 <p align="center">
   <img src="./assets/readme/day4-hitl.svg" width="100%" alt="Day 4 HITL HOTL — AWAITING_APPROVAL 게이트와 상태 머신">
@@ -291,15 +293,15 @@ Repo skills: `/mcp-tool-designer` · `/mcp-smoke-test`
 
 ```bash
 cd mx-agentic-ai-day4-multi-agent-hitl
+claude   # agents/ · gate-log.md · 상태도
+# [선택] 기존 Node 데모:
 npm test && npm run demo && npm run demo:approve
 ```
 
-| 역할 | 책임 |
+| 트랙 | 산출 |
 |---|---|
-| Planner | 분석 계획 수립 |
-| Executor | MCP·데이터 조회 실행 |
-| Verifier | 근거·수치 검증 |
-| Human | 최종 승인·반려 (`--approve`) |
+| **PRD 연속형** | `agents/planner|executor|verifier.md` · `a2a-protocol.md` · `gate-log.md` |
+| **참조(선택)** | `src/` 데모 · 반려 3회 `ESCALATED` |
 
 **상태 흐름:** `VERIFIED` → `AWAITING_APPROVAL` → `APPROVED` · 동일 결함 3회 → `ESCALATED` (HOTL)
 
@@ -323,18 +325,18 @@ Repo skills: `/plan-maintenance-analysis` · `/execute-evidence-plan` · `/verif
 
 ```bash
 cd mx-agentic-ai-day5-final-project
-python3 scripts/assemble_project.py   # Day 1~4 산출물 수집·manifest
-python3 scripts/validate_day5.py      # 발표 전 구조 검증
+claude
+# README 예제 1)~9) 순서대로 붙여넣기 — project/ 조립부터 발표 점검까지
+# (선택) /final-project-assembler
 ```
 
 | 산출물 | 설명 |
 |---|---|
-| `project/docs/final-prd.md` | Canvas 1~10 완성 (Day 1 + 2~4 회고 반영) |
-| `project/docs/architecture.md` | Harness / Knowledge / MCP / Agents 4층 스택 |
-| `project/docs/integration-map.md` | Day 2~4 증거·PASS·파일 경로 |
-| `project/docs/demo-script.md` | 5~7분 발표 (문제→구현→검증→한계) |
-| `project/evidence/` | Day 2~4 테스트·실행 요약 |
-| `project/harness/` · `knowledge/` · `mcp/` · `agents/` | 4대 기둥별 산출물 |
+| `project/manifest.json` | 레이어 점검 · READY / NOT_READY |
+| `project/docs/final-prd.md` | Canvas 1~10 완성 |
+| `project/docs/architecture.md` | Knowledge / MCP / Agents 4층 |
+| `project/docs/integration-map.md` · `demo-script.md` | 통합 맵 · 5~7분 발표 |
+| `project/evidence/` | demo-data · demo-run · self/final-check |
 
 핸드오프 다이어그램: [`assets/diagrams/curriculum-handoff.html`](./assets/diagrams/curriculum-handoff.html) · [다이어그램 목록](#다이어그램)
 
@@ -364,10 +366,10 @@ Repo skill: `/final-project-assembler`
 | 실습 | 자동 검증 | 사람 승인 | 확인 항목 |
 |---|---|:---:|---|
 | Day 1 | `validate_day1.py` | `approve_handoff --day 1` | Canvas 5·6·7, sample-data, prd.pdf |
-| Day 2 | 3 tests + `validate_repo.py` | `approve_handoff --day 2` | 지식 12건, 근거 추적, Top-3 |
-| Day 3 | 5 tests + smoke | `approve_handoff --day 3` | MCP 초기화, 도구 호출, 승인 없는 쓰기 차단 |
-| Day 4 | 5 tests | `approve_handoff --day 4` | 반려·복구·재시도·이관·승인 대기 |
-| Day 5 | assemble + validate | Day 4 승인 후 진입 | final-prd, 4층 문서, evidence, manifest |
+| Day 2 | `eval-top3.md` + (선택) `validate_repo.py` | `approve_handoff --day 2` | 지식≥10·근거 ID·Top-3 · `_sandbox/` |
+| Day 3 | 계약·mock 검토 + (선택) smoke | `approve_handoff --day 3` | 계약≥2(읽기+쓰기)·승인 규칙 |
+| Day 4 | 역할·게이트 문서 + (선택) demo | `approve_handoff --day 4` | 역할≥3·HITL·HOTL · `_sandbox/` |
+| Day 5 | README 예제 1~9 (프롬프트) | Day 4 승인 후 진입 | manifest READY · demo-run · demo-script |
 
 승인 게이트: `python3 scripts/check_day_gate.py --enter-day N`
 
@@ -377,23 +379,23 @@ Repo skill: `/final-project-assembler`
 
 ```text
 202608_sec_gumi/
-├── AGENTS.md / CLAUDE.md          # 에이전트 하네스 (Claude Code)
-├── docs/                          # 커리큘럼, 기술 기둥, 배포·핸드오프 가이드
-│   ├── curriculum-5day.md
-│   ├── tech-pillars.md
-│   ├── reference-prd.md
-│   ├── handoffs/                  # 일차 간 승인·체크리스트
-│   └── github-deployment-and-quickstart.md
-├── scripts/                       # check_day_gate, request/approve_handoff
-├── assets/
-│   ├── readme/                    # README SVG 비주얼
-│   └── diagrams/                  # diagram-design HTML 다이어그램
-├── .agents/skills/                # repo 공통 skill (beautify, diagram-design)
-├── mx-agentic-ai-day1-prd/        # AI PRD Canvas
-├── mx-agentic-ai-day2-knowledge-harness/  # Harness + LLMWiki
-├── mx-agentic-ai-day3-mcp-tools/  # MCP stdio 서버
-├── mx-agentic-ai-day4-multi-agent-hitl/   # HITL + Multi-agent
-└── mx-agentic-ai-day5-final-project/      # project/ 통합·발표
+├── AGENTS.md / CLAUDE.md
+├── docs/                          # 커리큘럼 · 기둥 · 핸드오프 · 배포
+├── scripts/                       # check_day_gate · request/approve_handoff
+├── assets/readme · assets/diagrams
+├── mx-agentic-ai-day1-prd/        # docs/prd.md · sample-data/
+├── mx-agentic-ai-day2-knowledge-harness/
+│   ├── knowledge/ · relations.json · eval-top3.md · _sandbox/
+│   └── scripts/ · tests/          # [선택] 참조 검증
+├── mx-agentic-ai-day3-mcp-tools/
+│   ├── mcp/*/contract.json        # 계약·mock (PRD 연속형)
+│   └── src/                       # [선택] Node MCP 서버
+├── mx-agentic-ai-day4-multi-agent-hitl/
+│   ├── agents/ · gate-log.md · _sandbox/
+│   └── src/                       # [선택] Node 데모
+└── mx-agentic-ai-day5-final-project/
+    ├── README.md                  # 예제 1~9 자연어 프롬프트
+    └── project/                   # Day1~4 통합 발표 패키지
 ```
 
 ## 참고 자료

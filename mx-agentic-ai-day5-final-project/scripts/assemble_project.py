@@ -1,192 +1,153 @@
 #!/usr/bin/env python3
-"""Collect Day 1~4 artifacts into Day 5 project manifest and evidence stubs."""
+"""
+assemble_project.py — [선택] 강사·자동화 보조 도구
 
-from __future__ import annotations
+교육생 기본 경로는 Day 5 README의 자연어 조립 프롬프트입니다.
+이 스크립트는 같은 작업을 기계적으로 반복할 때만 사용하세요.
 
+사용법 (mx-agentic-ai-day5-final-project/ 안에서, 선택):
+    python3 scripts/assemble_project.py
+    python3 scripts/assemble_project.py --repo-root [경로]
+"""
+
+import argparse
 import json
-import subprocess
-import sys
-from datetime import datetime, timezone
+import shutil
+from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-REPO = ROOT.parent
-PROJECT = ROOT / "project"
-EVIDENCE = PROJECT / "evidence"
-MANIFEST = PROJECT / "manifest.json"
 
-sys.path.insert(0, str(REPO / "scripts"))
-from day_journey_lib import (  # noqa: E402
-    handoff_path,
-    handoff_status,
-    load_json,
-    profile_path,
-)
+LAYERS = {
+    "knowledge": {
+        "path": "mx-agentic-ai-day2-knowledge-harness/knowledge",
+        "glob": "**/*.md",
+        "min_count": 10,
+        "label": "Day2 지식그래프",
+    },
+    "mcp": {
+        "path": "mx-agentic-ai-day3-mcp-tools/mcp",
+        "glob": "*/contract.json",
+        "min_count": 2,
+        "label": "Day3 MCP 계약",
+    },
+    "agents": {
+        "path": "mx-agentic-ai-day4-multi-agent-hitl/agents",
+        "glob": "*.md",
+        "min_count": 3,
+        "exclude_names": {"README.md"},
+        "label": "Day4 에이전트 역할",
+    },
+}
+
+# (레포 루트 기준 상대경로, project/docs/ 안에서 쓸 파일명)
+SUPPORT_FILES = [
+    ("mx-agentic-ai-day1-prd/docs/prd.md", "prd.md"),
+    ("CLAUDE.md", "CLAUDE.md"),
+    ("mx-agentic-ai-day2-knowledge-harness/relations.json", "relations.json"),
+    ("mx-agentic-ai-day2-knowledge-harness/eval-top3.md", "eval-top3.md"),
+    ("mx-agentic-ai-day4-multi-agent-hitl/gate-log.md", "gate-log.md"),
+]
 
 
-def _run(cmd: list[str], cwd: Path) -> tuple[bool, str]:
-    try:
-        result = subprocess.run(
-            cmd,
-            cwd=cwd,
-            capture_output=True,
-            text=True,
-            timeout=120,
-        )
-        out = (result.stdout or "") + (result.stderr or "")
-        return result.returncode == 0, out.strip()[-2000:]
-    except (OSError, subprocess.TimeoutExpired) as exc:
-        return False, str(exc)
-
-
-def check_day1() -> dict:
-    day1 = REPO / "mx-agentic-ai-day1-prd"
-    prd = day1 / "docs" / "prd.md"
-    pdf = day1 / "docs" / "prd.pdf"
-    example_prd = day1 / "docs" / "examples" / "quotation-bot" / "prd.md"
-    validate_ok, validate_log = _run(["python3", "scripts/validate_day1.py"], day1)
-    profile = profile_path(1)
+def check_layer(repo_root: Path, name: str, spec: dict) -> dict:
+    layer_path = repo_root / spec["path"]
+    files = sorted(layer_path.glob(spec["glob"])) if layer_path.exists() else []
+    exclude = spec.get("exclude_names") or set()
+    if exclude:
+        files = [f for f in files if f.name not in exclude]
+    status = "PASS" if len(files) >= spec["min_count"] else "INCOMPLETE"
     return {
-        "path": str(day1.relative_to(REPO)),
-        "prd_md": prd.exists() or example_prd.exists(),
-        "prd_pdf": pdf.exists(),
-        "sample_data": any(
-            p.is_file() and p.name != ".gitkeep"
-            for p in (day1 / "sample-data").glob("*")
-        ),
-        "expected_output": any(
-            p.is_file() and p.name != ".gitkeep"
-            for p in (day1 / "expected-output").glob("*")
-        ),
-        "validate_pass": validate_ok,
-        "project_profile": profile.exists(),
-        "handoff_status": handoff_status(1),
-        "log_tail": validate_log,
+        "layer": name,
+        "label": spec["label"],
+        "count": len(files),
+        "required": spec["min_count"],
+        "status": status,
+        "files": [str(f.relative_to(repo_root)) for f in files],
     }
 
 
-def check_day2() -> dict:
-    day2 = REPO / "mx-agentic-ai-day2-knowledge-harness"
-    ok, log = _run(["python3", "scripts/validate_repo.py"], day2)
-    wiki = (day2 / "knowledge" / "WIKI.md").exists()
-    return {
-        "path": str(day2.relative_to(REPO)),
-        "validate_pass": ok,
-        "wiki_index": wiki,
-        "knowledge_count": len(list((day2 / "knowledge" / "eco").glob("*.md"))),
-        "handoff_status": handoff_status(2),
-        "log_tail": log,
-    }
+def copy_layer(repo_root: Path, project_dir: Path, name: str, spec: dict):
+    src = repo_root / spec["path"]
+    if src.exists():
+        dst = project_dir / name
+        shutil.copytree(src, dst, dirs_exist_ok=True)
 
 
-def check_day3() -> dict:
-    day3 = REPO / "mx-agentic-ai-day3-mcp-tools"
-    test_ok, test_log = _run(["npm", "test"], day3)
-    smoke_ok, smoke_log = _run(["npm", "run", "smoke"], day3)
-    return {
-        "path": str(day3.relative_to(REPO)),
-        "npm_test_pass": test_ok,
-        "smoke_pass": smoke_ok,
-        "integration_plan_template": (
-            day3 / "mcp" / "integration-plan.template.md"
-        ).exists(),
-        "handoff_status": handoff_status(3),
-        "log_tail": smoke_log or test_log,
-    }
+def build_integration_map(project_docs: Path, results: list):
+    lines = ["# Integration Map", "", f"생성 시각: {datetime.now().isoformat(timespec='seconds')}", ""]
+    lines.append("| 레이어 | 원본 경로 (레포 루트 기준) | 산출물 수 | 기준 | 상태 |")
+    lines.append("|---|---|---|---|---|")
+    for r in results:
+        origin = LAYERS[r["layer"]]["path"]
+        lines.append(f"| {r['label']} | `{origin}` | {r['count']} | {r['required']}건 이상 | {r['status']} |")
+    lines.append("")
+    lines.append("## 상세 파일 목록")
+    for r in results:
+        lines.append(f"\n### {r['label']}")
+        if r["files"]:
+            for f in r["files"]:
+                lines.append(f"- {f}")
+        else:
+            lines.append("- (없음)")
+    (project_docs / "integration-map.md").write_text("\n".join(lines), encoding="utf-8")
 
 
-def check_day4() -> dict:
-    day4 = REPO / "mx-agentic-ai-day4-multi-agent-hitl"
-    ok, log = _run(["npm", "test"], day4)
-    return {
-        "path": str(day4.relative_to(REPO)),
-        "npm_test_pass": ok,
-        "handoff_doc": (day4 / "docs" / "day5-handoff.md").exists(),
-        "handoff_status": handoff_status(4),
-        "log_tail": log,
-    }
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--repo-root",
+        default=None,
+        help="레포 루트 경로. 지정하지 않으면 스크립트 위치 기준으로 자동 계산돼요.",
+    )
+    args = parser.parse_args()
 
+    script_path = Path(__file__).resolve()
+    day5_dir = script_path.parent.parent  # scripts/의 부모 = mx-agentic-ai-day5-final-project/
+    repo_root = Path(args.repo_root).resolve() if args.repo_root else day5_dir.parent
 
-def write_evidence(name: str, content: str) -> None:
-    EVIDENCE.mkdir(parents=True, exist_ok=True)
-    path = EVIDENCE / name
-    path.write_text(content, encoding="utf-8")
+    project_dir = day5_dir / "project"
+    project_docs = project_dir / "docs"
+    project_evidence = project_dir / "evidence"
+    project_docs.mkdir(parents=True, exist_ok=True)
+    project_evidence.mkdir(parents=True, exist_ok=True)
 
+    # 1) 레이어 점검 + 복사
+    results = []
+    for name, spec in LAYERS.items():
+        result = check_layer(repo_root, name, spec)
+        results.append(result)
+        copy_layer(repo_root, project_dir, name, spec)
 
-def _load_profile_summary() -> dict:
-    profile = profile_path(1)
-    if not profile.exists():
-        return {"exists": False}
-    data = load_json(profile)
-    return {
-        "exists": True,
-        "path": str(profile.relative_to(REPO)),
-        "project_title": data.get("project_title", "UNKNOWN"),
-        "mvp_sentence": data.get("mvp_sentence", "UNKNOWN"),
-    }
+    # 2) 지원 파일 복사
+    for rel_src, dst_name in SUPPORT_FILES:
+        src = repo_root / rel_src
+        if src.exists():
+            shutil.copy2(src, project_docs / dst_name)
 
+    # 3) integration-map.md 생성
+    build_integration_map(project_docs, results)
 
-def main() -> int:
-    PROJECT.mkdir(parents=True, exist_ok=True)
-    EVIDENCE.mkdir(parents=True, exist_ok=True)
-
-    d1 = check_day1()
-    d2 = check_day2()
-    d3 = check_day3()
-    d4 = check_day4()
-
+    # 4) manifest.json 생성
     manifest = {
-        "assembled_at": datetime.now(timezone.utc).isoformat(),
-        "repo_root": str(REPO),
-        "days": {"day1": d1, "day2": d2, "day3": d3, "day4": d4},
-        "handoffs": {
-            f"day{n}": {
-                "status": handoff_status(n),
-                "path": str(handoff_path(n).relative_to(REPO)),
-            }
-            for n in range(1, 5)
-        },
-        "project_profile": _load_profile_summary(),
-        "tech_pillars": {
-            "harness_engineering": d2.get("validate_pass", False),
-            "llmwiki_graphrag": d2.get("wiki_index", False),
-            "mcp_integration": d3.get("smoke_pass", False),
-            "hitl_multi_agent": d4.get("npm_test_pass", False),
-        },
-        "day5_outputs": {
-            "final_prd": "project/docs/final-prd.md",
-            "architecture": "project/docs/architecture.md",
-            "integration_map": "project/docs/integration-map.md",
-            "demo_script": "project/docs/demo-script.md",
-        },
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "repo_root": str(repo_root),
+        "layers": results,
+        "overall_status": "READY" if all(r["status"] == "PASS" for r in results) else "NOT_READY",
     }
-
-    MANIFEST.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    write_evidence(
-        "day2-validate.txt",
-        f"validate_pass={d2['validate_pass']}\nwiki={d2['wiki_index']}\n\n{d2.get('log_tail', '')}",
-    )
-    write_evidence(
-        "day3-smoke.txt",
-        f"test={d3['npm_test_pass']} smoke={d3['smoke_pass']}\n\n{d3.get('log_tail', '')}",
-    )
-    write_evidence(
-        "day4-tests.txt",
-        f"test={d4['npm_test_pass']}\n\n{d4.get('log_tail', '')}",
+    (project_dir / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    print(f"Wrote {MANIFEST.relative_to(ROOT)}")
-    print(f"Wrote evidence/ (3 files)")
-    for pillar, ok in manifest["tech_pillars"].items():
-        status = "PASS" if ok else "PENDING"
-        print(f"  {pillar}: {status}")
-    for n in range(1, 5):
-        status = manifest["handoffs"][f"day{n}"]["status"]
-        print(f"  handoff_day{n}: {status}")
-
-    return 0
+    # 5) 결과 출력
+    print(f"레포 루트: {repo_root}")
+    print(f"project/ 생성 완료 -> {project_dir}")
+    for r in results:
+        origin = LAYERS[r["layer"]]["path"]
+        print(f"  [{r['status']}] {r['label']} <- {origin}: {r['count']}/{r['required']}")
+    print(f"전체 상태: {manifest['overall_status']}")
+    if manifest["overall_status"] != "READY":
+        print("-> INCOMPLETE 레이어를 보강한 뒤 다시 실행해 주세요. (project/는 최신 상태로 다시 덮어써요)")
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

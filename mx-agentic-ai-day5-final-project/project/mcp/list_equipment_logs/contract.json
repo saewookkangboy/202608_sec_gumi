@@ -1,0 +1,26 @@
+{
+  "name": "list_equipment_logs",
+  "description": "기간별 합성 설비 로그를 조회합니다. 읽기 전용.",
+  "read_write": "read",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "from": { "type": "string", "description": "ISO 날짜 시작" },
+      "to": { "type": "string", "description": "ISO 날짜 종료" }
+    },
+    "required": ["from", "to"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "logs": { "type": "array" },
+      "evidence_ids": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "LOG-* 근거 ID"
+      }
+    },
+    "required": ["logs", "evidence_ids"]
+  },
+  "errors": ["INVALID_RANGE", "NO_DATA"]
+}
