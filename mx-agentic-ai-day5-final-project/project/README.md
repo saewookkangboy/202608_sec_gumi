@@ -1,31 +1,21 @@
-# 최종 프로젝트 · [팀/에이전트 이름]
+# Day 5 project/
 
-> Day 1~4 실습을 통합한 **최종 결과물**입니다.
-
-`assemble_project.py` 실행 후 이 폴더를 채웁니다.
-
-## 구조
+Day 5 README **예제 1) 조립 프롬프트**(또는 `/final-project-assembler`)로 이 폴더를 채웁니다.
+Day1~4 원본은 건드리지 않고 여기만 복사·생성합니다.
 
 ```text
 project/
-├── manifest.json           ← assemble_project.py 생성
+├── manifest.json           ← 조립 프롬프트가 생성 (READY | NOT_READY)
 ├── docs/
-│   ├── final-prd.md        ← Canvas 1~10 완성
-│   ├── architecture.md     ← 4층 아키텍처
-│   ├── integration-map.md  ← Day 2~4 증거 연결
-│   └── demo-script.md      ← 발표 스크립트
-├── harness/                ← Day 2 Harness Engineering
-├── knowledge/                ← Day 2 LLMWiki + GraphRAG
-├── mcp/                    ← Day 3 MCP 연동
-├── agents/                 ← Day 4 HITL + Multi-agent
-└── evidence/               ← 테스트·실행 요약
+│   ├── prd.md · final-prd.md · architecture.md
+│   ├── integration-map.md · demo-script.md
+│   └── relations.json · eval-top3.md · gate-log.md · CLAUDE.md
+├── evidence/
+│   ├── day5-self-check.md · day5-final-check.md
+│   ├── demo-data.json · demo-run-*.json
+├── knowledge/              ← Day2 복사본
+├── mcp/                    ← Day3 복사본
+└── agents/                 ← Day4 복사본
 ```
 
-## 4대 기술 기둥
-
-| 폴더 | 기둥 | Day |
-|---|---|:---:|
-| `harness/` | Harness Engineering | 2 |
-| `knowledge/` | LLMWiki + GraphRAG | 2 |
-| `mcp/` | MCP 제작·외부 연동 | 3 |
-| `agents/` | HITL + Multi-agent | 4 |
+상세 프롬프트: [`../README.md`](../README.md)

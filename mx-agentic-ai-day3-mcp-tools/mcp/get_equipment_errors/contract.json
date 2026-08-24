@@ -1,0 +1,24 @@
+{
+  "name": "get_equipment_errors",
+  "description": "오류 집계 + evidence_id. 읽기 전용.",
+  "read_write": "read",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "equipment_id": { "type": "string" }
+    },
+    "required": ["equipment_id"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "error_count": { "type": "integer" },
+      "evidence_ids": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "required": ["error_count", "evidence_ids"]
+  },
+  "errors": ["UNKNOWN_EQUIPMENT"]
+}

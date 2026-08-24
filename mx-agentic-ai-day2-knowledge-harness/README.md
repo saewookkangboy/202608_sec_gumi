@@ -46,11 +46,15 @@
 └── mx-agentic-ai-day2-knowledge-harness/
     ├── README.md                               # 이 문서
     ├── knowledge/
-    │   ├── 001-[제목].md
-    │   ├── 002-[제목].md
-    │   └── ...                                 # 근거 ID 포함 지식 항목 (10건 이상 권장)
-    ├── relations.json                          # GraphRAG 관계 (2-hop)
-    └── eval-top3.md                            # Top-3 검색 평가 결과
+    │   ├── eco/ECO-*.md                        # 참조 시나리오 지식 (이미 포함, 원본 잠금)
+    │   ├── WIKI.md · catalog.json              # 인덱스
+    │   └── 001-[제목].md …                     # (선택) 팀 PRD용 추가 지식
+    ├── relations.json                          # GraphRAG 관계 (2-hop, 오늘 작성)
+    ├── eval-top3.md                            # Top-3 검색 평가 (오늘 작성)
+    ├── eval/                                   # 참조 평가 세트
+    ├── data/raw/                               # 원본 입력 (수정 금지)
+    ├── _sandbox/                               # 가상 테스트 전용
+    └── scripts/ · tests/                       # 정규화·검색·검증 ([선택] 참조 트랙)
 ```
 
 ---

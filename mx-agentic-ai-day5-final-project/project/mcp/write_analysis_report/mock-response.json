@@ -1,0 +1,5 @@
+{
+  "status": "DRY_RUN",
+  "path": "outputs/analysis-preview.md",
+  "evidence_ids": ["LOG-1001", "ECO-001"]
+}

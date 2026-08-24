@@ -24,10 +24,13 @@ Day 5  최종 프로젝트 발표    실제 업무 결과물 통합 · demo · e
 | 일차 | 기술 기둥 | PRD Canvas | 실습 저장소 | 산출물 |
 |---|---|---|---|---|
 | **Day 1** | (정의) | 1~7 (+ 8·9·10 예약) | `mx-agentic-ai-day1-prd/` | `prd.md`, `prd.pdf`, 샘플 |
-| **Day 2** | Harness + LLMWiki/GraphRAG | **8** | `mx-agentic-ai-day2-knowledge-harness/` | 지식 12건, Top-3, `WIKI.md` |
-| **Day 3** | MCP 제작·외부 연동 | **5·6** | `mx-agentic-ai-day3-mcp-tools/` | 3도구, smoke, 연동 계획 |
-| **Day 4** | HITL + Multi-agent | **9·10** | `mx-agentic-ai-day4-multi-agent-hitl/` | 역할·상태·승인 패킷 |
+| **Day 2** | Harness + LLMWiki/GraphRAG | **8** | `mx-agentic-ai-day2-knowledge-harness/` | `knowledge/`, `relations.json`, `eval-top3.md` |
+| **Day 3** | MCP 제작·외부 연동 | **5·6** | `mx-agentic-ai-day3-mcp-tools/` | `mcp/*/contract.json`, mock, 승인 규칙 |
+| **Day 4** | HITL + Multi-agent | **9·10** | `mx-agentic-ai-day4-multi-agent-hitl/` | `agents/`, `gate-log.md` |
 | **Day 5** | **통합** | 8·9·10 완성 | `mx-agentic-ai-day5-final-project/` | `project/` 전체, 발표 자료 |
+
+> 각 Day README는 **이론 → 사용법 → 저장소 구조 → 예제 → 실행 → 테스트 조건 → 문제 해결** 순서로 통일되어 있습니다. Day 2~4는 PRD 연속형(문서·계약·가상 테스트)이 기본이고, 기존 자동 테스트/서버는 [선택] 참조 트랙입니다.
+
 
 ---
 
@@ -104,9 +107,12 @@ npm test && npm run demo
 
 ```bash
 cd mx-agentic-ai-day5-final-project
-python3 scripts/assemble_project.py   # Day 1~4 산출물 수집·manifest 생성
-python3 scripts/validate_day5.py      # 발표 전 구조 검증
+claude
+# README 예제 1)~9) — project/ 조립 → 점검 → 데모 → 발표 문서
+# (선택) /final-project-assembler
 ```
+
+**Day 5 연결:** 전 Day 산출물이 `project/`에 모여 발표 패키지가 됩니다.
 
 Repo skill: `/final-project-assembler`
 

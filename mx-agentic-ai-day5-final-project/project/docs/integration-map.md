@@ -1,29 +1,38 @@
-# 통합 맵 · Day 1~4 → Day 5
+# Integration Map
 
-> `manifest.json`도 갱신합니다. `assemble_project.py` 실행 후 PASS 여부를 확인하세요.
+생성 시각: 2026-08-24T20:23:45
 
-| Day | 기술 기둥 | 저장소 경로 | 검증 | 승인 | PASS | Day 5 증거 |
-|:---:|---|---|:---:|:---:|:---:|---|
-| 1 | PRD 정의 | `mx-agentic-ai-day1-prd/` | `validate_day1.py` | handoff day1 | ☐ | `docs/prd.md` |
-| 2 | Harness + LLMWiki | `mx-agentic-ai-day2-knowledge-harness/` | `validate_repo.py` | handoff day2 | ☐ | `evidence/day2-validate.txt` |
-| 2* | GraphRAG | `knowledge/relations.json` | 팀 테스트 | ☐ | `knowledge/graphrag-notes.md` |
-| 3 | MCP 로컬 | `mx-agentic-ai-day3-mcp-tools/` | `npm test` + smoke | ☐ | `evidence/day3-smoke.txt` |
-| 3* | MCP 외부 | `mcp/integration-plan.md` | 계획서 | ☐ | `project/mcp/` |
-| 4 | HITL + Multi | `mx-agentic-ai-day4-multi-agent-hitl/` | `npm test` | ☐ | `evidence/day4-tests.txt` |
+| 레이어 | 원본 경로 (레포 루트 기준) | 산출물 수 | 기준 | 상태 |
+|---|---|---|---|---|
+| Day2 지식그래프 | `mx-agentic-ai-day2-knowledge-harness/knowledge` | 13 | 10건 이상 | PASS |
+| Day3 MCP 계약 | `mx-agentic-ai-day3-mcp-tools/mcp` | 3 | 2건 이상 | PASS |
+| Day4 에이전트 역할 | `mx-agentic-ai-day4-multi-agent-hitl/agents` | 5 | 3건 이상 | PASS |
 
-\* Advanced 항목
+## 상세 파일 목록
 
-## 근거 ID 체계 (통합)
+### Day2 지식그래프
+- mx-agentic-ai-day2-knowledge-harness/knowledge/WIKI.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-001.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-002.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-003.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-004.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-005.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-006.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-007.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-008.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-009.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-010.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-011.md
+- mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-012.md
 
-| 접두사 | 출처 | 예시 |
-|---|---|---|
-| (팀 정의) | Day 1 sample-data | |
-| `ECO-*` | Day 2 LLMWiki | ECO-001 |
-| `LOG-*` | Day 3 MCP | LOG-002 |
-| `QUALITY-*` | Day 4 fixtures | |
+### Day3 MCP 계약
+- mx-agentic-ai-day3-mcp-tools/mcp/get_equipment_errors/contract.json
+- mx-agentic-ai-day3-mcp-tools/mcp/list_equipment_logs/contract.json
+- mx-agentic-ai-day3-mcp-tools/mcp/write_analysis_report/contract.json
 
-## 미완료 / 리스크
-
-| 항목 | 상태 | Day 5 발표에서 어떻게 설명할지 |
-|---|---|---|
-| | | |
+### Day4 에이전트 역할
+- mx-agentic-ai-day4-multi-agent-hitl/agents/a2a-protocol.md
+- mx-agentic-ai-day4-multi-agent-hitl/agents/executor.md
+- mx-agentic-ai-day4-multi-agent-hitl/agents/planner.md
+- mx-agentic-ai-day4-multi-agent-hitl/agents/state-diagram.md
+- mx-agentic-ai-day4-multi-agent-hitl/agents/verifier.md

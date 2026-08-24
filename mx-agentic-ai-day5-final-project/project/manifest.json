@@ -1,76 +1,55 @@
 {
-  "assembled_at": "2026-08-23T00:12:46.204880+00:00",
+  "generated_at": "2026-08-24T20:23:45",
   "repo_root": "/Users/chunghyo/202608_sec_gumi",
-  "days": {
-    "day1": {
-      "path": "mx-agentic-ai-day1-prd",
-      "prd_md": true,
-      "prd_pdf": true,
-      "sample_data": true,
-      "expected_output": true,
-      "validate_pass": true,
-      "project_profile": true,
-      "handoff_status": "APPROVED",
-      "log_tail": "PASS · 기획서\nPASS · PRD 본문\nPASS · 샘플 파일\nPASS · PRD PDF"
+  "layers": [
+    {
+      "layer": "knowledge",
+      "label": "Day2 지식그래프",
+      "count": 13,
+      "required": 10,
+      "status": "PASS",
+      "files": [
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/WIKI.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-001.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-002.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-003.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-004.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-005.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-006.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-007.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-008.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-009.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-010.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-011.md",
+        "mx-agentic-ai-day2-knowledge-harness/knowledge/eco/ECO-012.md"
+      ]
     },
-    "day2": {
-      "path": "mx-agentic-ai-day2-knowledge-harness",
-      "validate_pass": true,
-      "wiki_index": true,
-      "knowledge_count": 12,
-      "handoff_status": "APPROVED",
-      "log_tail": "PASS: 12 records, traceable sources, immutable raw data, state files ready"
+    {
+      "layer": "mcp",
+      "label": "Day3 MCP 계약",
+      "count": 3,
+      "required": 2,
+      "status": "PASS",
+      "files": [
+        "mx-agentic-ai-day3-mcp-tools/mcp/get_equipment_errors/contract.json",
+        "mx-agentic-ai-day3-mcp-tools/mcp/list_equipment_logs/contract.json",
+        "mx-agentic-ai-day3-mcp-tools/mcp/write_analysis_report/contract.json"
+      ]
     },
-    "day3": {
-      "path": "mx-agentic-ai-day3-mcp-tools",
-      "npm_test_pass": true,
-      "smoke_pass": true,
-      "integration_plan_template": true,
-      "handoff_status": "APPROVED",
-      "log_tail": "> mx-agentic-ai-day3-mcp-tools@1.0.0 smoke\n> node scripts/smoke-test.mjs\n\nPASS: initialize, tools/list, tools/call"
-    },
-    "day4": {
-      "path": "mx-agentic-ai-day4-multi-agent-hitl",
-      "npm_test_pass": true,
-      "handoff_doc": true,
-      "handoff_status": "APPROVED",
-      "log_tail": "> mx-agentic-ai-day4-multi-agent-hitl@1.0.0 test\n> node --test\n\nTAP version 13\n# Subtest: clean run waits for approval\nok 1 - clean run waits for approval\n  ---\n  duration_ms: 2.7795\n  ...\n# Subtest: explicit approval completes the run\nok 2 - explicit approval completes the run\n  ---\n  duration_ms: 0.476334\n  ...\n# Subtest: one injected defect is rejected then repaired\nok 3 - one injected defect is rejected then repaired\n  ---\n  duration_ms: 0.613916\n  ...\n# Subtest: persistent defect escalates after three attempts\nok 4 - persistent defect escalates after three attempts\n  ---\n  duration_ms: 10.389709\n  ...\n# Subtest: bad rate is detected\nok 5 - bad rate is detected\n  ---\n  duration_ms: 1.34825\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 329.682709"
+    {
+      "layer": "agents",
+      "label": "Day4 에이전트 역할",
+      "count": 5,
+      "required": 3,
+      "status": "PASS",
+      "files": [
+        "mx-agentic-ai-day4-multi-agent-hitl/agents/a2a-protocol.md",
+        "mx-agentic-ai-day4-multi-agent-hitl/agents/executor.md",
+        "mx-agentic-ai-day4-multi-agent-hitl/agents/planner.md",
+        "mx-agentic-ai-day4-multi-agent-hitl/agents/state-diagram.md",
+        "mx-agentic-ai-day4-multi-agent-hitl/agents/verifier.md"
+      ]
     }
-  },
-  "handoffs": {
-    "day1": {
-      "status": "APPROVED",
-      "path": "mx-agentic-ai-day1-prd/.lab/handoff-approval.json"
-    },
-    "day2": {
-      "status": "APPROVED",
-      "path": "mx-agentic-ai-day2-knowledge-harness/.lab/handoff-approval.json"
-    },
-    "day3": {
-      "status": "APPROVED",
-      "path": "mx-agentic-ai-day3-mcp-tools/.lab/handoff-approval.json"
-    },
-    "day4": {
-      "status": "APPROVED",
-      "path": "mx-agentic-ai-day4-multi-agent-hitl/.lab/handoff-approval.json"
-    }
-  },
-  "project_profile": {
-    "exists": true,
-    "path": "mx-agentic-ai-day1-prd/.lab/project-profile.json",
-    "project_title": "견적요청 초안봇",
-    "mvp_sentence": "품목 Excel을 넣으면 견적 요청 메일 초안이 나오는 봇"
-  },
-  "tech_pillars": {
-    "harness_engineering": true,
-    "llmwiki_graphrag": true,
-    "mcp_integration": true,
-    "hitl_multi_agent": true
-  },
-  "day5_outputs": {
-    "final_prd": "project/docs/final-prd.md",
-    "architecture": "project/docs/architecture.md",
-    "integration_map": "project/docs/integration-map.md",
-    "demo_script": "project/docs/demo-script.md"
-  }
+  ],
+  "overall_status": "READY"
 }

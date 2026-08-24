@@ -1,19 +1,13 @@
 #!/usr/bin/env python3
 """
-assemble_project.py (202608_sec_gumi 레포 버전)
+assemble_project.py — [선택] 강사·자동화 보조 도구
 
-레포의 실제 폴더 구조(Day1~4가 서로 다른 최상위 폴더)에 맞춰,
-각 Day 산출물을 mx-agentic-ai-day5-final-project/project/ 로 모아
-발표용 패키지를 만들어요.
+교육생 기본 경로는 Day 5 README의 자연어 조립 프롬프트입니다.
+이 스크립트는 같은 작업을 기계적으로 반복할 때만 사용하세요.
 
-- 원본 파일은 건드리지 않고 복사만 해요.
-- 각 레이어의 존재 여부와 개수를 manifest.json에 기록해요.
-- integration-map.md를 자동 생성해 Day2~4 산출물과 완료 상태를 한눈에 보여줘요.
-
-사용법 (mx-agentic-ai-day5-final-project/ 안에서 실행):
+사용법 (mx-agentic-ai-day5-final-project/ 안에서, 선택):
     python3 scripts/assemble_project.py
-    (레포 루트는 스크립트 위치 기준으로 자동 계산돼요. 다른 위치를 쓰려면
-     python3 scripts/assemble_project.py --repo-root [경로] 로 지정해요)
+    python3 scripts/assemble_project.py --repo-root [경로]
 """
 
 import argparse
@@ -26,7 +20,7 @@ from pathlib import Path
 LAYERS = {
     "knowledge": {
         "path": "mx-agentic-ai-day2-knowledge-harness/knowledge",
-        "glob": "*.md",
+        "glob": "**/*.md",
         "min_count": 10,
         "label": "Day2 지식그래프",
     },
@@ -40,6 +34,7 @@ LAYERS = {
         "path": "mx-agentic-ai-day4-multi-agent-hitl/agents",
         "glob": "*.md",
         "min_count": 3,
+        "exclude_names": {"README.md"},
         "label": "Day4 에이전트 역할",
     },
 }
@@ -57,6 +52,9 @@ SUPPORT_FILES = [
 def check_layer(repo_root: Path, name: str, spec: dict) -> dict:
     layer_path = repo_root / spec["path"]
     files = sorted(layer_path.glob(spec["glob"])) if layer_path.exists() else []
+    exclude = spec.get("exclude_names") or set()
+    if exclude:
+        files = [f for f in files if f.name not in exclude]
     status = "PASS" if len(files) >= spec["min_count"] else "INCOMPLETE"
     return {
         "layer": name,

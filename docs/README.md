@@ -43,12 +43,13 @@
 
 | 섹션 | 내용 |
 |---|---|
-| **이론** | Mermaid 구조도 + 개념 |
+| **이론** | 개념·구조도·안전 원칙 |
 | **사용법** | 순서·팁·비개발자 안내 |
-| **저장소 받기 및 실행** | `git clone`, `cd`, `claude` |
-| **실습 예제 안내** | 시나리오·폴더 구조 |
-| **실습 예제 실행 방법** | 터미널 명령·skill 프롬프트 |
-| **어려움이 생기면** | 증상·원인·해결 표 |
+| **저장소 구조** | 실제 폴더·산출물 경로 |
+| **예제** | 붙여넣기 프롬프트·시나리오 |
+| **실행** | 단계별 진행·승인 조건 |
+| **테스트 조건** | 가상 테스트(`_sandbox/` 등) 범위·되돌리기 |
+| **문제 해결** | 증상·대응 표 |
 
 | Day | 가이드 |
 |:---:|---|
@@ -89,7 +90,7 @@
 | [Day 2](../mx-agentic-ai-day2-knowledge-harness/docs/skill-and-tech-reference.md) | `/eco-knowledge-builder` · `/repo-harness-auditor` | 원본 잠금, `source_id`, SHA-256, Top-3 검색, Claude Code 하네스 |
 | [Day 3](../mx-agentic-ai-day3-mcp-tools/docs/skill-and-tech-reference.md) | `/mcp-tool-designer` · `/mcp-smoke-test` | MCP stdio, E2E smoke, Claude Code MCP 호스트 |
 | [Day 4](../mx-agentic-ai-day4-multi-agent-hitl/docs/skill-and-tech-reference.md) | `/plan-maintenance-analysis` · … · `/request-human-approval` | HITL · HOTL · Multi-agent · A2A* |
-| [Day 5](../mx-agentic-ai-day5-final-project/docs/skill-and-tech-reference.md) | `/final-project-assembler` | project/ 통합, manifest, 발표 루브릭 |
+| [Day 5](../mx-agentic-ai-day5-final-project/docs/skill-and-tech-reference.md) | `/final-project-assembler` | project/ 조립·데모·발표 (자연어 프롬프트) |
 
 ### 기계 판독용 인덱스
 

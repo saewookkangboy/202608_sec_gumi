@@ -41,14 +41,17 @@ AI가 외부 도구·데이터에 표준화된 방식으로 접근하게 해주�
 │   └── knowledge/                              # 참조만
 └── mx-agentic-ai-day3-mcp-tools/
     ├── README.md
-    ├── (기존 src/, package.json 등 — 있다면 유지)
+    ├── src/ · package.json                     # [선택] 기존 Node MCP 서버 (유지)
+    ├── data/ · outputs/                        # 합성 입력 / 쓰기 출력
+    ├── _sandbox/                               # 가상 테스트 전용
     └── mcp/
-        ├── [도구명1]/
-        │   ├── contract.json                   # 입력·출력·오류 스키마
-        │   └── mock-response.json              # 계약에 맞는 샘플 응답
-        ├── [도구명2]/
-        │   └── ...
-        └── approval-rule.md                    # 승인 필요 도구 목록과 이유
+        ├── README.md · approval-rule.md
+        ├── list_equipment_logs/                # 참조 계약+mock (읽기)
+        ├── get_equipment_errors/               # 참조 계약+mock (읽기)
+        ├── write_analysis_report/              # 참조 계약+mock (쓰기·승인)
+        └── [팀도구]/                         # (선택) 팀 PRD용 추가 계약
+            ├── contract.json
+            └── mock-response.json
 ```
 
 ---

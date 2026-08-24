@@ -1,0 +1,33 @@
+{
+  "name": "write_analysis_report",
+  "description": "분석 보고서 미리보기/저장. 쓰기 — 승인 토큰 필요.",
+  "read_write": "write",
+  "requires_approval": true,
+  "approval_token": "APPROVE_WRITE",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "title": { "type": "string" },
+      "body": { "type": "string" },
+      "evidence_ids": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "approval_token": { "type": "string" }
+    },
+    "required": ["title", "body", "evidence_ids"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "status": { "type": "string", "enum": ["DRY_RUN", "SAVED", "DENIED"] },
+      "path": { "type": "string" },
+      "evidence_ids": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "required": ["status", "evidence_ids"]
+  },
+  "errors": ["MISSING_APPROVAL", "EMPTY_EVIDENCE"]
+}

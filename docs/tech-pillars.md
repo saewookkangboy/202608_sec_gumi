@@ -53,18 +53,19 @@ Day 5  최종 프로젝트   → 실제 업무 결과물로 통합·발표
 
 ## Day 5 최종 결과물 체크리스트
 
-발표 전 `mx-agentic-ai-day5-final-project/`에서 확인:
+발표 전 `mx-agentic-ai-day5-final-project/`에서 Claude Code로 확인:
 
-1. **final-prd.md** — Day 1 PRD + Day 2~4에서 채운 8·9·10번 완성
-2. **architecture.md** — Harness / Knowledge / MCP / Agents 4층 구조도
-3. **integration-map.md** — Day 2~4 증거 파일 경로·PASS 여부
-4. **demo-script.md** — 5~7분 발표 시나리오 (문제→구현→검증→한계)
-5. **evidence/** — Day 2~4 테스트·실행 로그 요약
+1. **예제 1)** `project/` 조립 → `manifest.json` READY
+2. **final-prd.md** — Day 1 PRD + Day 2~4에서 채운 8·9·10번 완성
+3. **architecture.md** — Knowledge / MCP / Agents 4층 구조도
+4. **integration-map.md** — Day 2~4 증거 파일 경로·PASS 여부
+5. **demo-script.md** — 5~7분 발표 시나리오 (문제→구현→검증→한계)
+6. **evidence/** — demo-data · demo-run · self/final-check
 
 ```bash
 cd mx-agentic-ai-day5-final-project
-python3 scripts/assemble_project.py
-python3 scripts/validate_day5.py
+claude
+# README 예제 1)~9) 순서대로 (자연어 프롬프트)
 ```
 
-→ [5일 커리큘럼](./curriculum-5day.md) · [참조 PRD](./reference-prd.md)
+→ [5일 커리큘럼](./curriculum-5day.md) · [참조 PRD](./reference-prd.md) · [Day 5 README](../mx-agentic-ai-day5-final-project/README.md)

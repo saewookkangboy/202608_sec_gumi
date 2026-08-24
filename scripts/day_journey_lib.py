@@ -104,8 +104,19 @@ def run_day_validate(day: int) -> ValidateResult:
     elif day == 4:
         commands.append(["npm", "test"])
     elif day == 5:
-        commands.append(["python3", "scripts/assemble_project.py"])
-        commands.append(["python3", "scripts/validate_day5.py"])
+        # 교육생 기본 경로: README 자연어 조립·점검. 게이트는 manifest READY만 확인.
+        commands.append(
+            [
+                "python3",
+                "-c",
+                (
+                    "import json,sys; from pathlib import Path; "
+                    "p=Path('project/manifest.json'); "
+                    "sys.exit(0) if p.exists() and json.loads(p.read_text(encoding='utf-8')).get('overall_status')=='READY' "
+                    "else (print('project/manifest.json missing or not READY — run Day5 README prompt 1~2'), sys.exit(1))"
+                ),
+            ]
+        )
     else:
         raise ValueError(f"invalid day: {day}")
 

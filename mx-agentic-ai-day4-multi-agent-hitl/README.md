@@ -45,14 +45,13 @@
 │   └── mcp/                                    # 참조만
 └── mx-agentic-ai-day4-multi-agent-hitl/
     ├── README.md
-    ├── (기존 Node 데모 코드 — 있다면 유지)
+    ├── src/ · package.json · fixtures/         # [선택] 기존 Node 데모 (유지)
+    ├── _sandbox/                               # 가상 테스트 전용
     ├── agents/
-    │   ├── planner.md
-    │   ├── executor.md
-    │   ├── verifier.md
-    │   ├── a2a-protocol.md                     # 발신자→수신자, 메시지 타입, 트리거 조건
+    │   ├── planner.md · executor.md · verifier.md
+    │   ├── a2a-protocol.md                     # 발신→수신, 메시지 타입, 트리거
     │   └── state-diagram.md
-    └── gate-log.md                              # HITL 승인 기록 + HOTL 이관 조건
+    └── gate-log.md                             # HITL 승인 기록 + HOTL 이관 조건
 ```
 
 ---

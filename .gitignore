@@ -1,0 +1,29 @@
+# 무시 규칙
+
+# OS / 에디터
+.DS_Store
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# 가상 테스트·임시 산출
+**/_sandbox/**
+!**/.gitkeep
+
+# 배포용 zip 잔여물 (커밋하지 않음)
+files.zip
+/files/
+
+# 로컬 환경
+.env
+.env.*
+!.env.example

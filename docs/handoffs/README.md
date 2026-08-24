@@ -22,7 +22,7 @@ Day 4  HITL + Multi-agent (Canvas 9·10)
        request_handoff --day 4 → [사람 승인]
          ▼
 Day 5  project/ 통합 · final-prd.md · 발표
-       sync_from_prd.py → assemble → validate_day5
+       Claude Code README 예제 1)~9) (조립 → 점검 → 데모 → 발표 문서)
 ```
 
 | 구분 | 내용 |

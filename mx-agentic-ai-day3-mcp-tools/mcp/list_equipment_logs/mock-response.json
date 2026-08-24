@@ -1,0 +1,10 @@
+{
+  "logs": [
+    {
+      "log_id": "LOG-1001",
+      "equipment_id": "EQ-A01",
+      "message": "temperature spike (synthetic)"
+    }
+  ],
+  "evidence_ids": ["LOG-1001"]
+}
