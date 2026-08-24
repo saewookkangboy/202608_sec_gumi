@@ -24,19 +24,19 @@
 | **형식** | 1일 8시간 × 5일, 강사 진행 + 팀 실습 |
 | **실행 환경** | Claude Code (일자 폴더 `CLAUDE.md` + `/skill-name`) |
 | **방법** | AI PRD Canvas 10칸 → 4대 기술 기둥 → `project/` 통합 |
-| **데이터** | Day 2~4 Dummy Data는 repo에 포함. [가이드](./docs/dummy-data.md). 실제 사업장·개인정보·API 키 금지 |
+| **데이터** | Day 2~4 더미 데이터는 저장소에 들어 있습니다([가이드](./docs/dummy-data.md)). 실제 사업장 정보·개인정보·API 키는 넣지 않습니다 |
 
 ### 교육 목표
 
-1. **정의** — 기획서를 AI가 실행 가능한 PRD로 옮긴다 (Day 1).
-2. **신뢰** — 지식을 추적 가능한 자산으로 만들고 eval로 품질을 측정한다 (Day 2).
-3. **실행** — PRD의 AI 역할을 MCP 도구 계약으로 구현한다 (Day 3).
-4. **거버넌스** — 역할 분리·승인 게이트·이관으로 운영 리스크를 통제한다 (Day 4).
-5. **통합** — Day 1~4 산출물을 `project/`에 모아 5~7분 발표로 마무리한다 (Day 5).
+1. **정의** — 기획서를 AI가 그대로 실행할 수 있는 PRD로 옮깁니다 (Day 1).
+2. **신뢰** — 지식을 출처까지 따라갈 수 있는 자산으로 만들고, eval로 품질을 측정합니다 (Day 2).
+3. **실행** — PRD에 적은 AI 역할을 MCP 도구 계약으로 구현합니다 (Day 3).
+4. **거버넌스** — 역할을 나누고 승인 게이트와 이관 규칙으로 운영 리스크를 통제합니다 (Day 4).
+5. **통합** — Day 1~4 산출물을 `project/`에 모아 5~7분 발표로 마무리합니다 (Day 5).
 
 ### 공통 실습 시나리오 (참조 PRD)
 
-Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합니다: **생산 설비·금형 변경(ECO) 연계 분석 에이전트**.
+Day 2~4는 팀 PRD와는 별도로 모두 같은 **참조 시나리오**를 구현합니다. 바로 **생산 설비와 금형 변경(ECO)을 엮어 분석하는 에이전트**입니다.
 
 ```text
 [입력]  ECO 지식 + 설비 로그 + 품질 결함 (합성 데이터)
@@ -46,8 +46,8 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 [출력]  근거 ID(ECO-*, LOG-*, QUALITY-*)가 붙은 분석 초안
 ```
 
-- **MVP:** 30분 수동 분석 → 5분 초안 (추측 금지, `UNKNOWN` 유지)
-- **팀 PRD vs 참조 PRD:** Day 1 `docs/prd.md`는 본인 업무용. Day 2~4는 [`reference-prd.md`](./docs/reference-prd.md)로 기술 기둥을 익힌 뒤, Day 5에서 팀 PRD로 통합합니다.
+- **MVP:** 30분 걸리던 수동 분석을 5분짜리 초안으로 줄입니다. 대신 추측은 하지 않고, 모르는 값은 `UNKNOWN`으로 남깁니다.
+- **팀 PRD와 참조 PRD:** Day 1의 `docs/prd.md`는 본인 업무를 다룹니다. Day 2~4는 [`reference-prd.md`](./docs/reference-prd.md)로 기술 기둥을 먼저 익히고, Day 5에서 팀 PRD에 통합합니다.
 
 > [5일 커리큘럼](./docs/curriculum-5day.md) · [기술 기둥](./docs/tech-pillars.md) · [참조 PRD](./docs/reference-prd.md) · [문서 인덱스](./docs/README.md)
 
@@ -55,11 +55,11 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 
 | 실습 | 기술 기둥 | Canvas | 질문 | 산출물 |
 |---|---|---|---|---|
-| **Day 1** | (정의) | 1~7 (+ 8·9·10 예약) | 무엇을 만들고 AI에게 무엇을 맡길까? | `prd.md`, `sample-data/` |
-| **Day 2** | Harness + LLMWiki/GraphRAG | **8** | 근거 없이 아는 척하는 지식은? | `knowledge/`, `relations.json`, `eval-top3.md` |
-| **Day 3** | MCP 제작·외부 연동 | **5·6** | AI 역할을 어떤 도구 계약으로? | `mcp/*/contract.json`, mock, 승인 규칙 |
-| **Day 4** | HITL + Multi-agent | **9·10** | 언제 멈추고 누가 승인할까? | `agents/`, `gate-log.md` |
-| **Day 5** | 통합 | 8·9·10 완성 | 4기둥을 내 업무 에이전트로? | `project/`, 발표 |
+| **Day 1** | (정의) | 1~7 (+ 8·9·10 예약) | 무엇을 만들고, AI에게 무엇을 맡길까요? | `prd.md`, `sample-data/` |
+| **Day 2** | Harness + LLMWiki/GraphRAG | **8** | 근거 없이 아는 척하는 지식은 무엇일까요? | `knowledge/`, `relations.json`, `eval-top3.md` |
+| **Day 3** | MCP 제작·외부 연동 | **5·6** | AI 역할을 어떤 도구 계약으로 쪼갤까요? | `mcp/*/contract.json`, mock, 승인 규칙 |
+| **Day 4** | HITL + Multi-agent | **9·10** | 언제 멈추고, 누가 승인할까요? | `agents/`, `gate-log.md` |
+| **Day 5** | 통합 | 8·9·10 완성 | 4기둥을 내 업무 에이전트로 어떻게 묶을까요? | `project/`, 발표 |
 
 ### AI PRD Canvas 10칸 (5일 흐름)
 
@@ -75,7 +75,7 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 
 ## 다이어그램
 
-`assets/diagrams/` HTML 파일. 브라우저에서 엽니다.
+다이어그램은 `assets/diagrams/` 폴더에 HTML 파일로 들어 있습니다. 브라우저에서 열어 보세요.
 
 <p align="center">
   <img src="./assets/readme/section-diagrams.svg" width="100%" alt="다이어그램 섹션">
@@ -86,7 +86,7 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 | [5일 일정](./assets/diagrams/curriculum-timeline.html) | Timeline | Day 1~5 제목·산출물 |
 | [4대 기술 기둥](./assets/diagrams/four-pillars-layers.html) | Layer stack | Harness · Wiki · MCP · HITL · project/ |
 | [Day 5 project/](./assets/diagrams/architecture-day5.html) | Architecture | final-prd · knowledge · mcp · agents |
-| [Day 1~4 → project/](./assets/diagrams/curriculum-handoff.html) | Process | Day5 조립 프롬프트로 project/ 통합 |
+| [Day 1~4 → project/](./assets/diagrams/curriculum-handoff.html) | Process | Day 5 조립 프롬프트로 project/에 모으는 흐름 |
 | [승인 게이트](./assets/diagrams/day-gate-flowchart.html) | Flowchart | validate → request → approve → enter-day |
 
 <p align="center">
@@ -111,10 +111,10 @@ Day 2~4는 팀 PRD와 별도로, 동일한 **참조 시나리오**를 구현합�
 ```bash
 git clone https://github.com/saewookkangboy/202608_sec_gumi.git
 cd 202608_sec_gumi
-python3 scripts/verify_dummy_data.py   # Day 2~4 합성 데이터 존재 확인
+python3 scripts/verify_dummy_data.py   # Day 2~4 합성 데이터가 있는지 확인
 ```
 
-일자별 첫 검증:
+일자별 첫 검증은 다음과 같이 실행합니다.
 
 ```bash
 python3 scripts/check_day_gate.py --status
@@ -130,7 +130,7 @@ Day 2~4 데이터 경로·스키마·조인 키: [`docs/dummy-data.md`](./docs/d
 
 ### 교육생 본인 PRD 여정 (일차 간 사람 승인 필수)
 
-자동 검증 **PASS ≠ 다음 일차 진입**. 각 Day 종료 후 강사·멘토 **사람 승인**이 있어야 합니다. [`docs/handoffs/README.md`](./docs/handoffs/README.md)
+자동 검증이 PASS라고 해서 바로 다음 일차로 넘어가지는 않습니다. 각 Day를 마친 뒤 강사나 멘토의 **사람 승인**이 있어야 합니다. 자세한 내용은 [`docs/handoffs/README.md`](./docs/handoffs/README.md)에 있습니다.
 
 <p align="center">
   <img src="./assets/readme/section-handoff.svg" width="100%" alt="일차 간 승인 게이트">
@@ -157,9 +157,9 @@ python3 ../scripts/check_day_gate.py --enter-day 2
 | `instructor` | 강사 (권장) |
 | `mentor` | 현업 멘토 |
 | `team_lead` | 팀 리드 |
-| `trainee_lead` | 교육생 대표 (자가 점검 후 강사 확인 병행 시) |
+| `trainee_lead` | 교육생 대표 (자가 점검 후 강사 확인을 함께 받을 때) |
 
-강사 배포·팀 제출·스킬 호출: [GitHub 배포 가이드](./docs/github-deployment-and-quickstart.md)
+강사 배포와 팀 제출, 스킬 호출 방법은 [GitHub 배포 가이드](./docs/github-deployment-and-quickstart.md)를 참고하세요.
 
 <p align="center">
   <img src="./assets/readme/lab-skills.svg" width="100%" alt="Day 1~5 repo skills — prd-canvas-builder부터 final-project-assembler까지">
@@ -171,7 +171,7 @@ python3 ../scripts/check_day_gate.py --enter-day 2
   <img src="./assets/readme/section-day-guides.svg" width="100%" alt="일차별 가이드">
 </p>
 
-각 Day README는 같은 섹션 구조입니다:
+각 Day README는 모두 같은 섹션 구조를 따릅니다.
 
 **이론 → 사용법 → 저장소 구조 → 예제 → 실행 → 테스트 조건 → 문제 해결**
 
@@ -192,13 +192,13 @@ flowchart LR
   D4 -->|사람 승인| D5[Day 5<br/>통합·발표]
 ```
 
-> 터미널 명령은 **복사·붙여넣기**만 하면 됩니다. Git·배포 절차: [배포 가이드](./docs/github-deployment-and-quickstart.md)
+> 터미널 명령은 **복사해서 붙여넣기**만 하면 됩니다. Git과 배포 절차는 [배포 가이드](./docs/github-deployment-and-quickstart.md)에 정리돼 있습니다.
 
 ## Day 1 · AI PRD 정의
 
 **목표:** 오전 기획서를 AI PRD Canvas로 옮기고, Day 2~4에서 채울 평가·거버넌스 칸을 예약합니다.
 
-**교육 질문:** "AI에게 무엇을 맡기고, 무엇을 절대 하지 말게 할까?"
+**교육 질문:** "AI에게 무엇을 맡기고, 무엇은 절대 하지 말게 할까요?"
 
 <p align="center">
   <img src="./assets/readme/day1-prd.svg" width="100%" alt="Day 1 AI PRD Canvas — Canvas 1~7 완성, 8~10 예약">
@@ -207,7 +207,7 @@ flowchart LR
 ```bash
 cd mx-agentic-ai-day1-prd
 claude
-# docs/proposal.pdf 추가 후 /prd-canvas-builder 또는 완성형 프롬프트 붙여넣기
+# docs/proposal.pdf를 넣은 뒤 /prd-canvas-builder를 쓰거나 완성형 프롬프트를 붙여넣어요
 ```
 
 | 입력 | 산출물 | 완료 증거 |
@@ -216,7 +216,7 @@ claude
 | 인터뷰 답변 | `sample-data/`, `expected-output/` | 합성 데이터, fallback 규칙 |
 | 프로필 초기화 | `.lab/project-profile.json` | 팀·도메인 메타데이터 |
 
-**예시 PRD:** [`quotation-bot`](./mx-agentic-ai-day1-prd/docs/examples/quotation-bot/prd.md) (견적 메일 초안)
+**예시 PRD:** [`quotation-bot`](./mx-agentic-ai-day1-prd/docs/examples/quotation-bot/prd.md) — 견적 메일 초안을 만드는 에이전트입니다.
 
 Repo skill: `/prd-canvas-builder`
 
@@ -225,7 +225,7 @@ Repo skill: `/prd-canvas-builder`
 ## Day 2 · Harness + LLMWiki
 
 **기둥:** Harness Engineering + LLMWiki (+ GraphRAG* Advanced)  
-**Canvas 8:** Day 1 PRD 8번 "아직 모르는 것"을 eval·하네스로 채웁니다.
+**Canvas 8:** Day 1 PRD 8번에 남겨 둔 "아직 모르는 것"을 eval과 하네스로 채웁니다.
 
 **교육 질문:** "내 PRD Canvas 5를 수행하려면 AI가 알아야 하는데, 지금은 근거 없이 아는 척하는 부분이 뭘까요?"
 
@@ -235,17 +235,17 @@ Repo skill: `/prd-canvas-builder`
 
 ```bash
 cd mx-agentic-ai-day2-knowledge-harness
-claude   # README 예제 프롬프트를 순서대로 (확산→수렴→GraphRAG→Memory→Eval)
-# [선택] 참조 시나리오 자동 검증:
+claude   # README의 예제 프롬프트를 순서대로 붙여넣어요 (확산 → 수렴 → GraphRAG → Memory → Eval)
+# [선택] 참조 시나리오를 자동 검증하려면:
 python3 scripts/validate_repo.py && python3 -m unittest discover -s tests -v
 ```
 
 | 트랙 | 산출 |
 |---|---|
-| **PRD 연속형** | `knowledge/` 근거 ID · `relations.json` · `eval-top3.md` · `CLAUDE.md` Memory |
-| **참조(선택)** | `knowledge/eco/*.md` · `normalize_docs.py` · Top-3 검색 스크립트 |
+| **PRD 연속형** | `knowledge/`의 근거 ID, `relations.json`, `eval-top3.md`, `CLAUDE.md` Memory |
+| **참조(선택)** | `knowledge/eco/*.md`, `normalize_docs.py`, Top-3 검색 스크립트 |
 
-**규칙:** 근거 없으면 `UNKNOWN` · `_sandbox/`에서만 가상 테스트 · Top-3 eval PASS
+**규칙:** 근거가 없으면 `UNKNOWN`으로 남기고, 가상 테스트는 `_sandbox/`에서만 하며, Top-3 eval이 PASS여야 합니다.
 
 Repo skills: `/eco-knowledge-builder` · `/repo-harness-auditor`
 
@@ -254,7 +254,7 @@ Repo skills: `/eco-knowledge-builder` · `/repo-harness-auditor`
 ## Day 3 · MCP 연동
 
 **기둥:** MCP 제작·외부 연동  
-**Canvas 5·6:** AI 역할·데이터를 도구 계약으로 구현합니다.
+**Canvas 5·6:** AI 역할과 데이터를 도구 계약으로 구현합니다.
 
 **교육 질문:** "PRD Canvas 5의 AI 역할을 도구로 쪼갠다면, 계약은 어떤 모양이어야 할까요?"
 
@@ -264,17 +264,17 @@ Repo skills: `/eco-knowledge-builder` · `/repo-harness-auditor`
 
 ```bash
 cd mx-agentic-ai-day3-mcp-tools
-claude   # 계약 설계 → mock → approval-rule.md
-# [선택] 기존 Node 서버:
+claude   # 계약 설계 → mock → approval-rule.md 순서로 진행해요
+# [선택] 기존 Node 서버를 쓰려면:
 npm test && npm run smoke
 ```
 
 | 트랙 | 산출 |
 |---|---|
-| **PRD 연속형** | `mcp/*/contract.json` · `mock-response.json` · `approval-rule.md` |
-| **참조(포함)** | `list_equipment_logs` · `get_equipment_errors` · `write_analysis_report` |
+| **PRD 연속형** | `mcp/*/contract.json`, `mock-response.json`, `approval-rule.md` |
+| **참조(포함)** | `list_equipment_logs`, `get_equipment_errors`, `write_analysis_report` |
 
-**규칙:** 쓰기 도구는 승인 토큰 · `_sandbox/`에서만 가상 호출 · 근거 ID 필수
+**규칙:** 쓰기 도구에는 승인 토큰이 필요하고, 가상 호출은 `_sandbox/`에서만 하며, 결과에는 반드시 근거 ID를 붙입니다.
 
 Repo skills: `/mcp-tool-designer` · `/mcp-smoke-test`
 
@@ -283,7 +283,7 @@ Repo skills: `/mcp-tool-designer` · `/mcp-smoke-test`
 ## Day 4 · HITL + Multi-agent
 
 **기둥:** HITL + Multi-agent  
-**Canvas 9·10:** 승인 게이트·운영 지표를 상태 머신으로 채웁니다.
+**Canvas 9·10:** 승인 게이트와 운영 지표를 상태 머신으로 채웁니다.
 
 **교육 질문:** "역할을 나누고, A2A로 되물을 곳은 어디이며, 사람은 언제 멈춰야 할까요?"
 
@@ -293,17 +293,17 @@ Repo skills: `/mcp-tool-designer` · `/mcp-smoke-test`
 
 ```bash
 cd mx-agentic-ai-day4-multi-agent-hitl
-claude   # agents/ · gate-log.md · 상태도
-# [선택] 기존 Node 데모:
+claude   # agents/, gate-log.md, 상태도를 차례로 만들어요
+# [선택] 기존 Node 데모를 쓰려면:
 npm test && npm run demo && npm run demo:approve
 ```
 
 | 트랙 | 산출 |
 |---|---|
-| **PRD 연속형** | `agents/planner|executor|verifier.md` · `a2a-protocol.md` · `gate-log.md` |
-| **참조(선택)** | `src/` 데모 · 반려 3회 `ESCALATED` |
+| **PRD 연속형** | `agents/`의 `planner.md`, `executor.md`, `verifier.md`, `a2a-protocol.md`, `gate-log.md` |
+| **참조(선택)** | `src/` 데모, 반려 3회 시 `ESCALATED` |
 
-**상태 흐름:** `VERIFIED` → `AWAITING_APPROVAL` → `APPROVED` · 동일 결함 3회 → `ESCALATED` (HOTL)
+**상태 흐름:** `VERIFIED` → `AWAITING_APPROVAL` → `APPROVED` 순으로 진행하고, 같은 결함이 3번 반복되면 `ESCALATED`로 올려 사람이 넘겨받습니다(HOTL).
 
 Repo skills: `/plan-maintenance-analysis` · `/execute-evidence-plan` · `/verify-maintenance-report` · `/request-human-approval`
 
@@ -313,7 +313,7 @@ Repo skills: `/plan-maintenance-analysis` · `/execute-evidence-plan` · `/verif
 
 **목표:** Day 1~4를 `project/`에 통합하고 발표합니다.
 
-**교육 질문:** "Day 1~4를 내 업무 에이전트로 어떻게 통합·발표할까?"
+**교육 질문:** "Day 1~4를 내 업무 에이전트로 어떻게 묶어서 발표할까요?"
 
 <p align="center">
   <img src="./assets/readme/day5-project.svg" width="100%" alt="Day 5 최종 프로젝트 — 4기둥을 project/에 통합">
@@ -326,19 +326,19 @@ Repo skills: `/plan-maintenance-analysis` · `/execute-evidence-plan` · `/verif
 ```bash
 cd mx-agentic-ai-day5-final-project
 claude
-# README 예제 1)~9) 순서대로 붙여넣기 — project/ 조립부터 발표 점검까지
+# README의 예제 1)~9)를 순서대로 붙여넣어요 — project/ 조립부터 발표 점검까지
 # (선택) /final-project-assembler
 ```
 
 | 산출물 | 설명 |
 |---|---|
-| `project/manifest.json` | 레이어 점검 · READY / NOT_READY |
-| `project/docs/final-prd.md` | Canvas 1~10 완성 |
-| `project/docs/architecture.md` | Knowledge / MCP / Agents 4층 |
-| `project/docs/integration-map.md` · `demo-script.md` | 통합 맵 · 5~7분 발표 |
-| `project/evidence/` | demo-data · demo-run · self/final-check |
+| `project/manifest.json` | 레이어 점검 결과 (READY / NOT_READY) |
+| `project/docs/final-prd.md` | Canvas 1~10을 모두 채운 완성본 |
+| `project/docs/architecture.md` | Knowledge / MCP / Agents 4층 구조 |
+| `project/docs/integration-map.md` · `demo-script.md` | 통합 맵과 5~7분 발표 대본 |
+| `project/evidence/` | demo-data, demo-run, self/final-check 증거 |
 
-핸드오프 다이어그램: [`assets/diagrams/curriculum-handoff.html`](./assets/diagrams/curriculum-handoff.html) · [다이어그램 목록](#다이어그램)
+핸드오프 다이어그램은 [`assets/diagrams/curriculum-handoff.html`](./assets/diagrams/curriculum-handoff.html)에 있습니다. 전체 목록은 [다이어그램](#다이어그램)에서 볼 수 있습니다.
 
 Repo skill: `/final-project-assembler`
 
@@ -346,56 +346,56 @@ Repo skill: `/final-project-assembler`
 
 ## Repo skill 사용법
 
-스킬 본문은 `.agents/skills/<name>/SKILL.md`에 있고, Claude Code는 `.claude/skills/` 브리지를 통해 `/skill-name`으로 호출합니다. 일자 폴더에서 `claude`를 연 뒤 아래 skill을 사용합니다.
+스킬 본문은 `.agents/skills/<name>/SKILL.md`에 있고, Claude Code는 `.claude/skills/` 브리지를 통해 `/skill-name`으로 불러옵니다. 일자 폴더에서 `claude`를 연 뒤 아래 스킬을 사용하세요.
 
 | 일차 | Skill | 용도 |
 |:---:|---|---|
 | 1 | `/prd-canvas-builder` | PRD Canvas 1~7, sample-data, expected-output |
 | 2 | `/eco-knowledge-builder` | ECO 지식 정규화, `source_id` 부여 |
-| 2 | `/repo-harness-auditor` | 하네스·원본 잠금·상태 파일 감사 |
-| 3 | `/mcp-tool-designer` | MCP 도구 계약·JSON Schema 설계 |
-| 3 | `/mcp-smoke-test` | initialize → tools/call E2E smoke |
-| 4 | `/plan-maintenance-analysis` | Planner 역할 — 분석 계획 |
-| 4 | `/execute-evidence-plan` | Executor 역할 — 도구 실행 |
-| 4 | `/verify-maintenance-report` | Verifier 역할 — 근거 검증 |
-| 4 | `/request-human-approval` | Human 역할 — 승인 패킷 |
-| 5 | `/final-project-assembler` | `project/` 통합·manifest·발표 자료 |
+| 2 | `/repo-harness-auditor` | 하네스와 원본 잠금, 상태 파일 감사 |
+| 3 | `/mcp-tool-designer` | MCP 도구 계약과 JSON Schema 설계 |
+| 3 | `/mcp-smoke-test` | initialize → tools/call E2E 스모크 테스트 |
+| 4 | `/plan-maintenance-analysis` | Planner 역할 — 분석 계획 세우기 |
+| 4 | `/execute-evidence-plan` | Executor 역할 — 도구 실행하기 |
+| 4 | `/verify-maintenance-report` | Verifier 역할 — 근거 검증하기 |
+| 4 | `/request-human-approval` | Human 역할 — 승인 패킷 만들기 |
+| 5 | `/final-project-assembler` | `project/` 통합, manifest, 발표 자료 |
 
 ## 검증 기준
 
 | 실습 | 자동 검증 | 사람 승인 | 확인 항목 |
 |---|---|:---:|---|
 | Day 1 | `validate_day1.py` | `approve_handoff --day 1` | Canvas 5·6·7, sample-data, prd.pdf |
-| Day 2 | `eval-top3.md` + (선택) `validate_repo.py` | `approve_handoff --day 2` | 지식≥10·근거 ID·Top-3 · `_sandbox/` |
-| Day 3 | 계약·mock 검토 + (선택) smoke | `approve_handoff --day 3` | 계약≥2(읽기+쓰기)·승인 규칙 |
-| Day 4 | 역할·게이트 문서 + (선택) demo | `approve_handoff --day 4` | 역할≥3·HITL·HOTL · `_sandbox/` |
-| Day 5 | README 예제 1~9 (프롬프트) | Day 4 승인 후 진입 | manifest READY · demo-run · demo-script |
+| Day 2 | `eval-top3.md` + (선택) `validate_repo.py` | `approve_handoff --day 2` | 지식 10건 이상, 근거 ID, Top-3, `_sandbox/` |
+| Day 3 | 계약·mock 검토 + (선택) smoke | `approve_handoff --day 3` | 계약 2건 이상(읽기+쓰기), 승인 규칙 |
+| Day 4 | 역할·게이트 문서 + (선택) demo | `approve_handoff --day 4` | 역할 3개 이상, HITL, HOTL, `_sandbox/` |
+| Day 5 | README 예제 1~9 (프롬프트) | Day 4 승인 후 진입 | manifest READY, demo-run, demo-script |
 
-승인 게이트: `python3 scripts/check_day_gate.py --enter-day N`
+승인 게이트는 `python3 scripts/check_day_gate.py --enter-day N`으로 통과합니다.
 
-검증 PASS를 사람 승인으로 간주하지 않습니다. `approve_handoff.py`는 사람이 직접 실행합니다.
+검증 PASS는 사람 승인이 아닙니다. `approve_handoff.py`는 반드시 사람이 직접 실행합니다.
 
 ## 저장소 구조
 
 ```text
 202608_sec_gumi/
 ├── AGENTS.md / CLAUDE.md
-├── docs/                          # 커리큘럼 · 기둥 · 핸드오프 · 배포
-├── scripts/                       # check_day_gate · request/approve_handoff
+├── docs/                          # 커리큘럼, 기둥, 핸드오프, 배포
+├── scripts/                       # check_day_gate, request/approve_handoff
 ├── assets/readme · assets/diagrams
 ├── mx-agentic-ai-day1-prd/        # docs/prd.md · sample-data/
 ├── mx-agentic-ai-day2-knowledge-harness/
-│   ├── knowledge/ · relations.json · eval-top3.md · _sandbox/
-│   └── scripts/ · tests/          # [선택] 참조 검증
+│   ├── knowledge/, relations.json, eval-top3.md, _sandbox/
+│   └── scripts/, tests/           # [선택] 참조 검증
 ├── mx-agentic-ai-day3-mcp-tools/
-│   ├── mcp/*/contract.json        # 계약·mock (PRD 연속형)
+│   ├── mcp/*/contract.json        # 계약과 mock (PRD 연속형)
 │   └── src/                       # [선택] Node MCP 서버
 ├── mx-agentic-ai-day4-multi-agent-hitl/
-│   ├── agents/ · gate-log.md · _sandbox/
+│   ├── agents/, gate-log.md, _sandbox/
 │   └── src/                       # [선택] Node 데모
 └── mx-agentic-ai-day5-final-project/
     ├── README.md                  # 예제 1~9 자연어 프롬프트
-    └── project/                   # Day1~4 통합 발표 패키지
+    └── project/                   # Day 1~4를 모은 발표 패키지
 ```
 
 ## 참고 자료
@@ -407,17 +407,17 @@ Repo skill: `/final-project-assembler`
 | 문서 | 설명 |
 |---|---|
 | [5일 커리큘럼](./docs/curriculum-5day.md) | 일차별 목표·타임라인·산출물 |
-| [기술 기둥](./docs/tech-pillars.md) | 4대 기둥 × Day 매핑·Standard/Advanced |
+| [기술 기둥](./docs/tech-pillars.md) | 4대 기둥과 Day 매핑, Standard/Advanced 구분 |
 | [참조 PRD](./docs/reference-prd.md) | Day 2~4 공통 시나리오 (ECO·설비·품질) |
-| [문서 인덱스](./docs/README.md) | 개념 맵·Claude Code 기준·skill 참고 |
-| [일차 간 핸드오프](./docs/handoffs/README.md) | 사람 승인 게이트·체크리스트 |
-| [GitHub 배포 가이드](./docs/github-deployment-and-quickstart.md) | 강사 배포·팀 브랜치 제출 |
+| [문서 인덱스](./docs/README.md) | 개념 맵, Claude Code 기준, 스킬 참고 |
+| [일차 간 핸드오프](./docs/handoffs/README.md) | 사람 승인 게이트와 체크리스트 |
+| [GitHub 배포 가이드](./docs/github-deployment-and-quickstart.md) | 강사 배포와 팀 브랜치 제출 |
 | [3_AI PRD 가이드 (Notion)](https://adorable-hail-415.notion.site/3_AI-PRD-3c4137efedf680f7a491f3bd50c832c9) | Canvas 10칸 셀프 가이드 |
 
 ## 안전 원칙
 
 - 합성 데이터만 사용합니다. 실제 사업장 정보·개인정보·API 키를 넣지 않습니다.
-- 원본 입력 폴더(`data/raw/`, `data/`, `fixtures/`)는 수정하지 않습니다.
-- 문서에 없는 값은 추정하지 않고 `UNKNOWN` 또는 구조화 실패로 남깁니다.
-- 검증 PASS를 사람 승인으로 간주하지 않습니다.
+- 원본 입력 폴더(`data/raw/`, `data/`, `fixtures/`)는 고치지 않습니다.
+- 문서에 없는 값은 추측하지 않고 `UNKNOWN` 또는 구조화 실패로 남깁니다.
+- 검증이 PASS라도 그것을 사람 승인으로 보지 않습니다.
 - 모든 수치·목록에는 근거 ID(`ECO-*`, `LOG-*`, `QUALITY-*`)가 있어야 합니다.

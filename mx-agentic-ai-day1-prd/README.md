@@ -162,7 +162,7 @@ sample-data/와 expected-output/도 가상 데이터로 만들어 주세요.
    python3 scripts/generate_canvas_pdf.py docs/prd.md docs/prd.pdf
    python3 scripts/validate_day1.py
    ```
-6. 가상 테스트(예제·본인 PRD 재검증)를 진행해도 되는지 나한테 먼저 물어봐요. 승인을 받으면 아래 [테스트 조건]에 따라 진행해요
+6. 가상 테스트(예제·본인 PRD 재검증)를 진행해도 되는지 강사에게 먼저 확인해요. 승인을 받으면 아래 [테스트 조건]에 따라 진행해요
 7. 프로필·핸드오프를 준비해요
    ```bash
    python3 scripts/init_project_profile.py
