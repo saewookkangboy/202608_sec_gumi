@@ -1,287 +1,135 @@
-<p align="center">
-  <img src="../assets/readme/day3-mcp.svg" width="100%" alt="Day 3 루프와 E2E — initialize, tools/list, tools/call 스모크 경로와 읽기 도구, APPROVE_WRITE 쓰기 게이트를 구분한다">
-</p>
+# Day 3 — MCP 연동 (PRD 기반 가상 MCP)
 
-<p align="center">
-  <a href="#이론">이론</a> ·
-  <a href="#사용법">사용법</a> ·
-  <a href="#저장소-받기-및-실행">저장소</a> ·
-  <a href="#실습-예제-안내">예제</a> ·
-  <a href="#실습-예제-실행-방법">실행</a> ·
-  <a href="#어려움이-생기면">문제 해결</a> ·
-  <a href="#완료-기준">완료</a> ·
-  <a href="#day-4-연결">Day 4</a>
-</p>
+> 레포 경로: `mx-agentic-ai-day3-mcp-tools/README.md`
+>
+> ⚠️ 참고: 레포의 기존 Day3은 실제 동작하는 Node MCP 서버(`npm test && npm run smoke`)를 사용했어요. 이 버전은 코딩 배경이 다른 교육생도 따라갈 수 있도록 **계약 설계 + 가상 응답** 중심으로 단순화했어요. 기존 서버 코드(`src/` 등)가 있다면 지우지 말고, [선택] 단계에서 그대로 이어서 확장해도 돼요.
 
-외부 계정 없이 **로컬 MCP**로 AI가 설비 데이터에 안전하게 접근합니다. **기술 기둥: MCP 제작·외부 연동**
+**교육 질문**: PRD Canvas 5의 AI 역할을 도구로 쪼갠다면, 그 도구가 실제로 존재한다고 가정할 때 계약은 어떤 모양이어야 할까요?
 
 ---
 
 ## 이론
 
-### Day 3가 하는 일
+**MCP(Model Context Protocol)란**
+AI가 외부 도구·데이터에 표준화된 방식으로 접근하게 해주는 프로토콜이에요. 핵심은 도구를 "계약(contract)"으로 먼저 정의하는 거예요 — 입력 스키마, 출력 스키마, 오류 상황.
 
-Day 3는 PRD의 **"AI 역할"을 도구(Tool)로 쪼갭니다.** MCP(Model Context Protocol)는 AI가 **읽기·쓰기·집계**를 표준 방식으로 호출하는 **연결 규약**입니다. 위험한 **쓰기**는 승인 토큰 없이는 **dry-run**(시뮬레이션)만 합니다.
+**왜 "가상" MCP인가**
+계약 + 모의 응답(mock)으로 설계를 먼저 검증해요. 계약이 정확하면 나중에 실제 구현으로 그대로 교체할 수 있어요 — Day3의 목표는 "동작하는 코드"가 아니라 "정확한 설계"예요.
 
-### MCP E2E
+**읽기 도구 vs 쓰기 도구**
+- 읽기 도구: 조회만 하므로 자유롭게 실행해요
+- 쓰기 도구: 보고서 저장, 발주, 알림 발송처럼 결과를 남기는 도구예요 → 승인 토큰이 필요해요
 
-```mermaid
-sequenceDiagram
-  participant U as 사용자/Claude
-  participant M as MCP 클라이언트
-  participant S as server.mjs<br/>(stdio)
-  participant D as data/equipment_logs.csv
-
-  U->>M: 질문 (설비 오류 집계)
-  M->>S: initialize
-  S-->>M: OK
-  M->>S: tools/list
-  S-->>M: 3개 도구 목록
-  M->>S: tools/call list_equipment_logs
-  S->>D: 읽기만
-  D-->>S: 로그 데이터
-  S-->>M: evidence_id 포함 결과
-  M->>S: tools/call write (승인 없음)
-  S-->>M: dry-run (파일 미생성)
-```
-
-### 3개 도구 구조
-
-```mermaid
-flowchart TB
-  subgraph 읽기["읽기 전용"]
-    L[list_equipment_logs<br/>기간별 로그 조회]
-    G[get_equipment_errors<br/>오류 집계 + evidence_id]
-  end
-
-  subgraph 쓰기["쓰기 (승인 필요)"]
-    W[write_analysis_report]
-    T{APPROVE_WRITE<br/>토큰 있음?}
-    O[outputs/ 저장]
-    DR[dry-run만]
-  end
-
-  L --> G
-  W --> T
-  T -->|Yes| O
-  T -->|No| DR
-```
-
-### PRD 연결
-
-| Day 1 PRD | Day 2 지식 | Day 3 실습 |
-|---|---|---|
-| 5 AI 역할 (조회) | ECO `equipment` 필드 | `list_equipment_logs`, `get_equipment_errors` |
-| 5 하면 안 되는 일 | 원본 수정 금지 | `write` dry-run |
-| 6 evidence | `source_id` | `evidence_id` = `LOG-*` |
-| 8 E2E 평가 | Top-3 eval | `npm test` + `npm run smoke` |
+이 구분이 Day4의 HITL 게이트와 바로 연결돼요.
 
 ---
 
 ## 사용법
 
-| 순서 | 할 일 | 팁 |
-|:---:|---|---|
-| 1 | **Day 2 승인** 후 진입 | `check_day_gate.py --enter-day 3` |
-| 2 | **Node.js 20+** 확인 | `node --version` |
-| 3 | **npm test → npm run smoke** 순서 | test=로직, smoke=전체 E2E |
-| 4 | **MCP 연결 확인** | `claude mcp list`에 `equipment-log` 표시 |
-| 5 | **쓰기는 강사 승인 후만** | `APPROVE_WRITE` 토큰 |
-| 6 | **stdout ≠ 로그** | 서버 진단은 stderr |
-
-**비개발자 안내**
-
-- `npm test`는 **자동 채점**입니다. 빨간 글씨(FAIL)가 나오면 해당 항목을 AI에게 수정 요청하세요.
-- MCP는 **"AI용 USB 포트"**라고 생각하면 됩니다. Claude Code가 `.mcp.json`으로 같은 stdio 서버를 연결합니다.
-- `data/equipment_logs.csv`는 **원본**입니다. 수정하지 마세요.
+1. 레포 루트에서 `cd mx-agentic-ai-day3-mcp-tools` 후 Claude Code를 열어요.
+2. Day2 지식은 `../mx-agentic-ai-day2-knowledge-harness/knowledge/`를, Day1 PRD는 `../mx-agentic-ai-day1-prd/docs/prd.md`를 참조해요 (모두 읽기 전용).
+3. 코딩 배경이 없는 팀은 **계약 설계 + 가상 실행**까지만 하면 Day4 진입 조건을 충족해요. [선택] 표시된 단계는 SW 개발 가능 팀만 진행해요.
 
 ---
 
-## 저장소 받기 및 실행
+## 저장소 구조
 
-### Day 3 진입
-
-```bash
-cd 202608_sec_gumi
-python3 scripts/check_day_gate.py --enter-day 3
-cd mx-agentic-ai-day3-mcp-tools
 ```
-
-### Node.js 확인 (처음 한 번)
-
-```bash
-node --version    # v20 이상 권장
-npm --version
-```
-
-### 매 실습 시작할 때
-
-```bash
-cd 202608_sec_gumi/mx-agentic-ai-day3-mcp-tools
-python3 ../scripts/verify_dummy_data.py   # data/equipment_logs.csv 포함 확인
-claude mcp list    # equipment-log 연결 확인
-claude
-```
-
-MCP가 안 보이면:
-
-```bash
-claude mcp add --scope project --transport stdio equipment-log -- node src/server.mjs
-claude mcp get equipment-log
+202608_sec_gumi/
+├── mx-agentic-ai-day1-prd/docs/prd.md          # 참조만
+├── mx-agentic-ai-day2-knowledge-harness/
+│   └── knowledge/                              # 참조만
+└── mx-agentic-ai-day3-mcp-tools/
+    ├── README.md
+    ├── (기존 src/, package.json 등 — 있다면 유지)
+    └── mcp/
+        ├── [도구명1]/
+        │   ├── contract.json                   # 입력·출력·오류 스키마
+        │   └── mock-response.json              # 계약에 맞는 샘플 응답
+        ├── [도구명2]/
+        │   └── ...
+        └── approval-rule.md                    # 승인 필요 도구 목록과 이유
 ```
 
 ---
 
-## 실습 예제 안내
+## 예제 (오늘 쓸 프롬프트 — 순서대로)
 
-### Dummy Data (GitHub clone 포함)
-
-| 항목 | 경로 (이 폴더 기준) | 비고 |
-|---|---|---|
-| 설비 로그 | `data/equipment_logs.csv` | **읽기 전용**, MCP `DATA` 경로 |
-
-컬럼: `timestamp`, `equipment_id`, `level`, `error_code`, `message`  
-권장 조회 기간: `2026-08-11` ~ `2026-08-15`
-
-```bash
-python3 ../scripts/verify_dummy_data.py
-head -n 3 data/equipment_logs.csv
+**1) 확산 — 도구 후보**
+```
+../mx-agentic-ai-day1-prd/docs/prd.md의 AI 역할을 실행하려면
+어떤 외부 데이터·시스템에 접근해야 하나요? 읽기만 하면 되는 것과,
+뭔가 쓰거나 실행해야 하는 것을 구분해서 나한테 물어봐 주세요.
 ```
 
-서버 코드는 `src/domain.mjs`의 `data/equipment_logs.csv`만 읽습니다. CSV를 수정하지 마세요. 가이드: [`docs/dummy-data.md`](../docs/dummy-data.md)
+**2) 수렴 — 계약 설계**
+```
+이 중 하나를 골라서, 입력/출력/오류 상황을
+JSON Schema로 설계하도록 나한테 물어봐 주세요.
+출력엔 반드시 근거 ID 필드가 있어야 해요.
+mcp/[도구명]/contract.json으로 저장해 주세요.
+```
 
-### 시나리오: 설비 로그 분석
+**3) 가상 실행**
+```
+실제 서버 코드 없이, 이 도구가 호출됐다고 가정하고
+Claude Code 안에서 가짜 응답(mock)을 만들어서
+mcp/[도구명]/mock-response.json에 저장해 주세요.
+그 응답이 계약과 일치하는지, 근거 ID가 빠짐없는지
+나한테 검토시켜 주세요.
+```
 
-| 항목 | 내용 |
+**4) 승인 규칙**
+```
+이 도구 중에 사람 승인 없이 실행되면 위험한 게 있나요?
+왜 위험한지 나한테 물어봐서 승인 토큰이 필요한 도구를
+approval-rule.md에 표시해 주세요.
+```
+
+**5) [선택] 실제 구현 — SW 개발 가능 팀만**
+```
+이 계약대로 최소 동작하는 서버를 실제로 만들어보고 싶다면
+뭐부터 시작해야 할지 물어봐 주세요. 이 폴더에 기존 Node 서버
+코드가 있는지 먼저 확인하고, 있다면 그걸 확장하는 방향으로
+제안해 주세요.
+```
+
+---
+
+## 실행
+
+1. 도구 후보 3개 이상을 도출해요 (읽기 2 + 쓰기 1 권장)
+2. 계약을 설계해요 — `contract.json`, 출력에 근거 ID 필드 필수
+3. 가상 실행을 진행해요 — `mock-response.json`을 생성하고, 계약과 대조 검토해요
+4. `approval-rule.md`를 작성해요
+5. [선택] SW팀은 최소 동작 서버를 구현해요
+6. `../mx-agentic-ai-day1-prd/docs/prd.md`의 Canvas 5·6을 갱신해요
+7. 모든 도구 계약이 준비되면, 임시 환경(`mx-agentic-ai-day3-mcp-tools/_sandbox/`)에서 가상 테스트를 진행해도 되는지 나한테 먼저 물어봐 주세요. 승인을 받으면 아래 [테스트 조건]에 따라 진행해요
+8. 가상 테스트 결과가 안정적이면 강사·멘토에게 최종 승인을 요청해요 (레포의 `approve_handoff.py --day 3`로 기록해요)
+
+**Day3 승인 조건**: 도구 계약 최소 2개(읽기1+쓰기1) / 모든 mock 응답에 근거 ID 존재 / 승인 필요 도구 명시
+
+---
+
+## 테스트 조건 (가상 테스트 — 임시 환경)
+
+| 조건 | 내용 |
 |---|---|
-| 데이터 | `data/equipment_logs.csv` (합성 설비 로그) |
-| 목표 | 기간별 로그 조회 → 오류 코드 집계 → (승인 시) 보고서 저장 |
-| Day 2 연결 | ECO의 `PRESS-01`, `PRESS-03` 등이 설비 ID와 동일 |
-
-### 폴더 구조
-
-```text
-mx-agentic-ai-day3-mcp-tools/
-├── data/equipment_logs.csv   ← 원본 (읽기 전용)
-├── src/server.mjs            ← MCP 서버
-├── .mcp.json                 ← Claude Code MCP 설정
-├── outputs/                  ← 승인된 쓰기만
-├── test/                     ← 단위 테스트
-└── scripts/smoke-test.mjs    ← E2E smoke
-```
-
-### 제공 도구
-
-| 도구 | 하는 일 | 부작용 |
-|---|---|---|
-| `list_equipment_logs` | 날짜 범위의 설비·레코드 수 조회 | 없음 |
-| `get_equipment_errors` | 설비 ID·날짜별 오류 집계 | `evidence_id` 반환 |
-| `write_analysis_report` | 분석 보고서 생성 | `APPROVE_WRITE`일 때만 `outputs/` 기록 |
+| 실행 위치 | `mx-agentic-ai-day3-mcp-tools/_sandbox/`에서만 진행해요. `mcp/` 원본 계약 파일은 건드리지 않아요 |
+| 데이터 | 합성 데이터로 만든 mock 응답만 사용해요 |
+| 테스트 범위 | 읽기 도구 1개 + 쓰기 도구 1개를 순서대로 3~5회 호출해서, 승인 토큰 없이는 쓰기 도구가 실행되지 않는지 확인해요 |
+| 되돌리기 | `_sandbox/` 폴더만 삭제하면 원상 복구돼요. 실제 서버·시스템에는 연결하지 않아요 |
+| 시간 | 10분 안에 끝내요 |
+| 결과 반영 | 문제를 발견하면 승인 후 `contract.json`을 수정해요. 가상 테스트 자체는 정식 산출물에 포함하지 않아요 |
 
 ---
 
-## 실습 예제 실행 방법
+## 문제 해결
 
-### 1단계 — 자동 검증 (터미널)
-
-```bash
-cd mx-agentic-ai-day3-mcp-tools
-npm test
-npm run smoke
-```
-
-둘 다 **PASS**이면 기본 실습 완료입니다.
-
-### 2단계 — Claude Code skill
-
-```text
-/mcp-tool-designer를 사용해 src/server.mjs의 세 도구 계약을 감사해줘.
-단일 책임, 입력 스키마, evidence_id, 오류 형식, 읽기/쓰기 권한을 정리해.
-write_analysis_report는 outputs/에만 쓰고 APPROVE_WRITE가 없으면 dry-run이어야 해.
-```
-
-```text
-/mcp-smoke-test를 실행해 initialize -> tools/list -> tools/call을 검증해줘.
-정확히 3개 도구, 오류 집계와 evidence_id, 역전 날짜의 구조화 오류,
-승인 없는 write의 dry-run, data/equipment_logs.csv 불변성을 확인해줘.
-```
-
-### 3단계 — 시나리오 실행 (Claude Code)
-
-```text
-equipment-log MCP를 사용해 다음을 순서대로 수행해줘.
-1. 2026-08-11~2026-08-15 로그의 설비별 레코드 수를 조회한다.
-2. 같은 기간 오류 코드를 집계하고 모든 수치에 evidence_id를 붙인다.
-3. 시작일이 종료일보다 늦은 요청으로 구조화 오류를 확인한다.
-4. write_analysis_report를 승인 없이 호출해 dry-run과 파일 미생성을 확인한다.
-5. 사람의 명시적 승인 전에는 실제 쓰기를 수행하지 않는다.
-각 단계의 도구명, 입력, 출력, 검증 결과를 표로 정리해줘.
-```
-
-**강사 승인 후 쓰기 (선택)**
-
-```text
-APPROVE_WRITE를 승인 토큰으로 사용해 앞서 검증한 분석만 outputs/에 저장해줘.
-```
-
-### 4단계 — 제출
-
-```bash
-npm test && npm run smoke
-git add src/ scripts/ test/ outputs/ README.md
-git commit -m "feat(day3): complete MCP E2E lab"
-git push -u origin HEAD
-```
-
-### 5단계 — Day 4 진입
-
-```bash
-python3 ../scripts/request_handoff.py --day 3
-python3 ../scripts/approve_handoff.py --day 3 --reviewer "이름" --role instructor
-python3 ../scripts/check_day_gate.py --enter-day 4
-```
-
----
-
-## 어려움이 생기면
-
-| 즹상 | 원인 | 해결 |
-|---|---|---|
-| `node: command not found` | Node.js 미설치 | [Node.js 20 LTS](https://nodejs.org/) 설치 |
-| `npm test` FAIL | 도구 로직 오류 | 오류 메시지를 Claude에게 전달해 수정 요청 |
-| `npm run smoke` FAIL | MCP 프로토콜·E2E 문제 | `node src/server.mjs` 단독 실행 여부 확인 |
-| `equipment-log` 미표시 | MCP 미등록 | `claude mcp add ...` 명령 재실행 |
-| 승인 없이 파일 생성됨 | 쓰기 게이트 오류 | **즉시 강사 보고**, `outputs/` 확인 |
-| CSV 변경됨 | 원본 수정 | git으로 복구, `data/` 수정 금지 |
-| JSON-RPC 오류 | stdout에 로그 출력 | 서버는 stderr만 사용해야 함 |
-
-**추가 도움:** `npm test` + `npm run smoke` 전체 출력을 강사에게 전달하세요.
-
----
-
-## 완료 기준
-
-- [ ] 정확히 **3개** MCP 도구
-- [ ] 오류 집계에 `evidence_id` (`LOG-*`) 포함
-- [ ] 역전 날짜 → 구조화 오류
-- [ ] 승인 없는 `write` → dry-run, 파일 미생성
-- [ ] `data/equipment_logs.csv` 불변
-- [ ] `npm test` + `npm run smoke` **PASS**
-- [ ] 강사 **사람 승인** (`approve_handoff --day 3`)
-
----
-
-## Day 4 연결
-
-[`docs/handoffs/day3-to-day4.md`](../docs/handoffs/day3-to-day4.md) — Day 4 Executor가 Day 3 MCP 도구를 호출합니다.
-
-```bash
-cd ../mx-agentic-ai-day4-multi-agent-hitl
-```
-
-## 참고 자료
-
-- [Dummy Data 가이드](../docs/dummy-data.md)
-- [외부 MCP 연동](./docs/external-mcp-integration.md)
-- [GitHub 배포 가이드](../docs/github-deployment-and-quickstart.md)
-- [skill·기술 참고](./docs/skill-and-tech-reference.md)
+| 상황 | 대응 |
+|---|---|
+| 도구가 너무 커서 계약이 복잡해짐 | 하나의 도구는 하나의 책임만 갖도록 쪼개요 |
+| mock 응답에 근거 ID를 못 넣음 | Day2 `../mx-agentic-ai-day2-knowledge-harness/knowledge/` 항목과 연결되는지 다시 확인해요 |
+| "이게 실제로 되는지 모르겠다"는 불안 | Day3의 목표는 계약 검증이지 구현이 아니라는 점을 다시 안내해요 |
+| 읽기/쓰기 구분이 애매함 | "이 도구가 실행되면 되돌릴 수 있는가?"로 판단해요 — 되돌릴 수 없으면 쓰기예요 |
+| 기존 Node 서버 코드와 충돌 | `mcp/`는 계약·mock 전용 폴더로 새로 두고, 기존 `src/`는 [선택] 단계에서만 건드려요 |

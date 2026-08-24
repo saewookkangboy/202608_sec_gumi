@@ -1,258 +1,160 @@
-<p align="center">
-  <img src="../assets/readme/day5-project.svg" width="100%" alt="Day 5 최종 프로젝트 — Harness, LLMWiki, MCP, HITL 4기둥 통합 발표">
-</p>
+# Day 5 — 최종 프로젝트 통합 및 데모
 
-<p align="center">
-  <a href="#이론">이론</a> ·
-  <a href="#사용법">사용법</a> ·
-  <a href="#저장소-받기-및-실행">저장소</a> ·
-  <a href="#실습-예제-안내">예제</a> ·
-  <a href="#실습-예제-실행-방법">실행</a> ·
-  <a href="#어려움이-생기면">문제 해결</a> ·
-  <a href="#발표-준비">발표</a>
-</p>
+> 레포 경로: `mx-agentic-ai-day5-final-project/README.md`
+> 스크립트: `mx-agentic-ai-day5-final-project/scripts/assemble_project.py`
 
-Day 1~4 실습을 **최종 결과물(`project/`)**로 통합하고 **5~7분 발표**로 마무리합니다.
+**교육 질문**: Day1~4를 내 업무 에이전트로 어떻게 통합하고, 실제로 동작하는 것을 어떻게 증명할까요?
 
 ---
 
 ## 이론
 
-### Day 5가 하는 일
-
-Day 5는 **"내 업무 에이전트"**를 한 폴더에 모읍니다. Day 1 PRD의 빈 칸(8·9·10)을 Day 2~4에서 채운 내용으로 **완성**하고, 4대 기술 기둥이 어떻게 연결되는지 **아키텍처·증거·데모**로 설명합니다.
-
-### 4층 아키텍처
-
-```mermaid
-flowchart TB
-  subgraph L4["Layer 4 · Agents (Day 4)"]
-    A[role-contracts.md<br/>hitl-policy.md]
-  end
-
-  subgraph L3["Layer 3 · MCP (Day 3)"]
-    M[integration-plan.md<br/>도구 계약]
-  end
-
-  subgraph L2["Layer 2 · Knowledge (Day 2)"]
-    K[wiki-index.md<br/>eval 증거]
-  end
-
-  subgraph L1["Layer 1 · Harness (Day 2)"]
-    H[AGENTS.md 규칙<br/>검증·상태]
-  end
-
-  subgraph DOC["문서 (Day 1 + 통합)"]
-    F[final-prd.md<br/>Canvas 1~10]
-    AR[architecture.md]
-    IM[integration-map.md]
-    DS[demo-script.md]
-  end
-
-  L1 --> L2 --> L3 --> L4
-  DOC --> L4
-```
-
-### Day 1~4 → project/
-
-```mermaid
-flowchart LR
-  D1[Day 1<br/>prd.md] -->|sync_from_prd| FP[final-prd.md]
-  D2[Day 2<br/>knowledge/] --> K[project/knowledge/]
-  D2 --> H[project/harness/]
-  D3[Day 3<br/>MCP] --> M[project/mcp/]
-  D4[Day 4<br/>agents/] --> A[project/agents/]
-  D2 --> E[project/evidence/]
-  D3 --> E
-  D4 --> E
-
-  FP --> ASM[assemble_project.py]
-  K --> ASM
-  H --> ASM
-  M --> ASM
-  A --> ASM
-  E --> ASM
-  ASM --> MAN[manifest.json]
-  ASM --> VAL[validate_day5.py]
-```
-
-### Day별 반영
-
-| Day | 기술 기둥 | Day 5 반영 |
-|:---:|---|---|
-| 1 | PRD 정의 | `project/docs/final-prd.md` |
-| 2 | Harness + LLMWiki/GraphRAG | `project/harness/`, `project/knowledge/` |
-| 3 | MCP 제작·외부 연동 | `project/mcp/` |
-| 4 | HITL + Multi-agent | `project/agents/` |
-
-커리큘럼: **[5일](../docs/curriculum-5day.md)** · **[기술 기둥](../docs/tech-pillars.md)**
+- Day1~4는 레포 안의 서로 다른 최상위 폴더에 흩어져 있어요. Day5는 새로 만드는 날이 아니라 **그 4개 폴더의 산출물을 모으고, 실행해서, 증명하는 날**이에요.
+- 4층 구조: `mx-agentic-ai-day1-prd/(정의)` → `mx-agentic-ai-day2-knowledge-harness/(신뢰)` → `mx-agentic-ai-day3-mcp-tools/(실행)` → `mx-agentic-ai-day4-multi-agent-hitl/(거버넌스)`. `project/` 폴더가 이 4층을 하나로 모아 보여줘요.
+- **"검증 PASS ≠ 완성"** — 각 Day의 자동 체크리스트를 통과했어도, 실제로 데모 데이터를 흘려보내서 처음부터 끝까지 동작하는 모습을 사람이 직접 봐야 완성이에요.
 
 ---
 
 ## 사용법
 
-| 순서 | 할 일 | 팁 |
-|:---:|---|---|
-| 1 | **Day 4 승인** 후 진입 | `check_day_gate.py --enter-day 5` |
-| 2 | **sync → assemble → validate** 순서 | 스크립트가 폴더 구조를 맞춤 |
-| 3 | **팀 PRD 중심**으로 final-prd 작성 | 참조 PRD가 아닌 **본인 Day 1 PRD** |
-| 4 | **integration-map**에 증거 경로 | Day 2~4 PASS·파일 위치 |
-| 5 | **demo-script** 5~7분 분량 | 문제→구현→검증→한계 |
-| 6 | **validate_day5.py PASS** 후 발표 | 구조 누락 방지 |
-
-**비개발자 안내**
-
-- `assemble_project.py`는 **자동 정리**입니다. Day 1~4 산출물을 `project/`에 모읍니다.
-- 발표는 **코드 설명이 아니라** "왜 이렇게 설계했는가"에 집중하세요.
-- [`presentation-rubric.md`](./docs/presentation-rubric.md)로 자가 점검하세요.
+1. `cd mx-agentic-ai-day5-final-project` 후 `python3 scripts/assemble_project.py`를 실행해서 `project/` 폴더를 만들어요. 레포 루트는 스크립트 위치 기준으로 자동 계산되니 별도 인자는 필요 없어요.
+2. 이후 [예제] 섹션의 프롬프트를 순서대로 Claude Code에 붙여넣어 **데모 데이터 생성 → E2E 실행 → 발표 스크립트 작성**까지 진행해요.
+3. 스크립트는 Day1~4 원본 파일을 건드리지 않고 `project/`에만 복사·생성해요 — 몇 번을 다시 실행해도 안전해요.
 
 ---
 
-## 저장소 받기 및 실행
+## 저장소 구조
 
-### Day 5 진입
-
-```bash
-cd 202608_sec_gumi
-python3 scripts/check_day_gate.py --enter-day 5
-cd mx-agentic-ai-day5-final-project
 ```
-
-### 매 실습 시작할 때
-
-```bash
-cd 202608_sec_gumi/mx-agentic-ai-day5-final-project
-python3 scripts/sync_from_prd.py
-python3 scripts/assemble_project.py
-claude
-# /final-project-assembler
-python3 scripts/validate_day5.py
-```
-
-Claude Code skill: `/final-project-assembler`
-
----
-
-## 실습 예제 안내
-
-### 최종 산출물: `project/` 폴더
-
-```text
-project/
-├── manifest.json              ← assemble_project.py가 생성
-├── docs/
-│   ├── final-prd.md           ← Canvas 1~10 완성
-│   ├── architecture.md        ← 4층 스택 설명
-│   ├── integration-map.md       ← Day 2~4 증거·PASS·경로
-│   └── demo-script.md         ← 5~7분 발표 대본
-├── harness/                   ← Day 2 Harness 규칙 요약
-├── knowledge/                 ← Day 2 지식·eval 요약
-├── mcp/                       ← Day 3 도구·연동 계획
-├── agents/                    ← Day 4 역할·HITL 정책
-└── evidence/                  ← Day 2~4 테스트·실행 요약
-```
-
-### 발표 스토리 권장 구조
-
-```mermaid
-flowchart LR
-  P[1. 문제<br/>30분 수동 분석] --> S[2. PRD<br/>AI 역할·금지]
-  S --> T[3. 4기둥<br/>Harness·Wiki·MCP·HITL]
-  T --> D[4. 데모<br/>근거 ID·승인 게이트]
-  D --> L[5. 한계<br/>UNKNOWN·합성 데이터]
+202608_sec_gumi/
+├── CLAUDE.md
+├── mx-agentic-ai-day1-prd/docs/prd.md
+├── mx-agentic-ai-day2-knowledge-harness/{knowledge/, relations.json, eval-top3.md}
+├── mx-agentic-ai-day3-mcp-tools/mcp/
+├── mx-agentic-ai-day4-multi-agent-hitl/{agents/, gate-log.md}
+└── mx-agentic-ai-day5-final-project/
+    ├── README.md
+    ├── scripts/
+    │   └── assemble_project.py
+    └── project/                        # 오늘 생성되는 발표 패키지
+        ├── manifest.json
+        ├── docs/
+        │   ├── prd.md · CLAUDE.md · relations.json · eval-top3.md · gate-log.md   # Day1~4에서 복사
+        │   ├── final-prd.md
+        │   ├── architecture.md
+        │   ├── integration-map.md      # 스크립트가 자동 생성
+        │   └── demo-script.md
+        ├── evidence/
+        │   ├── demo-data.json
+        │   └── demo-run-[날짜].json
+        ├── knowledge/  (복사본)
+        ├── mcp/        (복사본)
+        └── agents/     (복사본)
 ```
 
 ---
 
-## 실습 예제 실행 방법
+## 예제
 
-### 1단계 — Day 1 PRD 동기화
-
+### 1) project/ 생성
 ```bash
 cd mx-agentic-ai-day5-final-project
-python3 scripts/sync_from_prd.py
-```
-
-`sync_from_prd.py`가 Day 1 `docs/prd.md`를 `project/docs/final-prd.md` 초안에 넣습니다.
-
-### 2단계 — 프로젝트 조립
-
-```bash
 python3 scripts/assemble_project.py
 ```
+`project/manifest.json`의 `overall_status`가 `READY`가 아니면, 어떤 레이어가 부족한지 콘솔 출력에 나와요. 그 Day 폴더로 돌아가 보강한 뒤 다시 실행해요 — 안전하게 덮어써요.
 
-Day 2~4 산출물을 수집하고 `manifest.json`을 생성합니다.
-
-### 3단계 — Claude Code로 문서 완성
-
-```text
-/final-project-assembler를 사용해 project/ 통합을 완성해줘.
-final-prd.md의 Canvas 8·9·10을 Day 2~4 증거로 채우고,
-architecture.md, integration-map.md, demo-script.md를 작성해.
-Day 1 팀 PRD를 중심으로 하되 참조 PRD와의 차이를 명시해줘.
-완료 전 validate_day5.py를 실행해줘.
+### 2) 데모 데이터 생성 (그대로 붙여넣기)
+```
+project/docs/prd.md의 배경/사용자/데이터 섹션을 읽고,
+이 도메인에 맞는 합성 데모 데이터를 5~10건 만들어 주세요.
+실제 회사명·개인정보는 절대 쓰지 말고, 근거 ID 형식은
+project/knowledge/*.md에서 쓰던 방식과 통일해 주세요.
+project/evidence/demo-data.json으로 저장해 주세요.
 ```
 
-### 4단계 — 검증
-
-```bash
-python3 scripts/validate_day5.py
+### 3) E2E 실행 시뮬레이션 (그대로 붙여넣기)
+```
+방금 만든 project/evidence/demo-data.json을 입력으로,
+project/agents/planner.md 역할이 계획을 세우고,
+project/agents/executor.md 역할이 project/mcp/[도구명]/contract.json에
+따라 도구를 호출한다고 가정해서 mock 응답을 만들고,
+project/agents/verifier.md 역할이 그 결과를 검증하는 과정을
+순서대로 실행해 주세요. 각 단계 결과를 근거 ID와 함께
+project/evidence/demo-run-[오늘날짜].json에 기록해 주세요.
+근거 없는 값은 만들지 말고 UNKNOWN으로 남겨 주세요.
 ```
 
-**PASS** 항목 예시:
+### 4) HITL 게이트 실행 (그대로 붙여넣기)
+```
+검증까지 끝났으면 project/docs/gate-log.md에 정의한 승인
+지점에서 멈추고, 내가 승인·반려를 선택할 수 있는 형태로
+결과를 보여 주세요. 내가 승인하면 최종 상태를 APPROVED로
+project/evidence/demo-run-*.json에 기록해 주세요.
+```
 
-- `final-prd.md` Canvas 1~10 존재
-- `architecture.md` 4층 구조
-- `integration-map.md` Day 2~4 경로
-- `manifest.json` tech_pillars 4개
-- `evidence/` 요약 파일
+### 5) 아키텍처 문서 (그대로 붙여넣기)
+```
+project/docs/architecture.md에 PRD → Knowledge → MCP →
+Agents 4층이 서로 어떻게 연결되는지 mermaid 다이어그램으로
+그려 주세요. 각 층에서 어떤 파일이 다음 층의 입력이 되는지도
+같이 표시해 주세요.
+```
 
-### 5단계 — 발표 연습
+### 6) 최종 PRD 완성 (그대로 붙여넣기)
+```
+project/docs/prd.md의 Canvas 1~10 전체를 지금까지 쌓은
+산출물(지식, MCP 계약, 에이전트 역할, 승인 게이트)을
+반영해서 project/docs/final-prd.md로 완성해 주세요.
+빠진 칸이 있으면 나한테 물어봐 주세요.
+```
 
-1. `demo-script.md` 읽으며 **5~7분** 맞추기
-2. 승인 게이트(`AWAITING_APPROVAL`) 장면 포함
-3. 근거 ID(`ECO-*`, `LOG-*`, `QUALITY-*`) 한 번 이상 언급
-4. [발표 루브릭](./docs/presentation-rubric.md) 자가 점검
-
----
-
-## 어려움이 생기면
-
-| 즹상 | 원인 | 해결 |
-|---|---|---|
-| `check_day_gate` 거부 | Day 4 미승인 | `approve_handoff --day 4` |
-| `sync_from_prd` 실패 | Day 1 `prd.md` 없음 | Day 1 폴더에서 PRD 완성 후 재실행 |
-| `assemble` 일부 누락 | Day 2~4 미완료 | 해당 Day 검증 PASS 확인 |
-| `validate_day5` FAIL | 문서·폴더 구조 누락 | 오류 메시지의 파일명 확인·생성 |
-| `final-prd` 8·9·10 비어 있음 | Day 2~4 회고 미반영 | integration-map·evidence 참고해 채움 |
-| `manifest` tech_pillars 불일치 | 기둥 증거 부족 | harness/knowledge/mcp/agents 폴더 확인 |
-| 발표 시간 초과 | demo-script 과다 | 문제·데모·한계만 남기고 축약 |
-
-**추가 도움:** `validate_day5.py` 전체 출력 + `project/` 트리(`ls -R project/`)를 강사에게 전달하세요.
-
----
-
-## 발표 준비
-
-| 체크 | 항목 |
-|:---:|---|
-| ☐ | `assemble_project.py` 완료 |
-| ☐ | `validate_day5.py` **PASS** |
-| ☐ | `final-prd.md` Canvas 1~10 완성 |
-| ☐ | `demo-script.md` 5~7분 분량 |
-| ☐ | 4기둥 각각 1문장 이상 설명 가능 |
-| ☐ | HITL 승인 게이트 데모 포함 |
-| ☐ | 합성 데이터·UNKNOWN 한계 언급 |
-
-[발표 루브릭 →](./docs/presentation-rubric.md)
+### 7) 발표 스크립트 (그대로 붙여넣기)
+```
+지금까지의 project/ 전체 내용(final-prd, architecture,
+integration-map, demo-run)을 바탕으로 5~7분 발표
+스크립트를 "문제 → 구현 → 검증 → 한계" 순서로
+project/docs/demo-script.md에 작성해 주세요. 심사자가
+반박할 만한 지점도 "한계" 섹션에 미리 넣어 주세요.
+```
 
 ---
 
-## 참고 자료
+## 실행
 
-- [Day 2 LLMWiki + GraphRAG](../mx-agentic-ai-day2-knowledge-harness/docs/llmwiki-graphrag-bridge.md)
-- [Day 3 외부 MCP 연동](../mx-agentic-ai-day3-mcp-tools/docs/external-mcp-integration.md)
-- [Day 4 HITL 핸드오프](../mx-agentic-ai-day4-multi-agent-hitl/docs/day5-handoff.md)
-- [skill·기술 참고](./docs/skill-and-tech-reference.md)
-- [GitHub 배포 가이드](../docs/github-deployment-and-quickstart.md)
-- [핸드오프 다이어그램](../assets/diagrams/curriculum-handoff.html)
+1. `python3 scripts/assemble_project.py`를 실행하고, `project/manifest.json`에서 `overall_status: READY`를 확인해요
+2. E2E 실행에 들어가기 전에, 임시 환경(`project/evidence/`)에서 가상 테스트를 진행해도 되는지 나한테 먼저 물어봐 주세요. 승인을 받으면 아래 [테스트 조건]에 따라 3~7단계를 진행해요
+3. 데모 데이터 생성 프롬프트를 실행해요 → `project/evidence/demo-data.json`을 확인해요
+4. E2E 실행 프롬프트를 실행해요 → Planner → Executor(mcp 호출, mock) → Verifier 순서로 `demo-run-*.json` 생성을 확인해요
+5. HITL 게이트 프롬프트를 실행해요 → 승인/반려를 선택하고, 최종 상태 기록을 확인해요
+6. 아키텍처 문서 프롬프트를 실행해요
+7. 최종 PRD 프롬프트를 실행해요 → `final-prd.md` Canvas 1~10이 모두 채워졌는지 확인해요
+8. 발표 스크립트 프롬프트를 실행해요
+9. 강사에게 최종 승인을 요청해요 → 발표해요 (5~7분)
+
+**Day5 완료 조건**: `manifest.json` READY / `demo-run-*.json`에 근거 ID 포함 전 단계 기록 / HITL 승인 기록 존재 / `demo-script.md` 완성
+
+---
+
+## 테스트 조건 (가상 테스트 — 임시 환경)
+
+| 조건 | 내용 |
+|---|---|
+| 실행 위치 | `project/evidence/` 안에만 결과를 남겨요. 실제 사내 시스템·운영 데이터베이스에는 어떤 것도 연결하지 않아요 |
+| 데이터 | Day1 PRD 도메인에 맞춘 합성 데이터만 사용해요. 실제 회사명·개인정보는 절대 넣지 않아요 |
+| 테스트 범위 | 3~7단계(데모 데이터 생성 → E2E 실행 → HITL 게이트 → 문서화)를 한 세트로 진행해요 |
+| 되돌리기 | 문제가 생기면 `project/`만 삭제하고 `assemble_project.py`를 다시 실행하면 재생성돼요. Day1~4 원본은 영향받지 않아요 |
+| 시간 | 전체 세트를 20분 안에 끝내요. 길어지면 발표 스크립트는 다음 세션으로 미뤄요 |
+| 결과 반영 | 가상 테스트 결과(`demo-run-*.json`)가 승인되면 그대로 발표 자료로 사용해요 |
+
+---
+
+## 문제 해결
+
+| 상황 | 대응 |
+|---|---|
+| `assemble_project.py`가 레이어를 못 찾음 | Day2~4 폴더(`mx-agentic-ai-day2-knowledge-harness/knowledge`, `mx-agentic-ai-day3-mcp-tools/mcp`, `mx-agentic-ai-day4-multi-agent-hitl/agents`)가 스크립트 기준 경로와 정확히 일치하는지 확인해요 |
+| 레포를 다른 위치로 옮겨서 경로가 안 맞음 | `python3 scripts/assemble_project.py --repo-root [실제 레포 루트 경로]`로 직접 지정해요 |
+| 데모 데이터가 PRD 도메인과 안 맞음 | `project/docs/prd.md`의 "배경/사용자" 섹션을 다시 읽게 하고 재생성을 요청해요 |
+| E2E 실행 중 mock 응답이 계약과 안 맞음 | Day3 `mcp/[도구명]/contract.json`을 먼저 열어 필드명을 맞추게 해요 |
+| 발표 시간이 넘침 | `demo-script.md`에서 "문제→구현→검증" 3단만 남기고 "한계"는 QA 시간으로 이동해요 |
+| 팀원마다 산출물 완성도가 다름 | `manifest.json`의 레이어별 status를 팀 회의에서 먼저 공유하고 부족한 레이어부터 보강해요 |
