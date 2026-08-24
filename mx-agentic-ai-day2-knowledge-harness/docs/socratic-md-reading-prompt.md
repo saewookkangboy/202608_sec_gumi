@@ -1,8 +1,8 @@
-# Day 2 · 전체 `.md` 소크라테스 리딩 프롬프트
+# Day 2 · 전체 `.md` 생성 기반 리딩 프롬프트
 
 > 레포 경로: `mx-agentic-ai-day2-knowledge-harness/docs/socratic-md-reading-prompt.md`
 
-Day 2 폴더의 `.md` 25개를 **소크라테스식(한 번에 한 질문)** 으로 훑으면서,
+Day 2 폴더의 `.md` 25개를 **한 번에 한 질문** 으로 훑으면서,
 각 문서가 **AI PRD Canvas 몇 번 칸을 지탱하는지** 스스로 답해 보는 프롬프트입니다.
 
 | 항목 | 내용 |
