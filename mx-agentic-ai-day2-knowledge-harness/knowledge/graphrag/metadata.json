@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "dataset": "synthetic-eco-static-graphrag-demo",
+  "generated_from": "data/raw/eco_documents.jsonl",
+  "generator": "scripts/build_static_graphrag.py",
+  "counts": {
+    "documents": 12,
+    "chunks": 12,
+    "entities": 64,
+    "relationships": 58
+  },
+  "entity_types": {
+    "CHANGE_IMPACT": 12,
+    "CHANGE_REASON": 12,
+    "DRAWING": 11,
+    "ECO_CHANGE": 12,
+    "EQUIPMENT": 7,
+    "PART": 10
+  },
+  "relationship_types": {
+    "AFFECTS": 12,
+    "DOCUMENTED_IN": 11,
+    "RESULTS_IN": 12,
+    "TRIGGERS": 12,
+    "USES_EQUIPMENT": 11
+  },
+  "unknown_values": [
+    {
+      "source_id": "ECO-007",
+      "field": "drawing",
+      "value": "UNKNOWN"
+    },
+    {
+      "source_id": "ECO-012",
+      "field": "equipment",
+      "value": "UNKNOWN"
+    }
+  ],
+  "notes": [
+    "각 합성 ECO 문서는 학습용으로 한 개의 chunk를 사용한다.",
+    "UNKNOWN 값은 추정하지 않으며 엔터티·관계에서 제외하고 unknown_values에 남긴다.",
+    "모든 관계는 source_id, source_path, chunk_id, evidence로 원문까지 추적할 수 있다."
+  ]
+}

@@ -1,0 +1,64 @@
+{"entity_id":"drawing:DRW-100-A","type":"DRAWING","name":"DRW-100-A","description":"ECO-001에 근거한 drawing","source_ids":["ECO-001"],"chunk_ids":["chunk:ECO-001:000"]}
+{"entity_id":"drawing:DRW-100-B","type":"DRAWING","name":"DRW-100-B","description":"ECO-003에 근거한 drawing","source_ids":["ECO-003"],"chunk_ids":["chunk:ECO-003:000"]}
+{"entity_id":"drawing:DRW-101-B","type":"DRAWING","name":"DRW-101-B","description":"ECO-002에 근거한 drawing","source_ids":["ECO-002"],"chunk_ids":["chunk:ECO-002:000"]}
+{"entity_id":"drawing:DRW-101-C","type":"DRAWING","name":"DRW-101-C","description":"ECO-008에 근거한 drawing","source_ids":["ECO-008"],"chunk_ids":["chunk:ECO-008:000"]}
+{"entity_id":"drawing:DRW-102-A","type":"DRAWING","name":"DRW-102-A","description":"ECO-004에 근거한 drawing","source_ids":["ECO-004"],"chunk_ids":["chunk:ECO-004:000"]}
+{"entity_id":"drawing:DRW-103-C","type":"DRAWING","name":"DRW-103-C","description":"ECO-005에 근거한 drawing","source_ids":["ECO-005"],"chunk_ids":["chunk:ECO-005:000"]}
+{"entity_id":"drawing:DRW-104-A","type":"DRAWING","name":"DRW-104-A","description":"ECO-006에 근거한 drawing","source_ids":["ECO-006"],"chunk_ids":["chunk:ECO-006:000"]}
+{"entity_id":"drawing:DRW-106-A","type":"DRAWING","name":"DRW-106-A","description":"ECO-009에 근거한 drawing","source_ids":["ECO-009"],"chunk_ids":["chunk:ECO-009:000"]}
+{"entity_id":"drawing:DRW-107-B","type":"DRAWING","name":"DRW-107-B","description":"ECO-010에 근거한 drawing","source_ids":["ECO-010"],"chunk_ids":["chunk:ECO-010:000"]}
+{"entity_id":"drawing:DRW-108-A","type":"DRAWING","name":"DRW-108-A","description":"ECO-011에 근거한 drawing","source_ids":["ECO-011"],"chunk_ids":["chunk:ECO-011:000"]}
+{"entity_id":"drawing:DRW-109-B","type":"DRAWING","name":"DRW-109-B","description":"ECO-012에 근거한 drawing","source_ids":["ECO-012"],"chunk_ids":["chunk:ECO-012:000"]}
+{"entity_id":"eco:ECO-001","type":"ECO_CHANGE","name":"ECO-001","description":"후면 하우징 변경 기록","source_ids":["ECO-001"],"chunk_ids":["chunk:ECO-001:000"]}
+{"entity_id":"eco:ECO-002","type":"ECO_CHANGE","name":"ECO-002","description":"카메라 브래킷 변경 기록","source_ids":["ECO-002"],"chunk_ids":["chunk:ECO-002:000"]}
+{"entity_id":"eco:ECO-003","type":"ECO_CHANGE","name":"ECO-003","description":"후면 하우징 변경 기록","source_ids":["ECO-003"],"chunk_ids":["chunk:ECO-003:000"]}
+{"entity_id":"eco:ECO-004","type":"ECO_CHANGE","name":"ECO-004","description":"힌지 커버 변경 기록","source_ids":["ECO-004"],"chunk_ids":["chunk:ECO-004:000"]}
+{"entity_id":"eco:ECO-005","type":"ECO_CHANGE","name":"ECO-005","description":"배터리 트레이 변경 기록","source_ids":["ECO-005"],"chunk_ids":["chunk:ECO-005:000"]}
+{"entity_id":"eco:ECO-006","type":"ECO_CHANGE","name":"ECO-006","description":"사이드 키 변경 기록","source_ids":["ECO-006"],"chunk_ids":["chunk:ECO-006:000"]}
+{"entity_id":"eco:ECO-007","type":"ECO_CHANGE","name":"ECO-007","description":"USB 가이드 변경 기록","source_ids":["ECO-007"],"chunk_ids":["chunk:ECO-007:000"]}
+{"entity_id":"eco:ECO-008","type":"ECO_CHANGE","name":"ECO-008","description":"카메라 브래킷 변경 기록","source_ids":["ECO-008"],"chunk_ids":["chunk:ECO-008:000"]}
+{"entity_id":"eco:ECO-009","type":"ECO_CHANGE","name":"ECO-009","description":"안테나 캐리어 변경 기록","source_ids":["ECO-009"],"chunk_ids":["chunk:ECO-009:000"]}
+{"entity_id":"eco:ECO-010","type":"ECO_CHANGE","name":"ECO-010","description":"스피커 덕트 변경 기록","source_ids":["ECO-010"],"chunk_ids":["chunk:ECO-010:000"]}
+{"entity_id":"eco:ECO-011","type":"ECO_CHANGE","name":"ECO-011","description":"방열 플레이트 변경 기록","source_ids":["ECO-011"],"chunk_ids":["chunk:ECO-011:000"]}
+{"entity_id":"eco:ECO-012","type":"ECO_CHANGE","name":"ECO-012","description":"센서 홀더 변경 기록","source_ids":["ECO-012"],"chunk_ids":["chunk:ECO-012:000"]}
+{"entity_id":"equipment:ASSEMBLY-01","type":"EQUIPMENT","name":"ASSEMBLY-01","description":"ECO-006에 근거한 equipment","source_ids":["ECO-006"],"chunk_ids":["chunk:ECO-006:000"]}
+{"entity_id":"equipment:ASSEMBLY-02","type":"EQUIPMENT","name":"ASSEMBLY-02","description":"ECO-010에 근거한 equipment","source_ids":["ECO-010"],"chunk_ids":["chunk:ECO-010:000"]}
+{"entity_id":"equipment:MILL-01","type":"EQUIPMENT","name":"MILL-01","description":"ECO-007에 근거한 equipment","source_ids":["ECO-007"],"chunk_ids":["chunk:ECO-007:000"]}
+{"entity_id":"equipment:MILL-02","type":"EQUIPMENT","name":"MILL-02","description":"ECO-002에 근거한 equipment","source_ids":["ECO-002","ECO-008"],"chunk_ids":["chunk:ECO-002:000","chunk:ECO-008:000"]}
+{"entity_id":"equipment:PRESS-01","type":"EQUIPMENT","name":"PRESS-01","description":"ECO-001에 근거한 equipment","source_ids":["ECO-001","ECO-003"],"chunk_ids":["chunk:ECO-001:000","chunk:ECO-003:000"]}
+{"entity_id":"equipment:PRESS-02","type":"EQUIPMENT","name":"PRESS-02","description":"ECO-004에 근거한 equipment","source_ids":["ECO-004","ECO-009"],"chunk_ids":["chunk:ECO-004:000","chunk:ECO-009:000"]}
+{"entity_id":"equipment:PRESS-03","type":"EQUIPMENT","name":"PRESS-03","description":"ECO-005에 근거한 equipment","source_ids":["ECO-005","ECO-011"],"chunk_ids":["chunk:ECO-005:000","chunk:ECO-011:000"]}
+{"entity_id":"impact:ECO-001","type":"CHANGE_IMPACT","name":"금형 CAV-01 보강","description":"ECO-001 변경 영향","source_ids":["ECO-001"],"chunk_ids":["chunk:ECO-001:000"]}
+{"entity_id":"impact:ECO-002","type":"CHANGE_IMPACT","name":"홀 직경 변경","description":"ECO-002 변경 영향","source_ids":["ECO-002"],"chunk_ids":["chunk:ECO-002:000"]}
+{"entity_id":"impact:ECO-003","type":"CHANGE_IMPACT","name":"이젝터 위치 변경","description":"ECO-003 변경 영향","source_ids":["ECO-003"],"chunk_ids":["chunk:ECO-003:000"]}
+{"entity_id":"impact:ECO-004","type":"CHANGE_IMPACT","name":"리브 두께 변경","description":"ECO-004 변경 영향","source_ids":["ECO-004"],"chunk_ids":["chunk:ECO-004:000"]}
+{"entity_id":"impact:ECO-005","type":"CHANGE_IMPACT","name":"모서리 R 변경","description":"ECO-005 변경 영향","source_ids":["ECO-005"],"chunk_ids":["chunk:ECO-005:000"]}
+{"entity_id":"impact:ECO-006","type":"CHANGE_IMPACT","name":"스프링 접점 변경","description":"ECO-006 변경 영향","source_ids":["ECO-006"],"chunk_ids":["chunk:ECO-006:000"]}
+{"entity_id":"impact:ECO-007","type":"CHANGE_IMPACT","name":"가이드 각도 변경","description":"ECO-007 변경 영향","source_ids":["ECO-007"],"chunk_ids":["chunk:ECO-007:000"]}
+{"entity_id":"impact:ECO-008","type":"CHANGE_IMPACT","name":"체결 토크 기준 변경","description":"ECO-008 변경 영향","source_ids":["ECO-008"],"chunk_ids":["chunk:ECO-008:000"]}
+{"entity_id":"impact:ECO-009","type":"CHANGE_IMPACT","name":"클립 위치 변경","description":"ECO-009 변경 영향","source_ids":["ECO-009"],"chunk_ids":["chunk:ECO-009:000"]}
+{"entity_id":"impact:ECO-010","type":"CHANGE_IMPACT","name":"실링 폭 변경","description":"ECO-010 변경 영향","source_ids":["ECO-010"],"chunk_ids":["chunk:ECO-010:000"]}
+{"entity_id":"impact:ECO-011","type":"CHANGE_IMPACT","name":"두께 공차 변경","description":"ECO-011 변경 영향","source_ids":["ECO-011"],"chunk_ids":["chunk:ECO-011:000"]}
+{"entity_id":"impact:ECO-012","type":"CHANGE_IMPACT","name":"기준면 변경","description":"ECO-012 변경 영향","source_ids":["ECO-012"],"chunk_ids":["chunk:ECO-012:000"]}
+{"entity_id":"part:P-100","type":"PART","name":"후면 하우징","description":"P-100","source_ids":["ECO-001","ECO-003"],"chunk_ids":["chunk:ECO-001:000","chunk:ECO-003:000"]}
+{"entity_id":"part:P-101","type":"PART","name":"카메라 브래킷","description":"P-101","source_ids":["ECO-002","ECO-008"],"chunk_ids":["chunk:ECO-002:000","chunk:ECO-008:000"]}
+{"entity_id":"part:P-102","type":"PART","name":"힌지 커버","description":"P-102","source_ids":["ECO-004"],"chunk_ids":["chunk:ECO-004:000"]}
+{"entity_id":"part:P-103","type":"PART","name":"배터리 트레이","description":"P-103","source_ids":["ECO-005"],"chunk_ids":["chunk:ECO-005:000"]}
+{"entity_id":"part:P-104","type":"PART","name":"사이드 키","description":"P-104","source_ids":["ECO-006"],"chunk_ids":["chunk:ECO-006:000"]}
+{"entity_id":"part:P-105","type":"PART","name":"USB 가이드","description":"P-105","source_ids":["ECO-007"],"chunk_ids":["chunk:ECO-007:000"]}
+{"entity_id":"part:P-106","type":"PART","name":"안테나 캐리어","description":"P-106","source_ids":["ECO-009"],"chunk_ids":["chunk:ECO-009:000"]}
+{"entity_id":"part:P-107","type":"PART","name":"스피커 덕트","description":"P-107","source_ids":["ECO-010"],"chunk_ids":["chunk:ECO-010:000"]}
+{"entity_id":"part:P-108","type":"PART","name":"방열 플레이트","description":"P-108","source_ids":["ECO-011"],"chunk_ids":["chunk:ECO-011:000"]}
+{"entity_id":"part:P-109","type":"PART","name":"센서 홀더","description":"P-109","source_ids":["ECO-012"],"chunk_ids":["chunk:ECO-012:000"]}
+{"entity_id":"reason:ECO-001","type":"CHANGE_REASON","name":"체결부 균열 예방","description":"ECO-001 변경 사유","source_ids":["ECO-001"],"chunk_ids":["chunk:ECO-001:000"]}
+{"entity_id":"reason:ECO-002","type":"CHANGE_REASON","name":"조립 공차 개선","description":"ECO-002 변경 사유","source_ids":["ECO-002"],"chunk_ids":["chunk:ECO-002:000"]}
+{"entity_id":"reason:ECO-003","type":"CHANGE_REASON","name":"표면 찍힘 감소","description":"ECO-003 변경 사유","source_ids":["ECO-003"],"chunk_ids":["chunk:ECO-003:000"]}
+{"entity_id":"reason:ECO-004","type":"CHANGE_REASON","name":"마찰 소음 저감","description":"ECO-004 변경 사유","source_ids":["ECO-004"],"chunk_ids":["chunk:ECO-004:000"]}
+{"entity_id":"reason:ECO-005","type":"CHANGE_REASON","name":"낙하 강도 개선","description":"ECO-005 변경 사유","source_ids":["ECO-005"],"chunk_ids":["chunk:ECO-005:000"]}
+{"entity_id":"reason:ECO-006","type":"CHANGE_REASON","name":"클릭감 편차 감소","description":"ECO-006 변경 사유","source_ids":["ECO-006"],"chunk_ids":["chunk:ECO-006:000"]}
+{"entity_id":"reason:ECO-007","type":"CHANGE_REASON","name":"삽입 불량 예방","description":"ECO-007 변경 사유","source_ids":["ECO-007"],"chunk_ids":["chunk:ECO-007:000"]}
+{"entity_id":"reason:ECO-008","type":"CHANGE_REASON","name":"진동 내구 개선","description":"ECO-008 변경 사유","source_ids":["ECO-008"],"chunk_ids":["chunk:ECO-008:000"]}
+{"entity_id":"reason:ECO-009","type":"CHANGE_REASON","name":"조립 간섭 제거","description":"ECO-009 변경 사유","source_ids":["ECO-009"],"chunk_ids":["chunk:ECO-009:000"]}
+{"entity_id":"reason:ECO-010","type":"CHANGE_REASON","name":"누설 편차 개선","description":"ECO-010 변경 사유","source_ids":["ECO-010"],"chunk_ids":["chunk:ECO-010:000"]}
+{"entity_id":"reason:ECO-011","type":"CHANGE_REASON","name":"열 집중 완화","description":"ECO-011 변경 사유","source_ids":["ECO-011"],"chunk_ids":["chunk:ECO-011:000"]}
+{"entity_id":"reason:ECO-012","type":"CHANGE_REASON","name":"검사 오차 감소","description":"ECO-012 변경 사유","source_ids":["ECO-012"],"chunk_ids":["chunk:ECO-012:000"]}

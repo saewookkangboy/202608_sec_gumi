@@ -22,6 +22,8 @@
 
 전체 카탈로그: [`catalog.json`](./catalog.json)
 
+정적 FE/GraphRAG 참조 데이터: [`graphrag/README.md`](./graphrag/README.md)
+
 ## LLMWiki 규칙
 
 1. 모든 페이지에 `source_id`, `source_path` 필수

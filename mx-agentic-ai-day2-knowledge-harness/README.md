@@ -49,6 +49,7 @@
     ├── knowledge/
     │   ├── eco/ECO-*.md                        # 참조 시나리오 지식 (이미 포함, 원본 잠금)
     │   ├── WIKI.md · catalog.json              # 인덱스
+    │   ├── graphrag/                            # 정적 FE/GraphRAG 참조 데이터
     │   └── 001-[제목].md …                     # (선택) 팀 PRD용 추가 지식
     ├── relations.json                          # GraphRAG 관계 (2-hop, 오늘 작성)
     ├── eval-top3.md                            # Top-3 검색 평가 (오늘 작성)
@@ -107,6 +108,8 @@ eval-top3.md에 질문-순위-근거ID로 기록해 주세요.
 ---
 
 ## 실행
+
+완성된 GraphRAG 정적 파일의 구조를 먼저 보고 싶다면 [`knowledge/graphrag/README.md`](./knowledge/graphrag/README.md)를 참고하세요. 이 참조 데이터는 아래 팀 실습 산출물을 대신하지 않습니다.
 
 1. `../mx-agentic-ai-day1-prd/docs/prd.md`가 열리는지 확인해요
 2. 확산 프롬프트를 실행해요 → 지식 후보를 5개 이상 모아요
